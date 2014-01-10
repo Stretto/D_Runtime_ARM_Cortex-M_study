@@ -19,18 +19,23 @@ private nothrow pure void SendCommand(int command, void* message)
  
 struct Trace
 {    
-    static nothrow pure void Write(in string text)
+    private nothrow pure void Write(in void* ptr, uint length)
     {
 	// Create semihosting message message
 	uint[3] message =
 	[
-	    2, 			      //stderr
-	    cast(uint)text.ptr,    //ptr to string
-	    text.length                             //size of string
+	    2, 	              // stderr
+	    cast(uint)ptr,    // ptr to string
+	    length            // size of string
 	];
 	
-	//Send semihosting command
+	// Send semihosting command
 	SendCommand(0x05, &message);
+    }
+
+    static nothrow pure void Write(in string text)
+    {
+	Write(text.ptr, text.length);
     }
     
     static nothrow pure void Write(uint value)
@@ -45,15 +50,7 @@ struct Trace
 	    value /= 10;
 	} while(value > 0);
 
-	uint[3] message =
-	[
-	    2, 			      //stderr
-	    cast(uint)p,    //ptr to string
-	    (buffer.ptr + 31) - p
-	];
-	
-	//Send semihosting command
-	SendCommand(0x05, &message);
+	Write(p, (buffer.ptr + 31) - p);
     }
     
     static nothrow pure void Write(A...)(A a)
