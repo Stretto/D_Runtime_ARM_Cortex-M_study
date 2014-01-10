@@ -12,7 +12,10 @@ CXXFLAGS=-Isource -mthumb -mcpu=cortex-m4 -fno-emit-moduleinfo -ffunction-sectio
 LD=~/gdc-arm-none-eabi/bin/arm-none-eabi-ld
 LDFLAGS=-T link/link.ld -Map binary/memory.map --gc-sections
 
-all: build $(PROGRAM)
+all: build $(PROGRAM) size
+
+size: $(PROGRAM)
+	~/gdc-arm-none-eabi/bin/arm-none-eabi-size $(PROGRAM)
 
 $(PROGRAM): $(OBJECTS)
 	$(LD) $(LDFLAGS) $^ -o $@
