@@ -88,6 +88,9 @@ private struct BlockData(T)
     }
 }
 
+// this stucture provides extra functionality to the BlockData such as combining
+// with adjacent free blocks, and splitting a block when the entire block is nothing
+// needed
 private struct Block
 {
     BlockData!Block _data;
@@ -212,8 +215,12 @@ private struct Block
     }
 }
 
+// Marks the end of the BSS section and the beginning of heap memory
 extern(C) extern __gshared uint __bss_end;  //defined in linker script
+
+// The end of the SRAM so we know how big our hepa memory can be
 extern(C) extern __gshared uint __sram_end; //defined in linker script
+
 struct HeapMemory
 {
     private align Block* firstFree;
