@@ -4,7 +4,7 @@
 
 module trace;
  
-private nothrow pure void SendCommand(int command, void* message)
+private nothrow pure void SendCommand(in int command, in void* message)
 {
     asm
     {
@@ -16,26 +16,26 @@ private nothrow pure void SendCommand(int command, void* message)
 	: "r0", "r1";
     };
 }
+
+private static nothrow pure void SendMessage(in void* ptr, in uint length)
+{
+    // Create semihosting message message
+    uint[3] message =
+    [
+	2, 	          // stderr
+	cast(uint)ptr,    // ptr to string
+	length            // size of string
+    ];
+    
+    // Send semihosting command
+    SendCommand(0x05, &message);
+}
  
 struct Trace
 {    
-    private nothrow pure void Write(in void* ptr, uint length)
-    {
-	// Create semihosting message message
-	uint[3] message =
-	[
-	    2, 	              // stderr
-	    cast(uint)ptr,    // ptr to string
-	    length            // size of string
-	];
-	
-	// Send semihosting command
-	SendCommand(0x05, &message);
-    }
-
     static nothrow pure void Write(in string text)
     {
-	Write(text.ptr, text.length);
+	SendMessage(text.ptr, text.length);
     }
     
     static nothrow pure void Write(uint value)
@@ -50,7 +50,7 @@ struct Trace
 	    value /= 10;
 	} while(value > 0);
 
-	Write(p, (buffer.ptr + 31) - p);
+	SendMessage(p, (buffer.ptr + 31) - p);
     }
     
     static nothrow pure void Write(A...)(A a)
