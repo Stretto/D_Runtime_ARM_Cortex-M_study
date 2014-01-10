@@ -10,7 +10,7 @@ CC=~/gdc-arm-none-eabi/bin/arm-none-eabi-gdc
 CFLAGS=
 CXXFLAGS=-Isource -mthumb -mcpu=cortex-m4 -fno-emit-moduleinfo -ffunction-sections -fdata-sections -ggdb -c
 LD=~/gdc-arm-none-eabi/bin/arm-none-eabi-ld
-LDFLAGS=-T link/link-gdc.ld -Map binary/memory.map --gc-sections
+LDFLAGS=-T link/link.ld -Map binary/memory.map --gc-sections
 
 all: build $(PROGRAM)
 
@@ -22,6 +22,7 @@ objects/%.o: source/%.d
 
 build:
 	@mkdir -p binary
+	@mkdir -p objects
 	
 clean:
 	rm -f $(OBJECTS) $(PROGRAM)

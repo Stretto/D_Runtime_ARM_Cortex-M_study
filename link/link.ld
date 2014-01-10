@@ -29,11 +29,9 @@ SECTIONS
 	KEEP(*(*.ISRVectorTable))     /* Interrupt vector table */
 	
 	. = ALIGN(4);
-	/* the code */
 	*(SORT_BY_NAME(.text))      
 	*(SORT_BY_NAME(.text*))  
 	
-	/* for "hello\r\n" string constant */
 	. = ALIGN(4);
 	*(SORT_BY_NAME(.rodata))
 	*(SORT_BY_NAME(.rodata*))
@@ -48,7 +46,6 @@ SECTIONS
 	__data_ram_begin = .;
 	
 	. = ALIGN(4);
-	KEEP(*(SORT_BY_NAME(.data.*init*)))
 	*(SORT_BY_NAME(.data))
 	*(SORT_BY_NAME(.data*))
 
