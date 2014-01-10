@@ -64,4 +64,6 @@ SECTIONS
 	. = ALIGN(4);
 	__bss_end = .;
     } >SRAM
+    
+    PROVIDE( __sram_end = ORIGIN(SRAM) + LENGTH(SRAM));
 }
