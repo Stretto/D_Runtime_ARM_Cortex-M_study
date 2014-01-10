@@ -47,7 +47,13 @@ private size_t Normalize(size_t nBytes)
     return ((nBytes + (size_t.sizeof - 1)) & ~0b11u);
 }
 
-struct BlockData(T)
+// This is the basic data structor that is stored at the head of each
+// memory block.  It contains 1 32-bit value which is the address of the
+// next block, or null if it is the last block.  Since the addresses are 
+// always aligned on a 4 byte boundary, the least significant 2 bits are never
+// used.  So the least significant bit is used to mark the block free(0)
+// or allocated(1)
+private struct BlockData(T)
 {
     private uint _data;
     
@@ -142,9 +148,15 @@ private struct Block
     {
 	Resize(nBytes);
 	
-	//Last block points to nothing, and is marked as allocated
+	// Last block points to nothing
 	Next._data.Next = null;
+	
+	// Last block is always marked allocated
+	Next._data.Free();
 	Next._data.Allocate();
+	
+	// This block starts out as free
+	Free();
     }
     
     @property size_t nBytes()
@@ -177,7 +189,7 @@ private struct Block
 	bool succeeded = false;
 	
 	if (IsFree)
-	{
+	{	
 	    // Ensure that this block has been expanded to its maximum size
 	    CombineWithNext();
 	    
@@ -200,6 +212,8 @@ private struct Block
     }
 }
 
+extern(C) extern __gshared uint __bss_end;  //defined in linker script
+extern(C) extern __gshared uint __sram_end; //defined in linker script
 struct HeapMemory
 {
     private align Block* firstFree;
@@ -211,8 +225,8 @@ struct HeapMemory
 
 	if(!instance)
 	{
-	    instance = cast(HeapMemory*)0x20000000;
-	    instance.Init(128000);
+	    instance = cast(HeapMemory*)(&__bss_end);
+	    instance.Init(cast(size_t)(&__sram_end - &__bss_end));
 	}
 
 	return instance;
@@ -253,6 +267,7 @@ struct HeapMemory
 	firstFree = &base;
     }
     
+    //TODO: Text exhaustion of memory
     void* Allocate(in size_t nBytes)
     {
 	void* memory = null;
@@ -262,7 +277,7 @@ struct HeapMemory
 	
 	//Iterate through the list until we reach the last block
 	while(!block.IsLast)
-	{	    
+	{	  
 	    // if allocation succeeded
 	    if (block.Allocate(nBytes))
 	    {		
@@ -277,8 +292,10 @@ struct HeapMemory
 		
 		break;
 	    }
+	    
+	    block = block.Next;
 	}
-	
+
 	return memory;
     }
     
