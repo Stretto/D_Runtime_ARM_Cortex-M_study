@@ -45,6 +45,10 @@ extern(C) int memcmp (in void * ptr1, in void * ptr2, size_t num )
     return 0;
 }
 
+/***************************************************************************
+ Expand the number of bytes if necessary to always align on a 4-byte 
+ boundary.
+*/
 private size_t Normalize(size_t nBytes)
 {
     return ((nBytes + (size_t.sizeof - 1)) & ~0b11u);
