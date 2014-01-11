@@ -26,7 +26,6 @@ extern(C) void _Unwind_Resume(void *ucbp)
     Trace.WriteLine("_Unwind_Resume");
 }
  
-
 __gshared int GlobalDataVar = 2;
 __gshared int GlobalBssVar;
 

@@ -2,6 +2,8 @@
 // Distributed under the Boost Software License, Version 1.0.
 //    (See copy at http://www.boost.org/LICENSE_1_0.txt)
 
+// First-fit memory allocator in D for 32-bit microcontrollers
+
 module memory;
 
 import trace;
@@ -223,6 +225,8 @@ extern(C) extern __gshared uint __sram_end; //defined in linker script
 
 struct HeapMemory
 {
+    //We don't want to waste time scanning all blocks for a free one
+    //so we keep this pointer to the first free block as a shortcut
     private align Block* firstFree;
     private align Block base;
     
