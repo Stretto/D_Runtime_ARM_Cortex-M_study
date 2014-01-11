@@ -2,8 +2,9 @@
 // Distributed under the Boost Software License, Version 1.0.
 //    (See copy at http://www.boost.org/LICENSE_1_0.txt)
 
-// First-fit memory allocator in D for 32-bit microcontrollers
-
+/***************************************************************************
+ First-fit memory allocator in D for 32-bit microcontrollers
+*/
 module memory;
 
 import trace;
@@ -49,12 +50,14 @@ private size_t Normalize(size_t nBytes)
     return ((nBytes + (size_t.sizeof - 1)) & ~0b11u);
 }
 
-// This is the basic data structor that is stored at the head of each
-// memory block.  It contains 1 32-bit value which is the address of the
-// next block, or null if it is the last block.  Since the addresses are 
-// always aligned on a 4 byte boundary, the least significant 2 bits are never
-// used.  So the least significant bit is used to mark the block free(0)
-// or allocated(1)
+/***************************************************************************
+ This is the basic data structor that is stored at the head of each
+ memory block.  It contains 1 32-bit value which is the address of the
+ next block, or null if it is the last block.  Since the addresses are 
+ always aligned on a 4 byte boundary, the least significant 2 bits are never
+ used.  So the least significant bit is used to mark the block free(0)
+ or allocated(1)
+*/
 private struct BlockData(T)
 {
     private uint _data;
@@ -90,23 +93,16 @@ private struct BlockData(T)
     }
 }
 
-// this stucture provides extra functionality to the BlockData such as combining
-// with adjacent free blocks, and splitting a block when the entire block is nothing
-// needed
+/***************************************************************************
+ This stucture provides extra functionality to the BlockData such as combining
+ with adjacent free blocks, and splitting a block when the entire block is nothing
+ needed
+*/
 private struct Block
 {
     BlockData!Block _data;
     
-    private void CombineWithNext()
-    {
-	//Swallow adjacent free blocks
-	while(Next.IsFree)
-	{
-	    _data.Next = Next.Next;
-	}
-    }
-    
-    private @property uint MemoryAddress()
+    @property uint MemoryAddress()
     {
 	return cast(uint)Memory;
     }
@@ -136,6 +132,31 @@ private struct Block
 	return Next == null;
     }
     
+    @property size_t nBytes()
+    {
+	if (IsLast)
+	{
+	    return 0;
+	}
+	
+	return Next.Address - MemoryAddress;
+    }
+    
+    // Get a pointer to the beginning of the usable memory 
+    @property void* Memory()
+    {
+	return cast(void*)(Address + Block.sizeof);
+    }
+    
+    void CombineWithNext()
+    {
+	//Swallow adjacent free blocks
+	while(Next.IsFree)
+	{
+	    _data.Next = Next.Next;
+	}
+    }
+    
     void Resize(in size_t nBytes)
     {
 	// backup current _next pointer
@@ -162,22 +183,6 @@ private struct Block
 	
 	// This block starts out as free
 	Free();
-    }
-    
-    @property size_t nBytes()
-    {
-	if (IsLast)
-	{
-	    return 0;
-	}
-	
-	return Next.Address - MemoryAddress;
-    }
-    
-    // Get a pointer to the beginning of the usable memory 
-    @property void* Memory()
-    {
-	return cast(void*)(Address + Block.sizeof);
     }
     
     void Free()
@@ -217,23 +222,35 @@ private struct Block
     }
 }
 
-// Marks the end of the BSS section and the beginning of heap memory
+/***************************************************************************
+ Marks the end of the BSS section and the beginning of heap memory
+*/
 extern(C) extern __gshared uint __bss_end;  //defined in linker script
 
-// The end of the SRAM so we know how big our hepa memory can be
+/***************************************************************************
+ The end of the SRAM so we know how big our hepa memory can be
+*/
 extern(C) extern __gshared uint __sram_end; //defined in linker script
 
 struct HeapMemory
 {
-    //We don't want to waste time scanning all blocks for a free one
-    //so we keep this pointer to the first free block as a shortcut
+    /*********************************************************************** 
+     singleton instance
+    */
+    private static __gshared HeapMemory* instance;
+
+    /*********************************************************************** 
+     We don't want to waste time scanning all blocks for a free one
+     so we keep this pointer to the first free block as a shortcut
+    */
     private align Block* firstFree;
     private align Block base;
     
+    /*********************************************************************** 
+     get singleton instance
+    */
     static @property HeapMemory* Instance()
     {
-	static __gshared HeapMemory* instance;
-
 	if(!instance)
 	{
 	    instance = cast(HeapMemory*)(&__bss_end);
@@ -261,7 +278,7 @@ struct HeapMemory
 		block = block.Next;
 	    }
 	    
-	    //while we're here, try to expand block
+	    //while we're here, try to combine with next block
 	    if (block.IsFree)
 	    {
 		block.CombineWithNext();
