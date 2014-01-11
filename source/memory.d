@@ -278,7 +278,7 @@ struct HeapMemory
 	firstFree = &base;
     }
     
-    //TODO: Text exhaustion of memory
+    //TODO: Test exhaustion of memory
     void* Allocate(in size_t nBytes)
     {
 	void* memory = null;
