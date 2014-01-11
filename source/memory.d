@@ -9,6 +9,10 @@ module memory;
 
 import trace;
 
+/***************************************************************************
+ memcpy just like that in C.  This should actually be written in assembly to
+ ensure maximum performance. The newlib sources have a very nice one.
+*/
 extern(C) pure void* memcpy(void* dest, in void* src, size_t n)
 {    
     ubyte* src8 = cast(ubyte*)src;
@@ -25,6 +29,10 @@ extern(C) pure void* memcpy(void* dest, in void* src, size_t n)
     return dest;
 }
 
+/***************************************************************************
+ memset just like that in C.  Could probably be optimized if written in
+ assembly.
+*/
 extern(C) pure void* memset(void* dest, in ubyte value, size_t n)
 {
     ubyte* dest8 = cast(ubyte*)dest;
