@@ -1,6 +1,5 @@
-/*********************************************************************************************
-Memory Spaces Definitions
-*********************************************************************************************/
+/* link.ld */
+
 MEMORY
 {
   CCRAM    (rxw) : ORIGIN = 0x10000000, LENGTH =   64k
@@ -8,62 +7,19 @@ MEMORY
   FLASH    (rx)  : ORIGIN = 0x08000000, LENGTH = 1024k
 }
 
-_stackStart = ORIGIN(CCRAM) + LENGTH(CCRAM);
+_stackStart = ORIGIN(CCRAM) + LENGTH(CCRAM);  /* Falling stack starts at the end of the CCM */
 
-/*********************************************************************************************
- Section Definitions
-*********************************************************************************************/
 SECTIONS
 {  
-
-    /* Don't need exception stuff right now */
-    /DISCARD/ :
-    {
-	*(.ARM.extab*)
-	*(.ARM.exidx*)
-    }
-    
-    .text :       
-    {
-	LONG(_stackStart);            /* Initial stack pointer */
-	KEEP(*(*.ISRVectorTable))     /* Interrupt vector table */
-	
-	. = ALIGN(4);
-	*(SORT_BY_NAME(.text))      
-	*(SORT_BY_NAME(.text*))  
-	
-	. = ALIGN(4);
-	*(SORT_BY_NAME(.rodata))
-	*(SORT_BY_NAME(.rodata*))
-
-	. = ALIGN(4);
-	__data_rom_begin = .;
-    } >FLASH
-
-    .data : AT (__data_rom_begin)
-    {
-	. = ALIGN(4);
-	__data_ram_begin = .;
-	
-	. = ALIGN(4);
-	*(SORT_BY_NAME(.data))
-	*(SORT_BY_NAME(.data*))
-
-	. = ALIGN(4);
-	__data_ram_end = .;
-    } >SRAM
-    
-    .bss :
-    {
-	. = ALIGN(4);
-        __bss_begin = .;
-        
-        *(SORT_BY_NAME(.bss))
-        *(SORT_BY_NAME(.bss*))
-        
-	. = ALIGN(4);
-	__bss_end = .;
-    } >SRAM
-    
-    PROVIDE( __sram_end = ORIGIN(SRAM) + LENGTH(SRAM));
+  .text :       
+  {
+    LONG(_stackStart);                        /* Initial stack pointer */
+    KEEP(*(*.rodata.ResetHandler))            /* Pointer to program's entry point   */
+    *(*.text)                                 /* Our executable code */
+  } > FLASH
+  
+  .rodata :
+  {
+    *(*.rodata)                               /* The "Hello, World!\r\n" immutable string */
+  } > FLASH
 }
