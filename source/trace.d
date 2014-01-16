@@ -28,6 +28,7 @@ private static nothrow pure void SendMessage(in void* ptr, in uint length)
     ];
     
     // Send semihosting command
+    // 0x05 = Write
     SendCommand(0x05, &message);
 }
  
@@ -40,17 +41,23 @@ struct Trace
     
     static nothrow pure void Write(uint value)
     {
-	char[32] buffer;
+	//Will use at most 10 digits, for a 32-bit base-10 number
+	char[10] buffer; 
 	
-	char* p = buffer.ptr + 31;
+	//the end of the buffer.  Used to compute length of string
+	char* end = buffer.ptr + buffer.length;
+	
+	//Print digit to the end of the buffer starting with the
+	//least significant bit first.
+	char* p = end;
 	do
 	{
-	    p--;
-	    *p = '0' + (value % 10);
-	    value /= 10;
-	} while(value > 0);
+	    *p-- = '0' + (value % 10);
+	} while(value / 10);
 
-	SendMessage(p, (buffer.ptr + 31) - p);
+	//p = pointer to most significant digit
+	//end -p = length of string
+	SendMessage(p, end - p);
     }
     
     static nothrow pure void Write(A...)(A a)
