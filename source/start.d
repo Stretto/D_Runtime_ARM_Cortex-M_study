@@ -6,12 +6,17 @@ import trace;
 alias extern(C) void function() ISR;              // Alias Interrupt Service Routine function pointers
 extern(C) immutable ISR ResetHandler = &OnReset;  // Pointer to entry point, OnReset
 
+//__gshared uint dataVar = 1;
+//__gshared uint bssVar;
+
 // The program's entry point
 extern(C) void OnReset()
 {    
     // run repeatedly
     while(true)
     {
+	//dataVar.Write();
+	//bssVar.Write();
 	uint x = 123;
 	string a = "abcd";
 	a.Write();

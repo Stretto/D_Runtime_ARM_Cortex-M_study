@@ -16,6 +16,7 @@ SECTIONS
     {
 	*(.ARM.extab*)
 	*(.ARM.exidx*)
+	*(.data*)
     }
 
     .text :       
