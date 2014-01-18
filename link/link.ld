@@ -11,15 +11,22 @@ _stackStart = ORIGIN(CCRAM) + LENGTH(CCRAM);  /* Falling stack starts at the end
 
 SECTIONS
 {  
-  .text :       
-  {
-    LONG(_stackStart);                        /* Initial stack pointer */
-    KEEP(*(*.ResetHandler))                   /* Pointer to program's entry point   */
-    *(*.text)                                 /* Our executable code */
-  } > FLASH
-  
-  .rodata :
-  {
-    *(*.rodata)                               /* The "Hello, World!\r\n" immutable string */
-  } > FLASH
+    /* Not ready to implement exceptions yet, so discard this to prevent linker errors */
+    /DISCARD/ :
+    {
+	*(.ARM.extab*)
+	*(.ARM.exidx*)
+    }
+
+    .text :       
+    {
+	LONG(_stackStart);                        /* Initial stack pointer */
+	KEEP(*(*.ResetHandler))                   /* Pointer to program's entry point   */
+	*(*.text)                                 /* Our executable code */
+    } > FLASH
+
+    .rodata :
+    {
+	*(*.rodata)                               /* The "Hello, World!\r\n" immutable string */
+    } > FLASH
 }
