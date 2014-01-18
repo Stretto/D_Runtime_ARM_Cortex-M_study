@@ -32,8 +32,6 @@ private void PerformCommand(in int command, in void* message)
   }
 }
 
-private __gshared immutable string NewLine = "\r\n";
-
 /************************************************************************************
 * Create semihosting message and forward it to PerformCommand
 */
@@ -103,7 +101,7 @@ void Write(in int value, in uint base = 10)
 void WriteLine(in uint value, in uint base = 10)
 {
     Write(value, base);
-    Write(NewLine);
+    Write("\r\n");
 }
 
 /************************************************************************************
@@ -112,7 +110,7 @@ void WriteLine(in uint value, in uint base = 10)
 void WriteLine(in int value, in uint base = 10)
 {
     Write(value, base);
-    Write(NewLine);
+    Write("\r\n");
 }
 
 /************************************************************************************
@@ -143,5 +141,5 @@ void WriteLine(A...)(in A a)
     {
 	Write(t);
     }
-    Write(NewLine);
+    Write("\r\n");
 }
