@@ -16,7 +16,6 @@ SECTIONS
     {
 	*(.ARM.extab*)
 	*(.ARM.exidx*)
-	*(.data*)
     }
 
     .text :       
@@ -29,5 +28,10 @@ SECTIONS
     .rodata :
     {
 	*(*.rodata)                               /* The "Hello, World!\r\n" immutable string */
+    } > FLASH
+    
+    .data :
+    {
+	*(.data*)
     } > FLASH
 }

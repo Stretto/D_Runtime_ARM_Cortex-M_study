@@ -32,8 +32,6 @@ private void PerformCommand(in int command, in void* message)
   }
 }
 
-//private __gshared immutable string NewLine = "\r\n";
-
 /************************************************************************************
 * Create semihosting message and forward it to PerformCommand
 */
