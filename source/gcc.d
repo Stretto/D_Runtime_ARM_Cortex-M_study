@@ -2,5 +2,5 @@
 
 module gcc;
 
-extern(C) void _Unwind_Resume(void* ignore)
-{ } 
+/*extern(C) void _Unwind_Resume(void* ignore)
+{ } */
