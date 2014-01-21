@@ -1,5 +1,5 @@
 
-void _d_invariant(Object o)
+/*void _d_invariant(Object o)
 {   
     ClassInfo c;
 
@@ -17,4 +17,4 @@ void _d_invariant(Object o)
         }
         c = c.base;
     } while (c);
-}
+}*/

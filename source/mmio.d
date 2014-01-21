@@ -23,7 +23,7 @@
  // Declare register with it's contained fields like this
  struct MyRegister
  {
-     mixin Register!(0x20000000, 0);
+     mixin Register!(0x2000_0000, 0x0000_0000);
 
      static BitField!(size_t, 31,  0, Policy.Read)      EntireRegister;
      static BitField!(ushort, 16,  1, Policy.Read)      Bits16To1;
@@ -53,19 +53,66 @@ enum Policy
 }
 
 /***********************************************************************
- Gets register's value by address
+ Provides access to a limited range of bits in this register
 */
-private auto GetValue(size_t address)
+mixin template BitFieldImplementation(TReturnType, size_t msb, size_t lsb, Policy policy)
 {
-    return *(cast(size_t*)address);
-}
+    /***************************************************************
+	Index of this BitField's most significant Bit
+    */
+    static @property auto MSBIndex()
+    {
+	return msb >= lsb ? msb : lsb;
+    }
 
-/***********************************************************************
- Sets register's value by address
-*/
-private void SetValue(size_t address, size_t value)
-{
-    *(cast(size_t*)address) = value;
+    /***********************************************************************
+	Index of this BitField's least significant Bit
+    */
+    static @property auto LSBIndex()
+    {
+	return lsb <= msb ? lsb : msb;
+    }
+
+    /***********************************************************************
+	Total number of bits in this BitField
+    */
+    static @property auto NumOfBits()
+    {
+	return MSBIndex - LSBIndex + 1;
+    }
+
+    /***********************************************************************
+	Gets a bit-mask for this bit field for masking just this BitField out
+	of the register.
+    */
+    static @property auto BitMask()
+    {
+	return ((1 << NumOfBits()) - 1) << LSBIndex();
+    }
+
+    // Only add a "getter" if the policy supports it.
+    static if (policy == Policy.Read || policy == Policy.ReadWrite)
+    {
+	/***********************************************************************
+	    Get this BitField's value
+	*/
+	static @property TReturnType Value()
+	{
+	    return cast(TReturnType)((ThisRegister.Value & BitMask) >> LSBIndex);
+	}
+    }
+
+    // Only add a "setter" if the policy supports it.
+    static if (policy == Policy.Write || policy == Policy.ReadWrite)
+    {
+	/***********************************************************************
+	    Set this BitField's value
+	*/
+	static @property void Value(TReturnType value)
+	{
+	    ThisRegister.Value = (ThisRegister.Value & ~BitMask) | ((cast(size_t)value) << LSBIndex);
+	}
+    }
 }
 
 /***********************************************************************
@@ -89,7 +136,7 @@ mixin template Register(size_t address, size_t resetValue = 0)
     */
     private static @property auto Value()
     {
-        return GetValue(address);
+        return *(cast(size_t*)address);
     }
 
     /***********************************************************************
@@ -98,70 +145,17 @@ mixin template Register(size_t address, size_t resetValue = 0)
     */
     private static @property void Value(size_t value)
     {
-        SetValue(address, value);
+        *(cast(size_t*)address) = value;
     }
 
-    /***********************************************************************
-     Provides access to a limited range of bits in this register
-    */
     struct BitField(TReturnType, size_t msb, size_t lsb, Policy policy)
     {
-	/***************************************************************
-	 Index of this BitField's most significant Bit
-	*/
-        static @property auto MSBIndex()
-        {
-            return msb >= lsb ? msb : lsb;
-        }
-
-        /***********************************************************************
-	 Index of this BitField's least significant Bit
-	*/
-        static @property auto LSBIndex()
-        {
-            return lsb <= msb ? lsb : msb;
-        }
-
-        /***********************************************************************
-	 Total number of bits in this BitField
-	*/
-        static @property auto NumOfBits()
-        {
-            return MSBIndex - LSBIndex + 1;
-        }
-
-        /***********************************************************************
-	 Gets a bit-mask for this bit field for masking just this BitField out
-	 of the register.
-	*/
-        @property auto BitMask()
-        {
-            return ((1 << NumOfBits()) - 1) << LSBIndex();
-        }
-
-	// Only add a "getter" if the policy supports it.
-        static if (policy == Policy.Read || policy == Policy.ReadWrite)
-        {
-	    /***********************************************************************
-	     Get this BitField's value
-	    */
-            @property TReturnType Value()
-            {
-                return cast(TReturnType)((ThisRegister.Value & BitMask) >> LSBIndex);
-            }
-        }
-
-	// Only add a "setter" if the policy supports it.
-        static if (policy == Policy.Write || policy == Policy.ReadWrite)
-        {
-	    /***********************************************************************
-	     Set this BitField's value
-	    */
-            @property void Value(TReturnType value)
-            {
-                ThisRegister.Value = (ThisRegister.Value & ~BitMask) | ((cast(size_t)value) << LSBIndex);
-            }
-        }
+	mixin BitFieldImplementation!(TReturnType, msb, lsb, policy);
+    }
+    
+    struct Bit(size_t bitIndex, Policy policy)
+    {
+	mixin BitFieldImplementation!(bool, bitIndex, bitIndex, policy);
     }
 
     /***********************************************************************

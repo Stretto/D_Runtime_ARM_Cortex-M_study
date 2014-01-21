@@ -8,6 +8,7 @@ import trace;
 import memory;
 import reference;
 import isr;
+import mmio;
   
 extern(C) __gshared void * _Dmodule_ref;
 
@@ -25,19 +26,6 @@ extern(C) void _Unwind_Resume(void *ucbp)
 {
     Trace.WriteLine("_Unwind_Resume");
 }
- 
-__gshared int GlobalDataVar = 2;
-__gshared int GlobalBssVar;
-
-
-extern (C) Object _d_newclass(const ClassInfo ci)
-{
-    void* p;
-
-    p = HeapMemory.Instance.Allocate(ci.init.length);
-    
-    return cast(Object) p;
-}
 
 extern(C) extern __gshared uint __data_rom_begin;
 extern(C) extern __gshared uint __data_ram_begin;
@@ -45,41 +33,28 @@ extern(C) extern __gshared uint __data_ram_end;
 extern(C) extern __gshared uint __bss_begin;
 extern(C) extern __gshared uint __bss_end;
 
-class MyClass
-{
-    uint x;
-    
-    this()
+struct TestStruct(uint value)
+{        
+    static uint GetVar()
     {
-	Trace.WriteLine("Constructor");
-    }
-    
-    ~this()
-    {
-	Trace.WriteLine("Destructor");
+	return value;
     }
 }
 
+struct MyRegister
+{
+    mixin Register!(0x2000_0000, 0x0000_0000);
+
+    static BitField!(size_t, 31,  0, Policy.Read)      EntireRegister;
+    static BitField!(ushort, 16,  1, Policy.Read)      Bits16To1;
+    static Bit!(0, Policy.Read)     Bit0;
+    static BitField!(ubyte,  24, 17, Policy.ReadWrite) Bits24To17;
+}
+
+
 void DoFunction()
 {     
-    auto r1 = Reference!MyClass.Create();
-    auto r2 = Reference!MyClass.Create();
-    
-    r1.x = 11;
-    r2.x = 22;
-    
-    Trace.WriteLine("r1: ", r1.Count, ": ", r1.x);
-    Trace.WriteLine("r2: ", r2.Count, ": ", r2.x);
-    
-    r1 = r2;	
-    
-    Trace.WriteLine("r1: ", r1.Count, ": ", r1.x);
-    Trace.WriteLine("r2: ", r2.Count, ": ", r2.x);
-    
-    MyClass c = new MyClass();
-    c.x = 10;
-    
-    c.destroy();
+    Trace.WriteLine(cast(uint)(MyRegister.Bit0.Value));
 }
 
 extern(C) private void OnHardFault()
