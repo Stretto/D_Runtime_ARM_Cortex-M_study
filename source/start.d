@@ -1,10 +1,10 @@
 // start.d
 
 // These are marked extern(C) to avoid name mangling, so we can refer to them in our linker script
-alias extern(C) void function() ISR;              // Alias Interrupt Service Routine function pointers
+alias void function() ISR;              // Alias Interrupt Service Routine function pointers
 extern(C) immutable ISR ResetHandler = &OnReset;  // Pointer to entry point, OnReset
 
-void SendCommand(int command, void* message)
+void SemiHostingInvoke(int command, shared void* message)
 {
   // LDC and GDC use slightly different inline assembly syntax, so we have to 
   // differentiate them with D's conditional compilation feature, version.
@@ -34,20 +34,23 @@ void SendCommand(int command, void* message)
 }
 
 // The program's entry point
-extern(C) void OnReset()
+void OnReset()
 {
-  // run repeatedly
-  while(true)
-  {
+    // text to display
+    string text = "Hello, World!\r\n";
+    
     // Create semihosting message
-    uint[3] message =
+    shared uint[3] message =
       [
-	2, 			            // stderr
-	cast(uint)"Hello, World!\r\n".ptr,  // ptr to string
-	15                                  // number of bytes in string
+	2, 			  // stderr
+	cast(uint)text.ptr,       // ptr to string
+	text.length               // number of bytes in string
       ];
- 
-    // Send semihosting command
-    SendCommand(0x05, &message);
-  }
+
+    // run repeatedly
+    while(true)
+    {
+	// Send semihosting command
+	SemiHostingInvoke(0x05, &message);
+    }
 }
