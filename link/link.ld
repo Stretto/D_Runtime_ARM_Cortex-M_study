@@ -21,7 +21,9 @@ SECTIONS
     .text :       
     {
 	LONG(_stackStart);                        /* Initial stack pointer */
-	KEEP(*(*.ResetHandler))                   /* Pointer to program's entry point   */
+	KEEP(*(*.ResetHandler))                   /* Pointer to program's entry point  */
+	LONG(0)                                   /* Pointer to non-maskable interrupt handler  */
+	KEEP(*(*.HardFaultHandler))               /* Pointer to hard fault handler  */
 	*(*.text)                                 /* Our executable code */
     } > FLASH
 

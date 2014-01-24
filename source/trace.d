@@ -40,9 +40,9 @@ private void SendMessage(in void* ptr, in uint length)
     // Create semihosting message message
     uint[3] message =
     [
-        2,          // stderr
+        2,              // stderr
         cast(uint)ptr, // ptr to string
-        length // size of string
+        length         // size of string
     ];
     
     // Send semihosting command
@@ -53,7 +53,7 @@ private void SendMessage(in void* ptr, in uint length)
 /************************************************************************************
 * Print unsigned integer
 */
-void Write(in uint value, in uint base = 10)
+void Write(uint value, uint base = 10)
 {
     assert(base >= 2 && base <= 16);
     
@@ -69,8 +69,10 @@ void Write(in uint value, in uint base = 10)
     do
     {
 	uint index = value % base;
-	*p-- = cast(char)(index <= 9 ? '0' + index : 'A' + index);
-    } while(value / base);
+	p--;
+	*p = cast(char)(index <= 9 ? '0' + index : 'A' + (index - 10));
+	value /= base;
+    } while(value);
 
     //p = pointer to most significant digit
     //end - p = length of string
@@ -80,7 +82,7 @@ void Write(in uint value, in uint base = 10)
 /************************************************************************************
 * Print signed integer
 */
-void Write(in int value, in uint base = 10)
+void Write(int value, uint base = 10)
 {
     // if negative, write minus sign and get absolute value
     if (value < 0)
@@ -98,7 +100,7 @@ void Write(in int value, in uint base = 10)
 /************************************************************************************
 * Print unsigned integer with a new line
 */
-void WriteLine(in uint value, in uint base = 10)
+void WriteLine(uint value, uint base = 10)
 {
     Write(value, base);
     Write("\r\n");
@@ -107,7 +109,7 @@ void WriteLine(in uint value, in uint base = 10)
 /************************************************************************************
 * Print signed integer with a new line
 */
-void WriteLine(in int value, in uint base = 10)
+void WriteLine(int value, uint base = 10)
 {
     Write(value, base);
     Write("\r\n");
