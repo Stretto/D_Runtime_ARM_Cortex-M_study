@@ -22,7 +22,7 @@ SECTIONS
     {
 	LONG(_stackStart);                        /* Initial stack pointer */
 	KEEP(*(*.ResetHandler))                   /* Pointer to program's entry point  */
-	LONG(0)                                   /* Pointer to non-maskable interrupt handler  */
+	LONG(0)                                   /* Pointer to non-maskable interrupt handler (ignore for now)  */
 	KEEP(*(*.HardFaultHandler))               /* Pointer to hard fault handler  */
 	*(*.text)                                 /* Our executable code */
     } > FLASH

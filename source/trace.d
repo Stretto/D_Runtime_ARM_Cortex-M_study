@@ -3,7 +3,7 @@ module trace;
 /************************************************************************************
 * Initiate semihosting command
 */
-private void PerformCommand(in int command, in void* message)
+private void SemihostingInvoke(in int command, in void* message)
 {
   // LDC and GDC use slightly different inline assembly syntax, so we have to 
   // differentiate them with D's conditional compilation feature, version.
@@ -27,7 +27,7 @@ private void PerformCommand(in int command, in void* message)
        bkpt #0xAB"
 	:                              
 	: [cmd] "r" command, [msg] "r" message
-	: "r0", "r1";
+	: "r0", "r1", "memory";
     };
   }
 }
@@ -35,7 +35,7 @@ private void PerformCommand(in int command, in void* message)
 /************************************************************************************
 * Create semihosting message and forward it to PerformCommand
 */
-private void SendMessage(in void* ptr, in uint length)
+private void SemihostingWrite(in void* ptr, in uint length)
 {
     // Create semihosting message message
     uint[3] message =
@@ -47,7 +47,7 @@ private void SendMessage(in void* ptr, in uint length)
     
     // Send semihosting command
     // 0x05 = Write
-    PerformCommand(0x05, &message);
+    SemihostingInvoke(0x05, &message);
 }
 
 /************************************************************************************
@@ -76,7 +76,7 @@ void Write(uint value, uint base = 10)
 
     //p = pointer to most significant digit
     //end - p = length of string
-    SendMessage(p, end - p);
+    SemihostingWrite(p, end - p);
 }
 
 /************************************************************************************
@@ -120,7 +120,7 @@ void WriteLine(int value, uint base = 10)
 */
 void Write(in string text)
 {
-    SendMessage(text.ptr, text.length);
+    SemihostingWrite(text.ptr, text.length);
 }
 
 /************************************************************************************
