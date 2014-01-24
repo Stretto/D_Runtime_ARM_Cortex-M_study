@@ -4,7 +4,7 @@
 alias void function() ISR;              // Alias Interrupt Service Routine function pointers
 extern(C) immutable ISR ResetHandler = &OnReset;  // Pointer to entry point, OnReset
 
-void SemiHostingInvoke(int command, void* message)
+void SemihostingInvoke(int command, void* message)
 {
   // LDC and GDC use slightly different inline assembly syntax, so we have to 
   // differentiate them with D's conditional compilation feature, version.
@@ -51,6 +51,6 @@ void OnReset()
     while(true)
     {
 	// Send semihosting command
-	SemiHostingInvoke(0x05, &message);
+	SemihostingInvoke(0x05, &message);
     }
 }
