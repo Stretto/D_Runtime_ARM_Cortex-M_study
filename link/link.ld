@@ -18,6 +18,7 @@ SECTIONS
 	*(.ARM.exidx*)
     }
 
+    /* Code */
     .text :       
     {
 	LONG(_stackStart);                        /* Initial stack pointer */
@@ -27,8 +28,9 @@ SECTIONS
 	*(*.text)                                 /* Our executable code */
     } > FLASH
 
+    /* Immutable Data */
     .rodata :
     {
-	*(*.rodata)                               /* The "Hello, World!\r\n" immutable string */
+	*(*.rodata)   
     } > FLASH
 }
