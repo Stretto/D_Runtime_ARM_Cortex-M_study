@@ -3,7 +3,7 @@ module trace;
 /************************************************************************************
 * Initiate semihosting command
 */
-private void PerformCommand(in int command, in void* message)
+private void SemihostingInvoke(in int command, in void* message)
 {
   // LDC and GDC use slightly different inline assembly syntax, so we have to 
   // differentiate them with D's conditional compilation feature, version.
@@ -25,9 +25,9 @@ private void PerformCommand(in int command, in void* message)
       "mov r0, %[cmd]; 
        mov r1, %[msg]; 
        bkpt #0xAB"
-	:                              
-	: [cmd] "r" command, [msg] "r" message
-	: "r0", "r1";
+    :                              
+    : [cmd] "r" command, [msg] "r" message
+    : "r0", "r1", "memory";
     };
   }
 }
@@ -35,70 +35,72 @@ private void PerformCommand(in int command, in void* message)
 /************************************************************************************
 * Create semihosting message and forward it to PerformCommand
 */
-private void SendMessage(in void* ptr, in uint length)
+private void SemihostingWrite(in void* ptr, in uint length)
 {
     // Create semihosting message message
     uint[3] message =
     [
-        2,          // stderr
+        2,              // stderr
         cast(uint)ptr, // ptr to string
-        length // size of string
+        length         // size of string
     ];
-    
+
     // Send semihosting command
     // 0x05 = Write
-    PerformCommand(0x05, &message);
+    SemihostingInvoke(0x05, &message);
 }
 
 /************************************************************************************
 * Print unsigned integer
 */
-void Write(in uint value, in uint base = 10)
+void Write(uint value, uint base = 10)
 {
     assert(base >= 2 && base <= 16);
-    
+
     //Will use at most 10 digits, for a 32-bit base-10 number
     char[10] buffer;
-    
+
     //the end of the buffer. Used to compute length of string
     char* end = buffer.ptr + buffer.length;
-    
+
     //Print digit to the end of the buffer starting with the
     //least significant bit first.
     char* p = end;
     do
     {
-	uint index = value % base;
-	*p-- = cast(char)(index <= 9 ? '0' + index : 'A' + index);
-    } while(value / base);
+        uint index = value % base;
+        p--;
+        *p = cast(char)(index <= 9 ? '0' + index : 'A' + (index - 10));
+        value /= base;
+    } while(value);
 
     //p = pointer to most significant digit
     //end - p = length of string
-    SendMessage(p, end - p);
+    SemihostingWrite(p, end - p);
 }
 
 /************************************************************************************
 * Print signed integer
 */
-void Write(in int value, in uint base = 10)
+void Write(int value, uint base = 10)
 {
     // if negative, write minus sign and get absolute value
     if (value < 0)
     {
-	Write("-");
-	Write(cast(uint)(value * -1), base);
+        Write("-");
+        Write(cast(uint)(value * -1), base);
     }
     // if greater than or equal to 0, just treat it as an unsigned int
     else
     {
-	Write(cast(uint)value, base);
+        Write(cast(uint)value, base);
     }    
 }
 
 /************************************************************************************
 * Print unsigned integer with a new line
 */
-void WriteLine(in uint value, in uint base = 10)
+void WriteLine(uint value, uint base = 10)
 {
     Write(value, base);
     Write("\r\n");
@@ -107,7 +109,7 @@ void WriteLine(in uint value, in uint base = 10)
 /************************************************************************************
 * Print signed integer with a new line
 */
-void WriteLine(in int value, in uint base = 10)
+void WriteLine(int value, uint base = 10)
 {
     Write(value, base);
     Write("\r\n");
@@ -118,7 +120,7 @@ void WriteLine(in int value, in uint base = 10)
 */
 void Write(in string text)
 {
-    SendMessage(text.ptr, text.length);
+    SemihostingWrite(text.ptr, text.length);
 }
 
 /************************************************************************************
@@ -128,7 +130,7 @@ void Write(A...)(in A a)
 {
     foreach(t; a)
     {
-	Write(t);
+        Write(t);
     }
 }
 
@@ -139,7 +141,7 @@ void WriteLine(A...)(in A a)
 {
     foreach(t; a)
     {
-	Write(t);
+        Write(t);
     }
     Write("\r\n");
 }
