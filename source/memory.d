@@ -29,27 +29,27 @@ extern(C) pure void* memcpy(void* dest, in void* src, size_t n)
     return dest;
 }
 
-/***************************************************************************
- memset just like that in C.  Could probably be optimized if written in
- assembly.
-*/
-extern(C) pure void* memset(void* dest, in ubyte value, size_t n)
-{
-    ubyte* dest8 = cast(ubyte*)dest;
-    
-    while(n > 0)
-    {
-	*dest8 = value;
-	dest8++;
-	n--;
-    }
-    
-    return dest;
-}
+// /***************************************************************************
+//  memset just like that in C.  Could probably be optimized if written in
+//  assembly.
+// */
+// extern(C) pure void* memset(void* dest, in ubyte value, size_t n)
+// {
+//     ubyte* dest8 = cast(ubyte*)dest;
+//     
+//     while(n > 0)
+//     {
+// 	*dest8 = value;
+// 	dest8++;
+// 	n--;
+//     }
+//     
+//     return dest;
+// }
 
 extern(C) int memcmp (in void * ptr1, in void * ptr2, size_t num )
 {
-    Trace.WriteLine("memcmp");
+    trace.WriteLine("memcmp");
     return 0;
 }
 
@@ -356,20 +356,20 @@ struct HeapMemory
 	Block* block = &base;
 	while(!block.IsLast)
 	{
-	    Trace.Write(block.Address);
-	    Trace.Write(": ");
-	    Trace.Write(block.nBytes);
-	    Trace.Write(": ");
+	    trace.Write(block.Address);
+	    trace.Write(": ");
+	    trace.Write(block.nBytes);
+	    trace.Write(": ");
 	    if(block.IsAllocated)
 	    {
-		Trace.Write("1");
+		trace.Write("1");
 	    }
 	    else
 	    {
-		Trace.Write("0");
+		trace.Write("0");
 	    }
 	    
-	    Trace.WriteLine("");
+	    trace.WriteLine("");
 	    
 	    block = block.Next;
 	}

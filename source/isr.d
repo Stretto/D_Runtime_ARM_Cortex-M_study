@@ -13,7 +13,7 @@ extern extern(C) void OnHardFault();
 
 private void DoNothing()
 { 
-    Trace.WriteLine("Nothing");
+    trace.WriteLine("Nothing");
     while(true)
     { }
 }

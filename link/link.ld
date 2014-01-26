@@ -1,69 +1,49 @@
-/*********************************************************************************************
-Memory Spaces Definitions
-*********************************************************************************************/
 MEMORY
 {
-  CCRAM    (rxw) : ORIGIN = 0x10000000, LENGTH =   64k
-  SRAM     (rxw) : ORIGIN = 0x20000000, LENGTH =  128k
-  FLASH    (rx)  : ORIGIN = 0x08000000, LENGTH = 1024k
+  CCRAM (rxw) : ORIGIN = 0x10000000, LENGTH = 64k
+  SRAM (rxw) : ORIGIN = 0x20000000, LENGTH = 128k
+  FLASH (rx) : ORIGIN = 0x08000000, LENGTH = 1024k
 }
 
-_stackStart = ORIGIN(CCRAM) + LENGTH(CCRAM);
+_stackStart = ORIGIN(CCRAM) + LENGTH(CCRAM); /* Falling stack starts at the end of the CCM */
 
-/*********************************************************************************************
- Section Definitions
-*********************************************************************************************/
 SECTIONS
-{  
-
-    /* Don't need exception stuff right now */
+{
+    /* Not ready to implement exceptions yet, so discard this to prevent linker errors */
     /DISCARD/ :
     {
-	*(.ARM.extab*)
-	*(.ARM.exidx*)
+        *(.ARM.extab*)
+        *(.ARM.exidx*)
     }
-    
-    .text :       
+
+    /* Code */
+    .text :
     {
-	LONG(_stackStart);            /* Initial stack pointer */
-	KEEP(*(*.ISRVectorTable))     /* Interrupt vector table */
-	
-	. = ALIGN(4);
-	*(SORT_BY_NAME(.text))      
-	*(SORT_BY_NAME(.text*))  
-	
-	. = ALIGN(4);
-	*(SORT_BY_NAME(.rodata))
-	*(SORT_BY_NAME(.rodata*))
+        LONG(_stackStart);                 /* Initial stack pointer */
+        KEEP(*(*.ResetHandler))            /* Pointer to program's entry point */
+        LONG(0)                            /* Pointer to non-maskable interrupt handler (ignore for now) */
+        KEEP(*(*.HardFaultHandler))        /* Pointer to hard fault handler */
+        KEEP(*(*.MPUFaultHandler))         /* Pointer to hard fault handler */
+        KEEP(*(*.BusFaultHandler))         /* Pointer to hard fault handler */
+        KEEP(*(*.UsageFaultHandler))       /* Pointer to hard fault handler */
+        *(*.text)                          /* Our executable code */
+    } > FLASH
 
-	. = ALIGN(4);
-	__data_rom_begin = .;
-    } >FLASH
-
-    .data : AT (__data_rom_begin)
+    /* Immutable data */
+    .rodata :
     {
-	. = ALIGN(4);
-	__data_ram_begin = .;
-	
-	. = ALIGN(4);
-	*(SORT_BY_NAME(.data))
-	*(SORT_BY_NAME(.data*))
-
-	. = ALIGN(4);
-	__data_ram_end = .;
-    } >SRAM
+        *(*.rodata)
+    } > FLASH
     
     .bss :
     {
-	. = ALIGN(4);
+        . = ALIGN(4);
         __bss_begin = .;
         
         *(SORT_BY_NAME(.bss))
         *(SORT_BY_NAME(.bss*))
         
-	. = ALIGN(4);
-	__bss_end = .;
+        . = ALIGN(4);
+        __bss_end = .;
     } >SRAM
-    
-    PROVIDE( __sram_end = ORIGIN(SRAM) + LENGTH(SRAM));
 }

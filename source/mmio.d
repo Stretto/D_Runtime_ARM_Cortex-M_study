@@ -25,10 +25,10 @@
  {
      mixin Register!(0x2000_0000, 0x0000_0000);
 
-     static BitField!(size_t, 31,  0, Policy.Read)      EntireRegister;
-     static BitField!(ushort, 16,  1, Policy.Read)      Bits16To1;
-     static BitField!(bool,    0,  0, Policy.Write)     Bit0;
-     static BitField!(ubyte,  24, 17, Policy.ReadWrite) Bits24To17;
+     alias BitField!(size_t, 31,  0, Policy.Read)      EntireRegister;
+     alias BitField!(ushort, 16,  1, Policy.Read)      Bits16To1;
+     alias BitField!(bool,    0,  0, Policy.Write)     Bit0;
+     alias BitField!(ubyte,  24, 17, Policy.ReadWrite) Bits24To17;
  }
  --------------------
 
@@ -39,6 +39,8 @@
 */
 
 module test;
+
+import trace;
 
 /***********************************************************************
  Used to define access to a given bitfield.  Usuall microcontrollers 
@@ -136,6 +138,9 @@ mixin template Register(size_t address, size_t resetValue = 0)
     */
     private static @property auto Value()
     {
+        //verify that this is evaluated at compile time
+        static assert(__ctfe);
+        
         return *(cast(size_t*)address);
     }
 
@@ -145,14 +150,23 @@ mixin template Register(size_t address, size_t resetValue = 0)
     */
     private static @property void Value(size_t value)
     {
+        //verify that this is evaluated at compile time
+        static assert(__ctfe);
+        
         *(cast(size_t*)address) = value;
     }
 
+    /***********************************************************************
+      A range of bits in the this register
+    */
     struct BitField(TReturnType, size_t msb, size_t lsb, Policy policy)
     {
 	mixin BitFieldImplementation!(TReturnType, msb, lsb, policy);
     }
     
+    /***********************************************************************
+      A special case of BitField (a single bit)
+    */
     struct Bit(size_t bitIndex, Policy policy)
     {
 	mixin BitFieldImplementation!(bool, bitIndex, bitIndex, policy);

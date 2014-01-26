@@ -1,79 +1,96 @@
-//           Copyright Michael V. Franklin 2014
-// Distributed under the Boost Software License, Version 1.0.
-//    (See copy at http://www.boost.org/LICENSE_1_0.txt)
-
-module start;
+//start.d
 
 import trace;
-import memory;
-import reference;
-import isr;
 import mmio;
-  
-extern(C) __gshared void * _Dmodule_ref;
+import gcc;
 
-extern(C) void _d_assert_msg(string msg, string file, uint line)
-{
-    Trace.WriteLine(file, ":", line, ": ", msg);
-}
+// These are marked extern(C) to avoid name mangling, so we can refer to them in our linker script
+alias void function() ISR; // Alias Interrupt Service Routine function pointers
+extern(C) immutable ISR ResetHandler = &OnReset; // Pointer to entry point, OnReset
+extern(C) immutable ISR HardFaultHandler = &OnHardFault; // Pointer to hard fault handler, OnHardFault
+extern(C) immutable ISR MPUFaultHandler = &OnMPUFault;
+extern(C) immutable ISR BusFaultHandler = &OnBusFault;
+extern(C) immutable ISR UsageFaultHandler = &OnUsageFault;
 
-extern(C) void _d_assert(string file, uint line)
-{
-    Trace.WriteLine(file, ":", line);
-}
-
-extern(C) void _Unwind_Resume(void *ucbp)
-{
-    Trace.WriteLine("_Unwind_Resume");
-}
-
-extern(C) extern __gshared uint __data_rom_begin;
-extern(C) extern __gshared uint __data_ram_begin;
-extern(C) extern __gshared uint __data_ram_end;
 extern(C) extern __gshared uint __bss_begin;
 extern(C) extern __gshared uint __bss_end;
 
-struct TestStruct(uint value)
-{        
-    static uint GetVar()
-    {
-	return value;
-    }
-}
-
-struct MyRegister
+// Handle any hard faults here
+void OnHardFault()
 {
-    mixin Register!(0x2000_0000, 0x0000_0000);
-
-    static BitField!(size_t, 31,  0, Policy.Read)      EntireRegister;
-    static BitField!(ushort, 16,  1, Policy.Read)      Bits16To1;
-    static Bit!(0, Policy.Read)     Bit0;
-    static BitField!(ubyte,  24, 17, Policy.ReadWrite) Bits24To17;
-}
-
-
-void DoFunction()
-{     
-    Trace.WriteLine(cast(uint)(MyRegister.Bit0.Value));
-}
-
-extern(C) private void OnHardFault()
-{
-    Trace.WriteLine("Hard Fault");
+    // Display a message notifying us that a hard fault occurred
+    trace.WriteLine("Hard Fault");
+    
+    // Enter an infinite loop so we can use the debugger
+    // to examine registers, memory, etc...
     while(true)
     { }
 }
 
-extern(C) private void OnReset()
+void OnMPUFault()
 {
-    Trace.Write("Copying...");
-    memcpy(&__data_ram_begin, &__data_rom_begin, cast(size_t)(&__data_ram_end) - cast(size_t)(&__data_ram_begin) + 1);
-    memset(&__bss_begin, 0, cast(size_t)(&__bss_end) - cast(size_t)(&__bss_begin) + 1);
-    Trace.WriteLine("Done");
+    // Display a message notifying us that a MPU fault occurred
+    trace.WriteLine("MPU Fault");
     
-    DoFunction();
+    // Enter an infinite loop so we can use the debugger
+    // to examine registers, memory, etc...
+    while(true)
+    { }
+}
+
+void OnBusFault()
+{
+    // Display a message notifying us that a bus fault occurred
+    trace.WriteLine("Bus Fault");
     
-    Trace.WriteLine("Done"); 
+    // Enter an infinite loop so we can use the debugger
+    // to examine registers, memory, etc...
+    while(true)
+    { }
+}
+
+void OnUsageFault()
+{
+    // Display a message notifying us that a usage fault occurred
+    trace.WriteLine("Usage Fault");
+    
+    // Enter an infinite loop so we can use the debugger
+    // to examine registers, memory, etc...
+    while(true)
+    { }
+}
+
+struct MyRegister
+{
+    mixin Register!(0x2000_1000, 0x0000_0000);
+    
+    alias BitField!(size_t, 31,  0, Policy.ReadWrite) EntireRegister;
+
+    __gshared EntireRegister entireRegister;
+    
+//     static __gshared BitField!(size_t, 31,  0, Policy.ReadWrite) EntireRegister;
+//     static __gshared BitField!(ushort, 16,  1, Policy.Read)      Bits16To1;
+//     static __gshared Bit     !(             0, Policy.Read)      Bit0;
+//     static __gshared BitField!(ubyte,  24, 17, Policy.ReadWrite) Bits24To17;
+    
+    
+}
+
+void OnReset()
+{
+//     Trace.Write("Copying...");
+//     memcpy(&__data_ram_begin, &__data_rom_begin, cast(size_t)(&__data_ram_end) - cast(size_t)(&__data_ram_begin) + 1);
+//     memset(&__bss_begin, 0, cast(size_t)(&__bss_end) - cast(size_t)(&__bss_begin) + 1);
+//     Trace.WriteLine("Done");
+    
+    trace.WriteLine("Here");
+    MyRegister.EntireRegister.Value = 0xAAu;
+    trace.WriteLine(MyRegister.EntireRegister.Value);
+    
+    trace.WriteLine("Here2");
+    MyRegister r;
+    trace.WriteLine(r.EntireRegister.Value);
+    
     while(true)
     { }
 }
