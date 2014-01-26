@@ -13,8 +13,3 @@ extern(C) void* memset(void* dest, int value, size_t num)
     
     return dest;
 }
-
-extern(C) void _Unwind_Resume(void *ucbp)
-{
-    trace.WriteLine("_Unwind_Resume");
-}

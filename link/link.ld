@@ -23,9 +23,6 @@ SECTIONS
         KEEP(*(*.ResetHandler))            /* Pointer to program's entry point */
         LONG(0)                            /* Pointer to non-maskable interrupt handler (ignore for now) */
         KEEP(*(*.HardFaultHandler))        /* Pointer to hard fault handler */
-        KEEP(*(*.MPUFaultHandler))         /* Pointer to hard fault handler */
-        KEEP(*(*.BusFaultHandler))         /* Pointer to hard fault handler */
-        KEEP(*(*.UsageFaultHandler))       /* Pointer to hard fault handler */
         *(*.text)                          /* Our executable code */
     } > FLASH
 
@@ -34,16 +31,4 @@ SECTIONS
     {
         *(*.rodata)
     } > FLASH
-    
-    .bss :
-    {
-        . = ALIGN(4);
-        __bss_begin = .;
-        
-        *(SORT_BY_NAME(.bss))
-        *(SORT_BY_NAME(.bss*))
-        
-        . = ALIGN(4);
-        __bss_end = .;
-    } >SRAM
 }
