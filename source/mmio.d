@@ -54,7 +54,7 @@
    datasheet
 */
 
-module test;
+module mmio;
 
 import trace;
 
