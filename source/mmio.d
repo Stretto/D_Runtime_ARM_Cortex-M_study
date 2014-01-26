@@ -27,7 +27,6 @@
  
  The idea, is that all of this logic will actually be evaluated at compile
  time and each BitField access will only cost a 2~3 instructions of assembly.
- However, I have yet to test this code.
  
  Right now, this will probably only work for 32-bit platforms. I'd like to 
  modify this so it is portable to even 16, and 8 bit platforms, but one step 
