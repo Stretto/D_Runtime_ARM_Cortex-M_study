@@ -175,7 +175,7 @@ mixin template Register(size_t address, size_t resetValue = 0)
     /***********************************************************************
       A range of bits in the this register
     */
-    struct BitField(TReturnType, size_t msb, size_t lsb, Policy policy)
+    static struct BitField(TReturnType, size_t msb, size_t lsb, Policy policy)
     {
 	mixin BitFieldImplementation!(TReturnType, msb, lsb, policy);
     }
@@ -183,7 +183,7 @@ mixin template Register(size_t address, size_t resetValue = 0)
     /***********************************************************************
       A special case of BitField (a single bit)
     */
-    struct Bit(size_t bitIndex, Policy policy)
+    static struct Bit(size_t bitIndex, Policy policy)
     {
 	mixin BitFieldImplementation!(bool, bitIndex, bitIndex, policy);
     }
