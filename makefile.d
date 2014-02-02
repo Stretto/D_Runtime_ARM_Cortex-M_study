@@ -33,16 +33,25 @@ void main()
 	{
 	    mkdirRecurse(objectDir);
 	}
+	
+//  	string cmd = 
+//  	    "~/ldc2-0.13.0-linux-x86_64/bin/ldc2 " 
+//  	    ~ "-march=thumb -mcpu=cortex-m4 "
+//  	    ~ "-c "
+//  	    ~ dFile.name
+//  	    ~ " -of="
+//  	    ~ objectFile;
+		
     
-	string cmd = 
-	    "~/gdc-arm-none-eabi/bin/arm-none-eabi-gdc " 
-	    ~ "-Isource -mthumb -mcpu=cortex-m4 "
-	    ~ "-fno-emit-moduleinfo -ffunction-sections -fdata-sections "
-	    ~ "-O3 "
-	    ~ "-c "
-	    ~ dFile.name
-	    ~ " -o "
-	    ~ objectFile;
+ 	string cmd = 
+ 	    "~/gdc-arm-none-eabi/bin/arm-none-eabi-gdc " 
+ 	    ~ "-Isource -mthumb -mcpu=cortex-m4 "
+ 	    ~ "-fno-emit-moduleinfo -ffunction-sections -fdata-sections "
+ 	    ~ "-O3 "
+ 	    ~ "-c "
+ 	    ~ dFile.name
+ 	    ~ " -o "
+ 	    ~ objectFile;
 	
 	writeln(cmd);
 	    
