@@ -2,8 +2,8 @@
 
 module object;
 
-alias uint size_t;
-alias immutable(char)[] string;
+alias size_t = uint;
+alias string = immutable(char)[];
 
 class Object
 { }
