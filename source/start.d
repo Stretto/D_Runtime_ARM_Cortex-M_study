@@ -32,7 +32,7 @@ struct MyRegister
 
 void OnReset()
 {   
-  
+    
     MyRegister.EntireRegister.Value = 0b0101_0101_0101_0101_0101_0101_0101_0101;
     MyRegister.Bits16To1.Value = 0b1111_1111_1111_1111;
     MyRegister.Bit0.Value = false;
