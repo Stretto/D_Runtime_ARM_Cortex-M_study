@@ -2,8 +2,8 @@
 
 module object;
 
-alias uint size_t;
-alias immutable(char)[] string;
+alias size_t = uint;
+alias string = immutable(char)[];
 
 class Object
 { }
@@ -24,4 +24,9 @@ class TypeInfo_Struct : TypeInfo
 class TypeInfo_Enum : TypeInfo
 {  
     ubyte[20] ignore;
+}
+
+class TypeInfo_Interface : TypeInfo
+{  
+    ubyte[4] ignore;
 }

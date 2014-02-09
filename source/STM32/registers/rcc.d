@@ -1,12 +1,12 @@
-
 import mmio;
+import ahb1 = STM32.registers.ahb1;
 
-private immutable uint Address = 0x0 + 0x00003800;
+immutable uint address = ahb1.address + 0x0000_3800;
 
 struct CR
 { 
-    // Address 0x2000_1000 is chosen as an arbitrary location in SRAM that's not being used
-    mixin Register!(Address + 0x00);
+    // address 0x2000_1000 is chosen as an arbitrary location in SRAM that's not being used
+    mixin Register!(address + 0x00);
     
     // PLLSAI clock ready flag
     // Set by hardware to indicate that the PLLSAI is locked.
@@ -19,26 +19,26 @@ struct CR
     // Cleared by hardware when entering Stop or Standby mode.
     // 0: PLLSAI OFF
     // 1: PLLSAI ON
-    alias Bit!(28, Policy.ReadWrite) PLLISAION;
+    alias PLLISAION = Bit!(28, Policy.ReadWrite);
 
     // PLLI2S clock ready flag
     // Set by hardware to indicate that the PLLI2S is locked.
     // 0: PLLI2S unlocked
     // 1: PLLI2S locked
-    alias Bit!(27, Policy.Read) PLLI2SRDY;
+    alias PLLI2SRDY = Bit!(27, Policy.Read);
 
     // PLLI2S enable
     // Set and cleared by software to enable PLLI2S.
     // Cleared by hardware when entering Stop or Standby mode.
     // 0: PLLI2S OFF
     // 1: PLLI2S ON
-    alias Bit!(26, Policy.ReadWrite) PLLI2SON;
+    alias PLLI2SON = Bit!(26, Policy.ReadWrite);
 
     // Main PLL (PLL) clock ready flag
     // Set by hardware to indicate that PLL is locked.
     // 0: PLL unlocked
     // 1: PLL locked
-    alias Bit!(25, Policy.Read) PLLRDY;
+    alias PLLRDY = Bit!(25, Policy.Read);
 
     // Main PLL (PLL) enable
     // Set and cleared by software to enable PLL.
@@ -46,14 +46,14 @@ struct CR
     // clock is used as the system clock.
     // 0: PLL OFF
     // 1: PLL ON
-    alias Bit!(24, Policy.ReadWrite) PLLON;
+    alias PLLON = Bit!(24, Policy.ReadWrite);
 
     // Clock security system enable and cleared by software to enable the clock security
     // system. When CSSON is set, the clock detector is enabled by hardware when the HSE
     // oscillator is ready, and disabled by hardware if an oscillator failure is detected.
     // 0: Clock security system OFF (Clock detector OFF)
     // 1: Clock security system ON (Clock detector ON if HSE oscillator is stable, OFF if not)
-    alias Bit!(19, Policy.ReadWrite) CSSON;
+    alias CSSON = Bit!(19, Policy.ReadWrite);
 
     // HSE clock bypass
     // Set and cleared by software to bypass the oscillator with an external clock. The external
@@ -61,14 +61,14 @@ struct CR
     // The HSEBYP bit can be written only if the HSE oscillator is disabled.
     // 0: HSE oscillator not bypassed
     // 1: HSE oscillator bypassed with an external clock
-    alias Bit!(18, Policy.ReadWrite) HSEBYP;
+    alias HSEBYP = Bit!(18, Policy.ReadWrite);
 
     // HSE clock ready flag
     // Set by hardware to indicate that the HSE oscillator is stable. After the HSEON bit is cleared,
     // HSERDY goes low after 6 HSE oscillator clock cycles.
     // 0: HSE oscillator not ready
     // 1: HSE oscillator ready
-    alias Bit!(17, Policy.Read) HSERDY;
+    alias HSERDY = Bit!(17, Policy.Read);
 
     // HSE clock enable
     // Set and cleared by software. Cleared by hardware to stop the HSE oscillator
@@ -76,24 +76,24 @@ struct CR
     // directly or indirectly as the system clock.
     // 0: HSE oscillator OFF
     // 1: HSE oscillator ON
-    alias Bit!(16, Policy.ReadWrite) HSEON;
+    alias HSEON = Bit!(16, Policy.ReadWrite);
 
     // Internal high-speed clock calibration
     // These bits are initialized automatically at startup.
-    alias BitField!(uint, 15, 8, Policy.Read) HSICAL;
+    alias HSICAL = BitField!(15, 8, Policy.Read);
 
     // Internal high-speed clock trimming
     // These bits provide an additional user-programmable trimming value that is added to the
     // HSICAL[7:0] bits. It can be programmed to adjust to variations in voltage and temperature
     // that influence the frequency of the internal HSI RC.
-    alias BitField!(uint, 7, 3, Policy.ReadWrite) HSITRIM;
+    alias HSITRIM = BitField!(7, 3, Policy.ReadWrite);
 
     // Internal high-speed clock ready flag
     // Set by hardware to indicate that the HSI oscillator is stable. After the HSION bit is cleared,
     // HSIRDY goes low after 6 HSI clock cycles.
     // 0: HSI oscillator not ready
     // 1: HSI oscillator ready
-    alias Bit!(1, Policy.Read) HSIRDY;
+    alias HSIRDY = Bit!(1, Policy.Read);
 
     // Internal high-speed clock enable
     // Set and cleared by software.
@@ -103,7 +103,7 @@ struct CR
     // as the system clock.
     // 0: HSI oscillator OFF
     // 1: HSI oscillator ON
-    alias Bit!(0, Policy.ReadWrite) HSION;  
+    alias HSION = Bit!(0, Policy.ReadWrite);  
 }
 
 // This register is used to configure the PLL clock outputs according to the formulas:
@@ -112,8 +112,8 @@ struct CR
 // f(USB OTG FS, SDIO, RNG clock output) = f(VCO clock) / PLLQ
 struct PLLCFGR
 { 
-    // Address 0x2000_1000 is chosen as an arbitrary location in SRAM that's not being used
-    mixin Register!(Address + 0x04);
+    // address 0x2000_1000 is chosen as an arbitrary location in SRAM that's not being used
+    mixin Register!(address + 0x04);
     
     // Main PLL (PLL) division factor for USB OTG FS, SDIO and random number generator clock
     // Set and cleared by software to control the frequency of USB OTG FS clock, the random
@@ -129,18 +129,18 @@ struct PLLCFGR
     // 0100: PLLQ = 4
     // ...
     // 1111: PLLQ = 15
-    alias BitField!(uint, 27, 24, Policy.ReadWrite) PLLQ;
-    alias Bit!(27, Policy.ReadWrite) PLLQ3;
-    alias Bit!(26, Policy.ReadWrite) PLLQ2;
-    alias Bit!(25, Policy.ReadWrite) PLLQ1;
-    alias Bit!(24, Policy.ReadWrite) PLLQ0;
+    alias PLLQ = BitField!(27, 24, Policy.ReadWrite);
+    alias PLLQ3 = Bit!(27, Policy.ReadWrite);
+    alias PLLQ2 = Bit!(26, Policy.ReadWrite);
+    alias PLLQ1 = Bit!(25, Policy.ReadWrite);
+    alias PLLQ0 = Bit!(24, Policy.ReadWrite);
 
     // Main PLL(PLL) and audio PLL (PLLI2S) entry clock source
     // Set and cleared by software to select PLL and PLLI2S clock source. This bit can be written
     // only when PLL and PLLI2S are disabled.
     // 0: HSI clock selected as PLL and PLLI2S clock entry
     // 1: HSE oscillator clock selected as PLL and PLLI2S clock entry
-    alias Bit!(22, Policy.ReadWrite) PLLSRC;
+    alias PLLSRC = Bit!(22, Policy.ReadWrite);
 
     //  Main PLL (PLL) division factor for main system clock
     // Set and cleared by software to control the fre quency of the general PLL output clock. These
@@ -152,9 +152,9 @@ struct PLLCFGR
     // 01: PLLP = 4
     // 10: PLLP = 6
     // 11: PLLP = 8
-    alias BitField!(uint, 17, 16, Policy.ReadWrite) PLLP;
-    alias Bit!(17, Policy.ReadWrite) PLLP1;
-    alias Bit!(16, Policy.ReadWrite) PLLP0;
+    alias PLLP = BitField!(17, 16, Policy.ReadWrite);
+    alias PLLP1 = Bit!(17, Policy.ReadWrite);
+    alias PLLP0 = Bit!(16, Policy.ReadWrite);
 
     // Main PLL (PLL) multiplication factor for VCO
     // Set and cleared by software to control the multiplication factor of the VCO. These bits can
@@ -173,7 +173,7 @@ struct PLLCFGR
     // 110110001: PLLN = 433, wrong configuration
     // ...
     // 111111111: PLLN = 511, wrong configuration
-    alias BitField!(uint, 14, 6, Policy.ReadWrite) PLLN;
+    alias PLLN = BitField!(14, 6, Policy.ReadWrite);
 
     // Division factor for the main PLL (PLL) and audio PLL (PLLI2S) input clock
     // Set and cleared by software to divide the PLL and PLLI2S input clock before the VCO.
@@ -191,19 +191,19 @@ struct PLLCFGR
     // ...
     // 111110: PLLM = 62
     // 111111: PLLM = 63
-    alias BitField!(uint, 5, 0, Policy.ReadWrite) PLLM;
-    alias Bit!(5, Policy.ReadWrite) PLLM5;
-    alias Bit!(4, Policy.ReadWrite) PLLM4;
-    alias Bit!(3, Policy.ReadWrite) PLLM3;
-    alias Bit!(2, Policy.ReadWrite) PLLM2;
-    alias Bit!(1, Policy.ReadWrite) PLLM1;
-    alias Bit!(0, Policy.ReadWrite) PLLM0;
+    alias PLLM = BitField!(5, 0, Policy.ReadWrite);
+    alias PLLM5 = Bit!(5, Policy.ReadWrite);
+    alias PLLM4 = Bit!(4, Policy.ReadWrite);
+    alias PLLM3 = Bit!(3, Policy.ReadWrite);
+    alias PLLM2 = Bit!(2, Policy.ReadWrite);
+    alias PLLM1 = Bit!(1, Policy.ReadWrite);
+    alias PLLM0 = Bit!(0, Policy.ReadWrite);
 }
 
 struct CFGR
 { 
-    // Address 0x2000_1000 is chosen as an arbitrary location in SRAM that's not being used
-    mixin Register!(Address + 0x08);
+    // address 0x2000_1000 is chosen as an arbitrary location in SRAM that's not being used
+    mixin Register!(address + 0x08);
     
     // Microcontroller clock output 2
     // Set and cleared by software. Clock source selection may generate glitches on MCO2. It is
@@ -213,7 +213,7 @@ struct CFGR
     // 01: PLLI2S clock selected
     // 10: HSE oscillator clock selected
     // 11: PLL clock selected
-    alias BitField!(uint, 31, 30, Policy.ReadWrite) MCO2;
+    alias MCO2 = BitField!(31, 30, Policy.ReadWrite);
 
     // MCO2 prescaler
     // Set and cleared by software to configure the prescaler of the MCO2. Modification of this
@@ -224,7 +224,7 @@ struct CFGR
     // 101: division by 3
     // 110: division by 4
     // 111: division by 5
-    alias BitField!(uint, 29, 27, Policy.ReadWrite) MCO2PRE;
+    alias MCO2PRE = BitField!(29, 27, Policy.ReadWrite);
 
     // MCO1 prescaler
     //Set and cleared by software to configure the prescaler of the MCO1. Modification of this
@@ -235,7 +235,7 @@ struct CFGR
     // 101: division by 3
     // 110: division by 4
     // 111: division by 5
-    alias BitField!(uint, 26, 24, Policy.ReadWrite) MCO1PRE;
+    alias MCO1PRE = BitField!(26, 24, Policy.ReadWrite);
 
     // I2S clock selection
     // Set and cleared by software. This bit allows to select the I2S clock source between the
@@ -243,7 +243,7 @@ struct CFGR
     // reset and before enabling the I2S module.
     // 0: PLLI2S clock used as I2S clock source
     // 1: External clock mapped on the I2S_CKIN pin used as I2S clock source
-    alias Bit!(23, Policy.ReadWrite) I2SSRC;
+    alias I2SSRC = Bit!(23, Policy.ReadWrite);
 
     //  Microcontroller clock output 1
     // Set and cleared by software. Clock source selection may generate glitches on MCO1. It is
@@ -253,7 +253,7 @@ struct CFGR
     // 01: LSE oscillator selected
     // 10: HSE oscillator clock selected
     // 11: PLL clock selected
-    alias BitField!(uint, 22, 21, Policy.ReadWrite) MCO1;
+    alias MCO1 = BitField!(22, 21, Policy.ReadWrite);
 
     // HSE division factor for RTC clock
     // Set and cleared by software to divide the HSE clock input clock to generate a 1 MHz clock
@@ -270,7 +270,7 @@ struct CFGR
     // ...
     // 11110: HSE/30
     // 11111: HSE/31
-    alias BitField!(uint, 20, 16, Policy.ReadWrite) RTCPRE;
+    alias RTCPRE = BitField!(20, 16, Policy.ReadWrite);
 
     // APB high-speed prescaler (APB2)
     // Set and cleared by software to control APB high-speed clock division factor.
@@ -282,7 +282,7 @@ struct CFGR
     // 101: AHB clock divided by 4
     // 110: AHB clock divided by 8
     // 111: AHB clock divided by 16
-    alias BitField!(uint, 15, 13, Policy.ReadWrite) PPRE2;
+    alias PPRE2 = BitField!(15, 13, Policy.ReadWrite);
 
     // APB Low speed prescaler (APB1)
     // Set and cleared by software to control APB low-speed clock division factor.
@@ -294,7 +294,7 @@ struct CFGR
     // 101: AHB clock divided by 4
     // 110: AHB clock divided by 8
     // 111: AHB clock divided by 16
-    alias BitField!(uint, 12, 10, Policy.ReadWrite) PPRE1;
+    alias PPRE1 = BitField!(12, 10, Policy.ReadWrite);
 
 
     // AHB prescaler
@@ -312,7 +312,7 @@ struct CFGR
     // 1101: system clock divided by 128
     // 1110: system clock divided by 256
     // 1111: system clock divided by 512
-    alias BitField!(uint, 7, 4, Policy.ReadWrite) HPRE;
+    alias HPRE = BitField!(7, 4, Policy.ReadWrite);
 
     // System clock switch status
     // Set and cleared by hardware to indicate which clock source is used as the system clock.
@@ -320,9 +320,9 @@ struct CFGR
     // 01: HSE oscillator used as the system clock
     // 10: PLL used as the system clock
     // 11: not applicable
-    alias BitField!(uint, 3, 2, Policy.Read) SWS;
-    alias Bit!(3, Policy.Read) SWS1;
-    alias Bit!(2, Policy.Read) SWS0;
+    alias SWS = BitField!(3, 2, Policy.Read);
+    alias SWS1 = Bit!(3, Policy.Read);
+    alias SWS0 = Bit!(2, Policy.Read);
 
     // System clock switch
     // Set and cleared by software to select the system clock source.
@@ -332,139 +332,139 @@ struct CFGR
     // 01: HSE oscillator selected as system clock
     // 10: PLL selected as system clock
     // 11: not allowed
-    alias BitField!(uint, 1, 0, Policy.ReadWrite) SW;
-    alias Bit!(1, Policy.ReadWrite) SW1;
-    alias Bit!(0, Policy.ReadWrite) SW0;
+    alias SW = BitField!(1, 0, Policy.ReadWrite);
+    alias SW1 = Bit!(1, Policy.ReadWrite);
+    alias SW0 = Bit!(0, Policy.ReadWrite);
 }
 
 struct CIR
 { 
-    // Address 0x2000_1000 is chosen as an arbitrary location in SRAM that's not being used
-    mixin Register!(Address + 0x0C);
+    // address 0x2000_1000 is chosen as an arbitrary location in SRAM that's not being used
+    mixin Register!(address + 0x0C);
     
     //  Clock security system interrupt clear
     // This bit is set by software to clear the CSSF flag.
     // 0: No effect
     // 1: Clear CSSF flag
-    alias Bit!(23, Policy.Write) CSSC;
+    alias CSSC = Bit!(23, Policy.Write);
 
     // PLLSAI Ready Interrupt Clear
     // This bit is set by software to clear PLLSAI RDYF flag. It is reset by hardware when the
     // PLLSAIRDYF is cleared.
     // 0: PLLSAIRDYF not cleared
     // 1: PLLSAIRDYF cleared
-    alias Bit!(22, Policy.Write) PLLSAIRDYC;
+    alias PLLSAIRDYC = Bit!(22, Policy.Write);
 
     // PLLI2S ready interrupt clear
     //This bit is set by software to clear the PLLI2SRDYF flag.
     // 0: No effect
     // 1: PLLI2SRDYF cleared
-    alias Bit!(21, Policy.Write) PLLI2SRDYC;
+    alias PLLI2SRDYC = Bit!(21, Policy.Write);
 
     // Main PLL(PLL) ready interrupt clear
     // This bit is set by software to clear the PLLRDYF flag.
     // 0: No effect
     // 1: PLLRDYF cleared
-    alias Bit!(20, Policy.Write) PLLRDYC;
+    alias PLLRDYC = Bit!(20, Policy.Write);
 
     // HSE ready interrupt clear
     // This bit is set by software to clear the HSERDYF flag.
     // 0: No effect
     // 1: HSERDYF cleared
-    alias Bit!(19, Policy.Write) HSERDYC;
+    alias HSERDYC = Bit!(19, Policy.Write);
 
     // HSI ready interrupt clear
     // This bit is set software to clear the HSIRDYF flag.
     // 0: No effect
     // 1: HSIRDYF cleared
-    alias Bit!(18, Policy.Write) HSIRDYC;
+    alias HSIRDYC = Bit!(18, Policy.Write);
 
     // LSE ready interrupt clear
     // This bit is set by software to clear the LSERDYF flag.
     // 0: No effect
     // 1: LSERDYF cleared
-    alias Bit!(17, Policy.Write) LSERDYC;
+    alias LSERDYC = Bit!(17, Policy.Write);
 
     // LSI ready interrupt clear
     // This bit is set by software to clear the LSIRDYF flag.
     // 0: No effect
     // 1: LSIRDYF cleared
-    alias Bit!(16, Policy.Write) LSIRDYC;
+    alias LSIRDYC = Bit!(16, Policy.Write);
 
 
     // PLLSAI Ready Interrupt Enable
     // This bit is set and reset by software to enable/disable interrupt caused by PLLSAI lock.
     // 0: PLLSAI lock interrupt disabled
     // 1: PLLSAI lock interrupt enabled
-    alias Bit!(14, Policy.ReadWrite) PLLSAIRDYIE;
+    alias PLLSAIRDYIE = Bit!(14, Policy.ReadWrite);
 
     // PLLI2S ready interrupt enable
     // This bit is set and cleared by software to enable/disable interrupt caused by PLLI2S lock.
     // 0: PLLI2S lock interrupt disabled
     // 1: PLLI2S lock interrupt enable
-    alias Bit!(13, Policy.ReadWrite) PLLI2SRDYIE;
+    alias PLLI2SRDYIE = Bit!(13, Policy.ReadWrite);
 
     // Main PLL (PLL) ready interrupt enable
     // This bit is set and cleared by software to enable/disable interrupt caused by PLL lock.
     // 0: PLL lock interrupt disabled
     // 1: PLL lock interrupt enabled
-    alias Bit!(12, Policy.ReadWrite) PLLRDYIE;
+    alias PLLRDYIE = Bit!(12, Policy.ReadWrite);
 
     // HSE ready interrupt enable
     // This bit is set and cleared by software to enable/disable interrupt caused by the HSE
     // oscillator stabilization.
     // 0: HSE ready interrupt disabled
     // 1: HSE ready interrupt enabled
-    alias Bit!(11, Policy.ReadWrite) HSERDYIE;
+    alias HSERDYIE = Bit!(11, Policy.ReadWrite);
 
     // HSI ready interrupt enable
     // This bit is set and cleared by software to enable/disable interrupt caused by the HSI
     // oscillator stabilization.
     // 0: HSI ready interrupt disabled
     // 1: HSI ready interrupt enabled
-    alias Bit!(10, Policy.ReadWrite) HSIRDYIE;
+    alias HSIRDYIE = Bit!(10, Policy.ReadWrite);
 
     // LSE ready interrupt enable
     // This bit is set and cleared by software to enable/disable interrupt caused by the LSE
     // oscillator stabilization.
     // 0: LSE ready interrupt disabled
     // 1: LSE ready interrupt enabled
-    alias Bit!(9, Policy.ReadWrite) LSERDYIE;
+    alias LSERDYIE = Bit!(9, Policy.ReadWrite);
 
     // LSI ready interrupt enable
     // This bit is set and cleared by software to enable/disable interrupt caused by LSI oscillator
     // stabilization.
     // 0: LSI ready interrupt disabled
     // 1: LSI ready interrupt enabled
-    alias Bit!(8, Policy.ReadWrite) LSIRDYIE;
+    alias LSIRDYIE = Bit!(8, Policy.ReadWrite);
 
     // Clock security system interrupt flag
     // This bit is set by hardware when a failure is detected in the HSE oscillator.
     // It is cleared by software by setting the CSSC bit.
     // 0: No clock security interrupt caused by HSE clock failure
     // 1: Clock security interrupt caused by HSE clock failure
-    alias Bit!(7, Policy.Read) CSSF;
+    alias CSSF = Bit!(7, Policy.Read);
 
     // PLLSAI Ready Interrupt flag
     // This bit is set by hardware when the PLLSAI is locked and PLLSAIRDYDIE is set.
     // It is cleared by software by setting the PLLSAIRDYC bit.
     // 0: No clock ready interrupt caused by PLLSAI lock
     // 1: Clock ready interrupt caused by PLLSAI lock
-    alias Bit!(6, Policy.Read) PLLSAIRDYF;
+    alias PLLSAIRDYF = Bit!(6, Policy.Read);
 
     // PLLI2S ready interrupt flag
     // This bit is set by hardware when the PLLI2S is locked and PLLI2SRDYDIE is set.
     // It is cleared by software by setting the PLLRI2SDYC bit.
     // 0: No clock ready interrupt caused by PLLI2S lock
     // 1: Clock ready interrupt caused by PLLI2S lock
-    alias Bit!(5, Policy.Read) PLLI2SRDYF;
+    alias PLLI2SRDYF = Bit!(5, Policy.Read);
 
     // Main PLL (PLL) ready interrupt flag
     // This bit is set by hardware when PLL is locked and PLLRDYDIE is set.
     // It is cleared by software setting the PLLRDYC bit.
     // 0: No clock ready interrupt caused by PLL lock
     // 1: Clock ready interrupt caused by PLL lock
-    alias Bit!(4, Policy.Read) PLLRDYF;
+    alias PLLRDYF = Bit!(4, Policy.Read);
 
     // HSE ready interrupt flag
     // This bit is set by hardware when External High Speed clock becomes stable and
@@ -472,14 +472,14 @@ struct CIR
     // It is cleared by software by setting the HSERDYC bit.
     // 0: No clock ready interrupt caused by the HSE oscillator
     // 1: Clock ready interrupt caused by the HSE oscillato
-    alias Bit!(3, Policy.Read) HSERDYF;
+    alias HSERDYF = Bit!(3, Policy.Read);
 
     // HSI ready interrupt flag
     // This bit is set by hardware when the Internal High Speed clock becomes stable and
     // HSIRDYDIE is set. It is cleared by software by setting the HSIRDYC bit.
     // 0: No clock ready interrupt caused by the HSI oscillator
     // 1: Clock ready interrupt caused by the HSI oscillator
-    alias Bit!(2, Policy.Read) HSIRDYF;
+    alias HSIRDYF = Bit!(2, Policy.Read);
 
     // LSE ready interrupt flag
     // This bit is set by hardware when the External Low Speed clock becomes stable and
@@ -487,7 +487,7 @@ struct CIR
     // It is cleared by software by setting the LSERDYC bit.
     // 0: No clock ready interrupt caused by the LSE oscillator
     // 1: Clock ready interrupt caused by the LSE oscillator
-    alias Bit!(1, Policy.Read) LSERDYF;
+    alias LSERDYF = Bit!(1, Policy.Read);
 
     // LSI ready interrupt flag
     // This bit is set by hardware when the internal low speed clock becomes stable and
@@ -495,255 +495,254 @@ struct CIR
     // It is cleared by software by setting the LSIRDYC bit.
     // 0: No clock ready interrupt caused by the LSI oscillator
     // 1: Clock ready interrupt caused by the LSI oscillator
-    alias Bit!(0, Policy.Read) LSIRDYF;
+    alias LSIRDYF = Bit!(0, Policy.Read);
 }
 
 struct AHB1ENR
 { 
-    // Address 0x2000_1000 is chosen as an arbitrary location in SRAM that's not being used
-    mixin Register!(Address + 0x30);
+    // address 0x2000_1000 is chosen as an arbitrary location in SRAM that's not being used
+    mixin Register!(address + 0x30);
     
     // USB OTG HSULPI clock enable
     // 0: Disable
     // 1: Enable
-    alias Bit!(30, Policy.ReadWrite) OTGHSULPIEN;
+    alias OTGHSULPIEN = Bit!(30, Policy.ReadWrite);
 
     // USB OTG HS clock enable
     // 0: Disable
     // 1: Enable
-    alias Bit!(29, Policy.ReadWrite) OTGHSEN;
+    alias OTGHSEN = Bit!(29, Policy.ReadWrite);
 
     // Ethernet PTP clock enable
     // 0: Disable
     // 1: Enable
-    alias Bit!(28, Policy.ReadWrite) ETHMACPTPEN;
+    alias ETHMACPTPEN = Bit!(28, Policy.ReadWrite);
 
     // Ethernet Reception clock enable
     // 0: Disable
     // 1: Enable
-    alias Bit!(27, Policy.ReadWrite) ETHMACRXEN;
+    alias ETHMACRXEN = Bit!(27, Policy.ReadWrite);
 
     // Ethernet Transmission clock enable
     // 0: Disable
     // 1: Enable
-    alias Bit!(26, Policy.ReadWrite) ETHMACTXEN;
+    alias ETHMACTXEN = Bit!(26, Policy.ReadWrite);
 
     // Ethernet MAC clock enable
     // 0: Disable
     // 1: Enable
-    alias Bit!(25, Policy.ReadWrite) ETHMACEN;
+    alias ETHMACEN = Bit!(25, Policy.ReadWrite);
 
 
     // DMA2 clock enable
     // 0: Disable
     // 1: Enable
-    alias Bit!(22, Policy.ReadWrite) DMA2EN;
+    alias DMA2EN = Bit!(22, Policy.ReadWrite);
 
     // DMA1 clock enable
     // 0: Disable
     // 1: Enable
-    alias Bit!(21, Policy.ReadWrite) DMA1EN;
+    alias DMA1EN = Bit!(21, Policy.ReadWrite);
 
     // CCM data RAM clock enable
     // 0: Disable
     // 1: Enable
-    alias Bit!(20, Policy.ReadWrite) CCMDATARAMEN;
+    alias CCMDATARAMEN = Bit!(20, Policy.ReadWrite);
 
-    // Backup SRAM interface clock enable
+    // Backup SRAM struct clock enable
     // 0: Disable
     // 1: Enable
-    alias Bit!(18, Policy.ReadWrite) BKPSRAMEN;
+    alias BKPSRAMEN = Bit!(18, Policy.ReadWrite);
 
 
     // CRC clock enable
     // 0: Disable
     // 1: Enable
-    alias Bit!(12, Policy.ReadWrite) CRCEN;
+    alias CRCEN = Bit!(12, Policy.ReadWrite);
 }
 
 struct AHB3ENR
 { 
-    // Address 0x2000_1000 is chosen as an arbitrary location in SRAM that's not being used
-    mixin Register!(Address + 0x38);
+    // address 0x2000_1000 is chosen as an arbitrary location in SRAM that's not being used
+    mixin Register!(address + 0x38);
     
     // 0: Disable
     // 1: Enable
-    alias Bit!(0, Policy.ReadWrite) FSMCEN;
+    alias FSMCEN = Bit!(0, Policy.ReadWrite);
 }
 
 struct APB1ENR
 { 
-    // Address 0x2000_1000 is chosen as an arbitrary location in SRAM that's not being used
-    mixin Register!(Address + 0x40);
+    // address 0x2000_1000 is chosen as an arbitrary location in SRAM that's not being used
+    mixin Register!(address + 0x40);
     
     // 0: Disable
     // 1: Enable
-    alias Bit!(29, Policy.ReadWrite) DACEN;
+    alias DACEN = Bit!(29, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(28, Policy.ReadWrite) PWREN;
+    alias PWREN = Bit!(28, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(26, Policy.ReadWrite) CAN2EN;
+    alias CAN2EN = Bit!(26, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(25, Policy.ReadWrite) CAN1EN;
+    alias CAN1EN = Bit!(25, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(23, Policy.ReadWrite) I2C3EN;
+    alias I2C3EN = Bit!(23, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(22, Policy.ReadWrite) I2C2EN;
+    alias I2C2EN = Bit!(22, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(21, Policy.ReadWrite) I2C1EN;
+    alias I2C1EN = Bit!(21, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(20, Policy.ReadWrite) UART5EN;
+    alias UART5EN = Bit!(20, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(19, Policy.ReadWrite) UART4EN;
+    alias UART4EN = Bit!(19, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(18, Policy.ReadWrite) USART3EN;
+    alias USART3EN = Bit!(18, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(17, Policy.ReadWrite) USART2EN;
+    alias USART2EN = Bit!(17, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(15, Policy.ReadWrite) SPI3EN;
+    alias SPI3EN = Bit!(15, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(14, Policy.ReadWrite) SPI2EN;
+    alias SPI2EN = Bit!(14, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(11, Policy.ReadWrite) WWDGEN;
+    alias WWDGEN = Bit!(11, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(8, Policy.ReadWrite) TIM14EN;
+    alias TIM14EN = Bit!(8, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(7, Policy.ReadWrite) TIM13EN;
+    alias TIM13EN = Bit!(7, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(6, Policy.ReadWrite) TIM12EN;
+    alias TIM12EN = Bit!(6, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(5, Policy.ReadWrite) TIM7EN;
+    alias TIM7EN = Bit!(5, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(4, Policy.ReadWrite) TIM6EN;
+    alias TIM6EN = Bit!(4, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(3, Policy.ReadWrite) TIM5EN;
+    alias TIM5EN = Bit!(3, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(2, Policy.ReadWrite) TIM4EN;
+    alias TIM4EN = Bit!(2, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(1, Policy.ReadWrite) TIM3EN;
+    alias TIM3EN = Bit!(1, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(0, Policy.ReadWrite) TIM2EN;
+    alias TIM2EN = Bit!(0, Policy.ReadWrite);
 }
 
 struct APB2ENR
 { 
-    // Address 0x2000_1000 is chosen as an arbitrary location in SRAM that's not being used
-    mixin Register!(Address + 0x44);
+    // address 0x2000_1000 is chosen as an arbitrary location in SRAM that's not being used
+    mixin Register!(address + 0x44);
     
     // 0: Disable
     // 1: Enable
-    alias Bit!(26, Policy.ReadWrite) LTDCEN;
+    alias LTDCEN = Bit!(26, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(22, Policy.ReadWrite) SAI1EN;
+    alias SAI1EN = Bit!(22, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(21, Policy.ReadWrite) SPI6EN;
+    alias SPI6EN = Bit!(21, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(20, Policy.ReadWrite) SPI5EN;
+    alias SPI5EN = Bit!(20, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(18, Policy.ReadWrite) TIM11EN;
+    alias TIM11EN = Bit!(18, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(17, Policy.ReadWrite) TIM10EN;
+    alias TIM10EN = Bit!(17, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(16, Policy.ReadWrite) TIM9EN;
-
-
-    // 0: Disable
-    // 1: Enable
-    alias Bit!(14, Policy.ReadWrite) SYSCFGEN;
+    alias TIM9EN = Bit!(16, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(13, Policy.ReadWrite) SPI4EN;
+    alias SYSCFGEN = Bit!(14, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(12, Policy.ReadWrite) SPI1EN;
+    alias SPI4EN = Bit!(13, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(11, Policy.ReadWrite) SDIOEN;
+    alias SPI1EN = Bit!(12, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(10, Policy.ReadWrite) ADC3EN;
+    alias SDIOEN = Bit!(11, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(9, Policy.ReadWrite) ADC2EN;
+    alias ADC3EN = Bit!(10, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(8, Policy.ReadWrite) ADC1EN;
+    alias ADC2EN = Bit!(9, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(5, Policy.ReadWrite) USART6EN;
+    alias ADC1EN = Bit!(8, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(4, Policy.ReadWrite) USART1EN;
+    alias USART6EN = Bit!(5, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(1, Policy.ReadWrite) TIM8EN;
+    alias USART1EN = Bit!(4, Policy.ReadWrite);
 
     // 0: Disable
     // 1: Enable
-    alias Bit!(0, Policy.ReadWrite) TIM1EN;
+    alias TIM8EN = Bit!(1, Policy.ReadWrite);
+
+    // 0: Disable
+    // 1: Enable
+    alias TIM1EN = Bit!(0, Policy.ReadWrite);
 }

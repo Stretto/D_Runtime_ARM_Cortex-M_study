@@ -73,7 +73,7 @@ enum Policy
 /***********************************************************************
  Provides access to a limited range of bits in this register
 */
-mixin template BitFieldImplementation(TReturnType, size_t msb, size_t lsb, Policy policy)
+mixin template BitFieldImplementation(size_t msb, size_t lsb, Policy policy)
 {
     /***************************************************************
 	Index of this BitField's most significant Bit
@@ -106,6 +106,30 @@ mixin template BitFieldImplementation(TReturnType, size_t msb, size_t lsb, Polic
     static @property auto BitMask()
     {
 	return ((1 << NumOfBits()) - 1) << LSBIndex();
+    }
+    
+    /***********************************************************************
+        Determine the return type
+    */
+    
+    // This library doesn't support fields greater than 32 bits
+    static assert(NumOfBits <= 32);
+    
+    static if (NumOfBits == 1)
+    {
+        alias TReturnType = bool;
+    }
+    else static if (NumOfBits <= 8)
+    {
+        alias TReturnType = ubyte;
+    }
+    else static if (NumOfBits <= 16)
+    {
+        alias TReturnType = ushort;
+    }
+    else static if (NumOfBits <= 32)
+    {
+        alias TReturnType = uint;
     }
 
     // Only add a "getter" if the policy supports it.
@@ -175,9 +199,9 @@ mixin template Register(size_t address, size_t resetValue = 0)
     /***********************************************************************
       A range of bits in the this register
     */
-    static struct BitField(TReturnType, size_t msb, size_t lsb, Policy policy)
+    static struct BitField(size_t msb, size_t lsb, Policy policy)
     {
-	mixin BitFieldImplementation!(TReturnType, msb, lsb, policy);
+	mixin BitFieldImplementation!(msb, lsb, policy);
     }
     
     /***********************************************************************
@@ -185,7 +209,7 @@ mixin template Register(size_t address, size_t resetValue = 0)
     */
     static struct Bit(size_t bitIndex, Policy policy)
     {
-	mixin BitFieldImplementation!(bool, bitIndex, bitIndex, policy);
+	mixin BitFieldImplementation!(bitIndex, bitIndex, policy);
     }
 
     /***********************************************************************

@@ -1,12 +1,12 @@
- 
 import mmio;
+import ahb1 = STM32.registers.ahb1;
 
-private immutable uint Address = 0x0 + 0x7000;
+immutable uint address = ahb1.address + 0x0000_7000;
 
 struct CR
 { 
-    // Address 0x2000_1000 is chosen as an arbitrary location in SRAM that's not being used
-    mixin Register!(Address + 0x00);
+    // address 0x2000_1000 is chosen as an arbitrary location in SRAM that's not being used
+    mixin Register!(address + 0x00);
     
     // Regulator voltage scaling output selection
     // This bit controls the main internal voltage regulator output voltage to achieve a trade-off
@@ -14,14 +14,14 @@ struct CR
     // maximum frequency.
     // 0: Scale 2 mode
     // 1: Scale 1 mode (default value at reset)
-    alias Bit!(14, Policy.ReadWrite) VOS;
+    alias VOS = Bit!(14, Policy.ReadWrite);
 
     // Flash power-down in Stop mode
     // When set, the Flash memory enters power-down mode when the device enters Stop mode.
     // This allows to achieve a lower consumption in stop mode but a longer restart time.
     // 0: Flash memory not in power-down when the device is in Stop mode
     // 1: Flash memory in power-down when the device is in Stop mode
-    alias Bit!(9, Policy.ReadWrite) FPDS;
+    alias FPDS = Bit!(9, Policy.ReadWrite);
 
     // Disable backup domain write protection
     // In reset state, the RCC_BDCR register, the RTC registers (including the backup registers),
@@ -29,7 +29,7 @@ struct CR
     // bit must be set to enable write access to these registers.
     // 0: Access to RTC and RTC Backup registers and backup SRAM disabled
     // 1: Access to RTC and RTC Backup registers and backup SRAM enabledd
-    alias Bit!(8, Policy.ReadWrite) DBP;
+    alias DBP = Bit!(8, Policy.ReadWrite);
 
     // PVD level selection
     // These bits are written by software to select the voltage threshold detected by the Power
@@ -43,49 +43,49 @@ struct CR
     // 110: 2.8 V
     // 111: 2.9 V
     // Note: Refer to the electrical characteristics of the datasheet for more details
-    alias BitField!(uint, 7, 5, Policy.ReadWrite) PLS;
+    alias PLS = BitField!(7, 5, Policy.ReadWrite);
 
     // Power voltage detector enable
     // This bit is set and cleared by software.
     // 0: PVD disabled
     // 1: PVD enabled
-    alias Bit!(4, Policy.ReadWrite) PVDE;
+    alias PVDE = Bit!(4, Policy.ReadWrite);
 
     // Clear standby flag
     // This bit is always read as 0.
     // 0: No effect
     // 1: Clear the SBF Standby Flag (write)
-    alias Bit!(3, Policy.ReadWrite) CSBF;
+    alias CSBF = Bit!(3, Policy.ReadWrite);
 
     // Clear wakeup flag
     // This bit is always read as 0.
     // 0: No effect
     // 1: Clear the WUF Wakeup Flag after 2 System clock cycles
-    alias Bit!(2, Policy.ReadWrite) CWUF;
+    alias CWUF = Bit!(2, Policy.ReadWrite);
 
     // Power-down deepsleep
     // This bit is set and cleared by software. It works together with the LPDS bit.
     // 0: Enter Stop mode when the CPU enters deepsleep. The regulator status depends on the
     // LPDS bit.
     // 1: Enter Standby mode when the CPU enters deepsleep.
-    alias Bit!(1, Policy.ReadWrite) PDDS;
+    alias PDDS = Bit!(1, Policy.ReadWrite);
 
     // Low-power deepsleep
     // This bit is set and cleared by software. It works together with the PDDS bit.
     // 0: Voltage regulator on during Stop mode
     // 1: Voltage regulator in low-power mode during Stop mode
-    alias Bit!(17, Policy.ReadWrite) LPDS;
+    alias LPDS = Bit!(17, Policy.ReadWrite);
 }
 
 struct CSR
 { 
-    // Address 0x2000_1000 is chosen as an arbitrary location in SRAM that's not being used
-    mixin Register!(Address + 0x04);
+    // address 0x2000_1000 is chosen as an arbitrary location in SRAM that's not being used
+    mixin Register!(address + 0x04);
     
     // Regulator voltage scaling output selection ready bit
     // 0: Not ready
     // 1: Ready
-    alias Bit!(14, Policy.Read) VOSRDY;
+    alias VOSRDY = Bit!(14, Policy.Read);
 
     // Backup regulator enable
     // When set, the Backup regulator (used to maintain backup SRAM content in Standby and VBAT
@@ -98,7 +98,7 @@ struct CSR
     // 1: Backup regulator enabled
     // Note: This bit is not reset when the device wakes up from Standby mode, by a system reset,
     // or by a power reset
-    alias Bit!(9, Policy.ReadWrite) BRE;
+    alias BRE = Bit!(9, Policy.ReadWrite);
 
 
     // Enable WKUP pin
@@ -108,7 +108,7 @@ struct CSR
     // 1: WKUP pin is used for wakeup from Standby mode and forced in input pull down
     // configuration (rising edge on WKUP pin wakes-up the system from Standby mode).
     // Note: This bit is reset by a system reset
-    alias Bit!(8, Policy.ReadWrite) EWUP;
+    alias EWUP = Bit!(8, Policy.ReadWrite);
 
     // Backup regulator ready
     // Set by hardware to indicate that the Backup Regulator is ready.
@@ -116,7 +116,7 @@ struct CSR
     // 1: Backup Regulator ready
     // Note: This bit is not reset when the device wakes up from Standby mode or by a system reset
     // or power reset
-    alias Bit!(3, Policy.Read) BRR;
+    alias BRR = Bit!(3, Policy.Read);
 
     //  PVD output
     // This bit is set and cleared by hardware. It is valid only if PVD is enabled by the PVDE bit.
@@ -124,14 +124,14 @@ struct CSR
     // 1: VDD is lower than the PVD threshold selected with the PLS[2:0] bits.
     // Note: The PVD is stopped by Standby mode. For this reason, this bit is equal to 0 after
     // Standby or reset until the PVDE bit is set
-    alias Bit!(2, Policy.Read) PVDO;
+    alias PVDO = Bit!(2, Policy.Read);
 
     // Standby flag
     // This bit is set by hardware and cleared only by a POR/PDR (power-on reset/power-down
     // reset) or by setting the CSBF bit in the PWR_CR register.
     // 0: Device has not been in Standby mode
     // 1: Device has been in Standby mode
-    alias Bit!(1, Policy.Read) SBF;
+    alias SBF = Bit!(1, Policy.Read);
 
     // Wakeup flag
     // This bit is set by hardware and cleared either by a system reset
@@ -141,5 +141,5 @@ struct CSR
     // Alarm B), RTC Tamper event, RTC TimeStamp event or RTC Wakeup).
     // Note: An additional wakeup event is detected if the WKUP pin is enabled (by setting the
     // EWUP bit) when the WKUP pin level is already high
-    alias Bit!(0, Policy.Read) WUP;
+    alias WUP = Bit!(0, Policy.Read);
 }
