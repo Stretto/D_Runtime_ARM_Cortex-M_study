@@ -1,0 +1,454 @@
+
+;; Function start.MyRegister.Register!(536875008, 0).Reset (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z5ResetFZv, funcdef_no=4, decl_uid=3604, cgraph_uid=4)
+
+start.MyRegister.Register!(536875008, 0).Reset ()
+{
+  <bb 2>:
+  MEM[(uint *)536875008B] = 0;
+  return;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).Value (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z5ValueFNdZk, funcdef_no=5, decl_uid=3607, cgraph_uid=5)
+
+start.MyRegister.Register!(536875008, 0).Value ()
+{
+  uint _2;
+
+  <bb 2>:
+  _2 = MEM[(uint *)536875008B];
+  return _2;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).Value (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z5ValueFNdkZv, funcdef_no=6, decl_uid=3606, cgraph_uid=6)
+
+start.MyRegister.Register!(536875008, 0).Value (uint value)
+{
+  <bb 2>:
+  MEM[(uint *)536875008B] = value_2(D);
+  return;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).ResetValue (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z10ResetValueFNdZk, funcdef_no=7, decl_uid=3611, cgraph_uid=7)
+
+start.MyRegister.Register!(536875008, 0).ResetValue ()
+{
+  <bb 2>:
+  return 0;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).BitField!(uint, 31, 0, cast(Policy)2).BitField.BitFieldImplementation!(uint, 31u, 0u, cast(Policy)2).MSBIndex (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z37__T8BitFieldTkVi31Vi0VE4test6Policy2Z8BitField52__T22BitFieldImplementationTkVk31Vk0VE4test6Policy2Z8MSBIndexFNdZk, funcdef_no=8, decl_uid=3642, cgraph_uid=8)
+
+start.MyRegister.Register!(536875008, 0).BitField!(uint, 31, 0, cast(Policy)2).BitField.BitFieldImplementation!(uint, 31u, 0u, cast(Policy)2).MSBIndex ()
+{
+  <bb 2>:
+  return 31;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).BitField!(uint, 31, 0, cast(Policy)2).BitField.BitFieldImplementation!(uint, 31u, 0u, cast(Policy)2).LSBIndex (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z37__T8BitFieldTkVi31Vi0VE4test6Policy2Z8BitField52__T22BitFieldImplementationTkVk31Vk0VE4test6Policy2Z8LSBIndexFNdZk, funcdef_no=9, decl_uid=3644, cgraph_uid=9)
+
+start.MyRegister.Register!(536875008, 0).BitField!(uint, 31, 0, cast(Policy)2).BitField.BitFieldImplementation!(uint, 31u, 0u, cast(Policy)2).LSBIndex ()
+{
+  <bb 2>:
+  return 0;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).BitField!(uint, 31, 0, cast(Policy)2).BitField.BitFieldImplementation!(uint, 31u, 0u, cast(Policy)2).NumOfBits (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z37__T8BitFieldTkVi31Vi0VE4test6Policy2Z8BitField52__T22BitFieldImplementationTkVk31Vk0VE4test6Policy2Z9NumOfBitsFNdZk, funcdef_no=10, decl_uid=3646, cgraph_uid=10)
+
+start.MyRegister.Register!(536875008, 0).BitField!(uint, 31, 0, cast(Policy)2).BitField.BitFieldImplementation!(uint, 31u, 0u, cast(Policy)2).NumOfBits ()
+{
+  <bb 2>:
+  return 32;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).BitField!(uint, 31, 0, cast(Policy)2).BitField.BitFieldImplementation!(uint, 31u, 0u, cast(Policy)2).BitMask (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z37__T8BitFieldTkVi31Vi0VE4test6Policy2Z8BitField52__T22BitFieldImplementationTkVk31Vk0VE4test6Policy2Z7BitMaskFNdZi, funcdef_no=11, decl_uid=3648, cgraph_uid=11)
+
+start.MyRegister.Register!(536875008, 0).BitField!(uint, 31, 0, cast(Policy)2).BitField.BitFieldImplementation!(uint, 31u, 0u, cast(Policy)2).BitMask ()
+{
+  <bb 2>:
+  return -1;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).BitField!(uint, 31, 0, cast(Policy)2).BitField.BitFieldImplementation!(uint, 31u, 0u, cast(Policy)2).Value (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z37__T8BitFieldTkVi31Vi0VE4test6Policy2Z8BitField52__T22BitFieldImplementationTkVk31Vk0VE4test6Policy2Z5ValueFNdZk, funcdef_no=12, decl_uid=3650, cgraph_uid=12)
+
+start.MyRegister.Register!(536875008, 0).BitField!(uint, 31, 0, cast(Policy)2).BitField.BitFieldImplementation!(uint, 31u, 0u, cast(Policy)2).Value ()
+{
+  uint _2;
+
+  <bb 2>:
+  _2 = MEM[(uint *)536875008B];
+  return _2;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).BitField!(uint, 31, 0, cast(Policy)2).BitField.BitFieldImplementation!(uint, 31u, 0u, cast(Policy)2).Value (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z37__T8BitFieldTkVi31Vi0VE4test6Policy2Z8BitField52__T22BitFieldImplementationTkVk31Vk0VE4test6Policy2Z5ValueFNdkZv, funcdef_no=13, decl_uid=3652, cgraph_uid=13)
+
+start.MyRegister.Register!(536875008, 0).BitField!(uint, 31, 0, cast(Policy)2).BitField.BitFieldImplementation!(uint, 31u, 0u, cast(Policy)2).Value (uint value)
+{
+  <bb 2>:
+  MEM[(uint *)536875008B] = value_2(D);
+  return;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).BitField!(ushort, 16, 1, cast(Policy)0).BitField.BitFieldImplementation!(ushort, 16u, 1u, cast(Policy)0).MSBIndex (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z37__T8BitFieldTtVi16Vi1VE4test6Policy0Z8BitField52__T22BitFieldImplementationTtVk16Vk1VE4test6Policy0Z8MSBIndexFNdZk, funcdef_no=14, decl_uid=3672, cgraph_uid=14)
+
+start.MyRegister.Register!(536875008, 0).BitField!(ushort, 16, 1, cast(Policy)0).BitField.BitFieldImplementation!(ushort, 16u, 1u, cast(Policy)0).MSBIndex ()
+{
+  <bb 2>:
+  return 16;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).BitField!(ushort, 16, 1, cast(Policy)0).BitField.BitFieldImplementation!(ushort, 16u, 1u, cast(Policy)0).LSBIndex (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z37__T8BitFieldTtVi16Vi1VE4test6Policy0Z8BitField52__T22BitFieldImplementationTtVk16Vk1VE4test6Policy0Z8LSBIndexFNdZk, funcdef_no=15, decl_uid=3674, cgraph_uid=15)
+
+start.MyRegister.Register!(536875008, 0).BitField!(ushort, 16, 1, cast(Policy)0).BitField.BitFieldImplementation!(ushort, 16u, 1u, cast(Policy)0).LSBIndex ()
+{
+  <bb 2>:
+  return 1;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).BitField!(ushort, 16, 1, cast(Policy)0).BitField.BitFieldImplementation!(ushort, 16u, 1u, cast(Policy)0).NumOfBits (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z37__T8BitFieldTtVi16Vi1VE4test6Policy0Z8BitField52__T22BitFieldImplementationTtVk16Vk1VE4test6Policy0Z9NumOfBitsFNdZk, funcdef_no=16, decl_uid=3676, cgraph_uid=16)
+
+start.MyRegister.Register!(536875008, 0).BitField!(ushort, 16, 1, cast(Policy)0).BitField.BitFieldImplementation!(ushort, 16u, 1u, cast(Policy)0).NumOfBits ()
+{
+  <bb 2>:
+  return 16;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).BitField!(ushort, 16, 1, cast(Policy)0).BitField.BitFieldImplementation!(ushort, 16u, 1u, cast(Policy)0).BitMask (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z37__T8BitFieldTtVi16Vi1VE4test6Policy0Z8BitField52__T22BitFieldImplementationTtVk16Vk1VE4test6Policy0Z7BitMaskFNdZi, funcdef_no=17, decl_uid=3678, cgraph_uid=17)
+
+start.MyRegister.Register!(536875008, 0).BitField!(ushort, 16, 1, cast(Policy)0).BitField.BitFieldImplementation!(ushort, 16u, 1u, cast(Policy)0).BitMask ()
+{
+  <bb 2>:
+  return 131070;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).BitField!(ushort, 16, 1, cast(Policy)0).BitField.BitFieldImplementation!(ushort, 16u, 1u, cast(Policy)0).Value (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z37__T8BitFieldTtVi16Vi1VE4test6Policy0Z8BitField52__T22BitFieldImplementationTtVk16Vk1VE4test6Policy0Z5ValueFNdZt, funcdef_no=18, decl_uid=3680, cgraph_uid=18)
+
+start.MyRegister.Register!(536875008, 0).BitField!(ushort, 16, 1, cast(Policy)0).BitField.BitFieldImplementation!(ushort, 16u, 1u, cast(Policy)0).Value ()
+{
+  uint _2;
+  uint _3;
+  ushort _4;
+  uint _5;
+
+  <bb 2>:
+  _5 = MEM[(uint *)536875008B];
+  _2 = _5 & 131070;
+  _3 = _2 >> 1;
+  _4 = (ushort) _3;
+  return _4;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).Bit!(0, cast(Policy)0).Bit.BitFieldImplementation!(bool, 0u, 0u, cast(Policy)0).MSBIndex (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z26__T3BitVi0VE4test6Policy0Z3Bit51__T22BitFieldImplementationTbVk0Vk0VE4test6Policy0Z8MSBIndexFNdZk, funcdef_no=19, decl_uid=3699, cgraph_uid=19)
+
+start.MyRegister.Register!(536875008, 0).Bit!(0, cast(Policy)0).Bit.BitFieldImplementation!(bool, 0u, 0u, cast(Policy)0).MSBIndex ()
+{
+  <bb 2>:
+  return 0;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).Bit!(0, cast(Policy)0).Bit.BitFieldImplementation!(bool, 0u, 0u, cast(Policy)0).LSBIndex (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z26__T3BitVi0VE4test6Policy0Z3Bit51__T22BitFieldImplementationTbVk0Vk0VE4test6Policy0Z8LSBIndexFNdZk, funcdef_no=20, decl_uid=3701, cgraph_uid=20)
+
+start.MyRegister.Register!(536875008, 0).Bit!(0, cast(Policy)0).Bit.BitFieldImplementation!(bool, 0u, 0u, cast(Policy)0).LSBIndex ()
+{
+  <bb 2>:
+  return 0;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).Bit!(0, cast(Policy)0).Bit.BitFieldImplementation!(bool, 0u, 0u, cast(Policy)0).NumOfBits (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z26__T3BitVi0VE4test6Policy0Z3Bit51__T22BitFieldImplementationTbVk0Vk0VE4test6Policy0Z9NumOfBitsFNdZk, funcdef_no=21, decl_uid=3703, cgraph_uid=21)
+
+start.MyRegister.Register!(536875008, 0).Bit!(0, cast(Policy)0).Bit.BitFieldImplementation!(bool, 0u, 0u, cast(Policy)0).NumOfBits ()
+{
+  <bb 2>:
+  return 1;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).Bit!(0, cast(Policy)0).Bit.BitFieldImplementation!(bool, 0u, 0u, cast(Policy)0).BitMask (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z26__T3BitVi0VE4test6Policy0Z3Bit51__T22BitFieldImplementationTbVk0Vk0VE4test6Policy0Z7BitMaskFNdZi, funcdef_no=22, decl_uid=3705, cgraph_uid=22)
+
+start.MyRegister.Register!(536875008, 0).Bit!(0, cast(Policy)0).Bit.BitFieldImplementation!(bool, 0u, 0u, cast(Policy)0).BitMask ()
+{
+  <bb 2>:
+  return 1;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).Bit!(0, cast(Policy)0).Bit.BitFieldImplementation!(bool, 0u, 0u, cast(Policy)0).Value (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z26__T3BitVi0VE4test6Policy0Z3Bit51__T22BitFieldImplementationTbVk0Vk0VE4test6Policy0Z5ValueFNdZb, funcdef_no=23, decl_uid=3707, cgraph_uid=23)
+
+start.MyRegister.Register!(536875008, 0).Bit!(0, cast(Policy)0).Bit.BitFieldImplementation!(bool, 0u, 0u, cast(Policy)0).Value ()
+{
+  uint _2;
+  bool _3;
+  uint _4;
+
+  <bb 2>:
+  _4 = MEM[(uint *)536875008B];
+  _2 = _4 & 1;
+  _3 = (bool) _2;
+  return _3;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).BitField!(ubyte, 24, 17, cast(Policy)2).BitField.BitFieldImplementation!(ubyte, 24u, 17u, cast(Policy)2).MSBIndex (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z38__T8BitFieldThVi24Vi17VE4test6Policy2Z8BitField53__T22BitFieldImplementationThVk24Vk17VE4test6Policy2Z8MSBIndexFNdZk, funcdef_no=24, decl_uid=3726, cgraph_uid=24)
+
+start.MyRegister.Register!(536875008, 0).BitField!(ubyte, 24, 17, cast(Policy)2).BitField.BitFieldImplementation!(ubyte, 24u, 17u, cast(Policy)2).MSBIndex ()
+{
+  <bb 2>:
+  return 24;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).BitField!(ubyte, 24, 17, cast(Policy)2).BitField.BitFieldImplementation!(ubyte, 24u, 17u, cast(Policy)2).LSBIndex (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z38__T8BitFieldThVi24Vi17VE4test6Policy2Z8BitField53__T22BitFieldImplementationThVk24Vk17VE4test6Policy2Z8LSBIndexFNdZk, funcdef_no=25, decl_uid=3728, cgraph_uid=25)
+
+start.MyRegister.Register!(536875008, 0).BitField!(ubyte, 24, 17, cast(Policy)2).BitField.BitFieldImplementation!(ubyte, 24u, 17u, cast(Policy)2).LSBIndex ()
+{
+  <bb 2>:
+  return 17;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).BitField!(ubyte, 24, 17, cast(Policy)2).BitField.BitFieldImplementation!(ubyte, 24u, 17u, cast(Policy)2).NumOfBits (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z38__T8BitFieldThVi24Vi17VE4test6Policy2Z8BitField53__T22BitFieldImplementationThVk24Vk17VE4test6Policy2Z9NumOfBitsFNdZk, funcdef_no=26, decl_uid=3730, cgraph_uid=26)
+
+start.MyRegister.Register!(536875008, 0).BitField!(ubyte, 24, 17, cast(Policy)2).BitField.BitFieldImplementation!(ubyte, 24u, 17u, cast(Policy)2).NumOfBits ()
+{
+  <bb 2>:
+  return 8;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).BitField!(ubyte, 24, 17, cast(Policy)2).BitField.BitFieldImplementation!(ubyte, 24u, 17u, cast(Policy)2).BitMask (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z38__T8BitFieldThVi24Vi17VE4test6Policy2Z8BitField53__T22BitFieldImplementationThVk24Vk17VE4test6Policy2Z7BitMaskFNdZi, funcdef_no=27, decl_uid=3732, cgraph_uid=27)
+
+start.MyRegister.Register!(536875008, 0).BitField!(ubyte, 24, 17, cast(Policy)2).BitField.BitFieldImplementation!(ubyte, 24u, 17u, cast(Policy)2).BitMask ()
+{
+  <bb 2>:
+  return 33423360;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).BitField!(ubyte, 24, 17, cast(Policy)2).BitField.BitFieldImplementation!(ubyte, 24u, 17u, cast(Policy)2).Value (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z38__T8BitFieldThVi24Vi17VE4test6Policy2Z8BitField53__T22BitFieldImplementationThVk24Vk17VE4test6Policy2Z5ValueFNdZh, funcdef_no=28, decl_uid=3734, cgraph_uid=28)
+
+start.MyRegister.Register!(536875008, 0).BitField!(ubyte, 24, 17, cast(Policy)2).BitField.BitFieldImplementation!(ubyte, 24u, 17u, cast(Policy)2).Value ()
+{
+  uint _2;
+  uint _3;
+  ubyte _4;
+  uint _5;
+
+  <bb 2>:
+  _5 = MEM[(uint *)536875008B];
+  _2 = _5 & 33423360;
+  _3 = _2 >> 17;
+  _4 = (ubyte) _3;
+  return _4;
+
+}
+
+
+
+;; Function start.MyRegister.Register!(536875008, 0).BitField!(ubyte, 24, 17, cast(Policy)2).BitField.BitFieldImplementation!(ubyte, 24u, 17u, cast(Policy)2).Value (_D5start10MyRegister27__T8RegisterVi536875008Vi0Z38__T8BitFieldThVi24Vi17VE4test6Policy2Z8BitField53__T22BitFieldImplementationThVk24Vk17VE4test6Policy2Z5ValueFNdhZv, funcdef_no=29, decl_uid=3736, cgraph_uid=29)
+
+start.MyRegister.Register!(536875008, 0).BitField!(ubyte, 24, 17, cast(Policy)2).BitField.BitFieldImplementation!(ubyte, 24u, 17u, cast(Policy)2).Value (ubyte value)
+{
+  uint _2;
+  uint _4;
+  uint _5;
+  uint _6;
+  uint _8;
+
+  <bb 2>:
+  _8 = MEM[(uint *)536875008B];
+  _2 = _8 & 4261543935;
+  _4 = (uint) value_3(D);
+  _5 = _4 << 17;
+  _6 = _5 | _2;
+  MEM[(uint *)536875008B] = _6;
+  return;
+
+}
+
+
+
+;; Function trace.WriteLine!(string).WriteLine (_D5trace18__T9WriteLineTAyaZ9WriteLineFxAyaZv, funcdef_no=31, decl_uid=3557, cgraph_uid=31)
+
+trace.WriteLine!(string).WriteLine (const struct  _param_0)
+{
+  const struct  t;
+  struct  D.3942;
+
+  <bb 2>:
+  t = _param_0;
+  Write (t);
+  t ={v} {CLOBBER};
+  D.3942.length = 2;
+  D.3942.ptr = "\r\n";
+  Write (D.3942);
+  return;
+
+}
+
+
+
+;; Function start.OnHardFault (_D5start11OnHardFaultFZv, funcdef_no=0, decl_uid=3549, cgraph_uid=0) (executed once)
+
+start.OnHardFault ()
+{
+  struct  D.3752;
+
+  <bb 2>:
+  D.3752.length = 10;
+  D.3752.ptr = "Hard Fault";
+  trace.WriteLine!(string).WriteLine (D.3752);
+
+  <bb 3>:
+
+  <bb 4>:
+  goto <bb 3>;
+
+}
+
+
+
+;; Function start.OnMPUFault (_D5start10OnMPUFaultFZv, funcdef_no=1, decl_uid=3551, cgraph_uid=1) (executed once)
+
+start.OnMPUFault ()
+{
+  struct  D.3757;
+
+  <bb 2>:
+  D.3757.length = 9;
+  D.3757.ptr = "MPU Fault";
+  trace.WriteLine!(string).WriteLine (D.3757);
+
+  <bb 3>:
+
+  <bb 4>:
+  goto <bb 3>;
+
+}
+
+
+
+;; Function start.OnBusFault (_D5start10OnBusFaultFZv, funcdef_no=2, decl_uid=3553, cgraph_uid=2) (executed once)
+
+start.OnBusFault ()
+{
+  struct  D.3762;
+
+  <bb 2>:
+  D.3762.length = 9;
+  D.3762.ptr = "Bus Fault";
+  trace.WriteLine!(string).WriteLine (D.3762);
+
+  <bb 3>:
+
+  <bb 4>:
+  goto <bb 3>;
+
+}
+
+
+
+;; Function start.OnUsageFault (_D5start12OnUsageFaultFZv, funcdef_no=3, decl_uid=3555, cgraph_uid=3) (executed once)
+
+start.OnUsageFault ()
+{
+  struct  D.3767;
+
+  <bb 2>:
+  D.3767.length = 11;
+  D.3767.ptr = "Usage Fault";
+  trace.WriteLine!(string).WriteLine (D.3767);
+
+  <bb 3>:
+
+  <bb 4>:
+  goto <bb 3>;
+
+}
+
+
+
+;; Function start.OnReset (_D5start7OnResetFZv, funcdef_no=30, decl_uid=3547, cgraph_uid=30) (executed once)
+
+start.OnReset ()
+{
+  struct  D.3934;
+
+  <bb 2>:
+  D.3934.length = 4;
+  D.3934.ptr = "Here";
+  trace.WriteLine!(string).WriteLine (D.3934);
+  MEM[(uint *)536875008B] = 170;
+  WriteLine (170, 10);
+
+  <bb 3>:
+
+  <bb 4>:
+  goto <bb 3>;
+
+}
+
+

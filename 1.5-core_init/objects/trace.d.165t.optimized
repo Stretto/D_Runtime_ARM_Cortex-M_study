@@ -1,0 +1,559 @@
+
+;; Function _D5trace5WriteFkkZv.part.0 (_D5trace5WriteFkkZv.part.0, funcdef_no=7, decl_uid=3658, cgraph_uid=8) (unlikely executed)
+
+_D5trace5WriteFkkZv.part.0 ()
+{
+  struct  D.3675;
+
+  <bb 2>:
+  D.3675.length = 14;
+  D.3675.ptr = "source/trace.d";
+  _d_assert (D.3675, 58);
+
+}
+
+
+
+;; Function trace.SemihostingInvoke (_D5trace17SemihostingInvokeFxixPvZv, funcdef_no=0, decl_uid=3546, cgraph_uid=0)
+
+trace.SemihostingInvoke (const int command, const void * const message)
+{
+  <bb 2>:
+  __asm__ __volatile__("mov r0, %[cmd];
+         mov r1, %[msg];
+         bkpt #0xAB" :  : "cmd" "r" command_2(D), "msg" "r" message_3(D) : "r0", "r1", "memory", "r1", "memory", "memory");
+  return;
+
+}
+
+
+
+;; Function trace.SemihostingWrite (_D5trace16SemihostingWriteFxPvxkZv, funcdef_no=1, decl_uid=3550, cgraph_uid=1)
+
+trace.SemihostingWrite (const void * const ptr, const uint length)
+{
+  uint message[3];
+  uint ptr.0;
+
+  <bb 2>:
+  ptr.0_2 = (uint) ptr_1(D);
+  message[0] = 2;
+  message[1] = ptr.0_2;
+  message[2] = length_6(D);
+  __asm__ __volatile__("mov r0, %[cmd];
+         mov r1, %[msg];
+         bkpt #0xAB" :  : "cmd" "r" 5, "msg" "r" &message : "r0", "r1", "memory", "r1", "memory", "memory");
+  message ={v} {CLOBBER};
+  return;
+
+}
+
+
+
+;; Function trace.Write (_D5trace5WriteFkkZv, funcdef_no=2, decl_uid=3559, cgraph_uid=2)
+
+trace.Write (uint value, uint base)
+{
+  unsigned int ivtmp.39;
+  uint ptr.0;
+  uint message[3];
+  uint index;
+  char buffer[10];
+  char * p;
+  int p.3;
+  int end.2;
+  char iftmp.1;
+  uint _9;
+  ubyte _21;
+  int _29;
+  uint _31;
+
+  <bb 2>:
+  _9 = base_8(D) + 4294967294;
+  if (_9 <= 14)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  _D5trace5WriteFkkZv.part.0 ();
+
+  <bb 4>:
+  __builtin_memset (&buffer, -1, 10);
+  ivtmp.39_13 = (unsigned int) &MEM[(void *)&buffer + 9B];
+
+  <bb 5>:
+  # value_1 = PHI <value_18(D)(4), value_26(6)>
+  # ivtmp.39_40 = PHI <ivtmp.39_13(4), ivtmp.39_41(6)>
+  index_19 = value_1 % base_8(D);
+  p_20 = (char *) ivtmp.39_40;
+  _21 = (ubyte) index_19;
+  iftmp.1_22 = _21 + 48;
+  iftmp.1_24 = _21 + 55;
+  iftmp.1_5 = index_19 <= 9 ? iftmp.1_22 : iftmp.1_24;
+  MEM[base: p_20, offset: 0B] = iftmp.1_5;
+  ivtmp.39_41 = ivtmp.39_40 - 1;
+  value_26 = value_1 / base_8(D);
+  if (value_26 == 0)
+    goto <bb 7>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  goto <bb 5>;
+
+  <bb 7>:
+  # p_45 = PHI <p_20(5)>
+  end.2_27 = (int) &MEM[(void *)&buffer + 10B];
+  p.3_28 = (int) p_45;
+  _29 = end.2_27 - p.3_28;
+  _31 = (uint) _29;
+  ptr.0_34 = (uint) p_45;
+  message[0] = 2;
+  message[1] = ptr.0_34;
+  message[2] = _31;
+  __asm__ __volatile__("mov r0, %[cmd];
+         mov r1, %[msg];
+         bkpt #0xAB" :  : "cmd" "r" 5, "msg" "r" &message : "r0", "r1", "memory", "r1", "memory", "memory");
+  message ={v} {CLOBBER};
+  buffer ={v} {CLOBBER};
+  return;
+
+}
+
+
+
+;; Function trace.Write (_D5trace5WriteFikZv, funcdef_no=3, decl_uid=3581, cgraph_uid=3)
+
+trace.Write (int value, uint base)
+{
+  unsigned int ivtmp.62;
+  unsigned int ivtmp.52;
+  uint ptr.0;
+  uint message[3];
+  uint index;
+  char buffer[10];
+  char * p;
+  int p.3;
+  int end.2;
+  char iftmp.1;
+  uint value;
+  uint ptr.0;
+  uint message[3];
+  uint index;
+  char buffer[10];
+  char * p;
+  int p.3;
+  int end.2;
+  char iftmp.1;
+  uint value;
+  uint message[3];
+  uint ptr.0;
+  int _5;
+  uint _17;
+  ubyte _26;
+  int _34;
+  uint _35;
+  uint _41;
+  ubyte _50;
+  int _58;
+  uint _59;
+
+  <bb 2>:
+  if (value_2(D) < 0)
+    goto <bb 3>;
+  else
+    goto <bb 9>;
+
+  <bb 3>:
+  ptr.0_11 = (uint) "-";
+  message[0] = 2;
+  message[1] = ptr.0_11;
+  message[2] = 1;
+  __asm__ __volatile__("mov r0, %[cmd];
+         mov r1, %[msg];
+         bkpt #0xAB" :  : "cmd" "r" 5, "msg" "r" &message : "r0", "r1", "memory", "r1", "memory", "memory");
+  message ={v} {CLOBBER};
+  _5 = -value_2(D);
+  value_6 = (uint) _5;
+  _17 = base_7(D) + 4294967294;
+  if (_17 <= 14)
+    goto <bb 5>;
+  else
+    goto <bb 4>;
+
+  <bb 4>:
+  _D5trace5WriteFkkZv.part.0 ();
+
+  <bb 5>:
+  __builtin_memset (&buffer, -1, 10);
+  ivtmp.52_20 = (unsigned int) &MEM[(void *)&buffer + 9B];
+
+  <bb 6>:
+  # value_22 = PHI <value_6(5), value_31(7)>
+  # ivtmp.52_88 = PHI <ivtmp.52_20(5), ivtmp.52_69(7)>
+  index_23 = value_22 % base_7(D);
+  p_25 = (char *) ivtmp.52_88;
+  _26 = (ubyte) index_23;
+  iftmp.1_27 = _26 + 48;
+  iftmp.1_29 = _26 + 55;
+  iftmp.1_30 = index_23 <= 9 ? iftmp.1_27 : iftmp.1_29;
+  MEM[base: p_25, offset: 0B] = iftmp.1_30;
+  ivtmp.52_69 = ivtmp.52_88 - 1;
+  value_31 = value_22 / base_7(D);
+  if (value_31 == 0)
+    goto <bb 8>;
+  else
+    goto <bb 7>;
+
+  <bb 7>:
+  goto <bb 6>;
+
+  <bb 8>:
+  # p_99 = PHI <p_25(6)>
+  end.2_32 = (int) &MEM[(void *)&buffer + 10B];
+  p.3_33 = (int) p_99;
+  _34 = end.2_32 - p.3_33;
+  _35 = (uint) _34;
+  ptr.0_36 = (uint) p_99;
+  message[0] = 2;
+  message[1] = ptr.0_36;
+  message[2] = _35;
+  __asm__ __volatile__("mov r0, %[cmd];
+         mov r1, %[msg];
+         bkpt #0xAB" :  : "cmd" "r" 5, "msg" "r" &message : "r0", "r1", "memory", "r1", "memory", "memory");
+  message ={v} {CLOBBER};
+  buffer ={v} {CLOBBER};
+  goto <bb 14>;
+
+  <bb 9>:
+  value_9 = (uint) value_2(D);
+  _41 = base_7(D) + 4294967294;
+  if (_41 <= 14)
+    goto <bb 10>;
+  else
+    goto <bb 4>;
+
+  <bb 10>:
+  __builtin_memset (&buffer, -1, 10);
+  ivtmp.62_93 = (unsigned int) &MEM[(void *)&buffer + 9B];
+
+  <bb 11>:
+  # value_46 = PHI <value_9(10), value_55(12)>
+  # ivtmp.62_24 = PHI <ivtmp.62_93(10), ivtmp.62_91(12)>
+  index_47 = value_46 % base_7(D);
+  p_49 = (char *) ivtmp.62_24;
+  _50 = (ubyte) index_47;
+  iftmp.1_51 = _50 + 48;
+  iftmp.1_53 = _50 + 55;
+  iftmp.1_54 = index_47 <= 9 ? iftmp.1_51 : iftmp.1_53;
+  MEM[base: p_49, offset: 0B] = iftmp.1_54;
+  ivtmp.62_91 = ivtmp.62_24 - 1;
+  value_55 = value_46 / base_7(D);
+  if (value_55 == 0)
+    goto <bb 13>;
+  else
+    goto <bb 12>;
+
+  <bb 12>:
+  goto <bb 11>;
+
+  <bb 13>:
+  # p_98 = PHI <p_49(11)>
+  end.2_56 = (int) &MEM[(void *)&buffer + 10B];
+  p.3_57 = (int) p_98;
+  _58 = end.2_56 - p.3_57;
+  _59 = (uint) _58;
+  ptr.0_60 = (uint) p_98;
+  message[0] = 2;
+  message[1] = ptr.0_60;
+  message[2] = _59;
+  __asm__ __volatile__("mov r0, %[cmd];
+         mov r1, %[msg];
+         bkpt #0xAB" :  : "cmd" "r" 5, "msg" "r" &message : "r0", "r1", "memory", "r1", "memory", "memory");
+  message ={v} {CLOBBER};
+  buffer ={v} {CLOBBER};
+
+  <bb 14>:
+  return;
+
+}
+
+
+
+;; Function trace.WriteLine (_D5trace9WriteLineFkkZv, funcdef_no=4, decl_uid=3589, cgraph_uid=4)
+
+trace.WriteLine (uint value, uint base)
+{
+  unsigned int ivtmp.74;
+  uint ptr.0;
+  uint message[3];
+  uint index;
+  char buffer[10];
+  char * p;
+  int p.3;
+  int end.2;
+  char iftmp.1;
+  uint message[3];
+  uint ptr.0;
+  uint _12;
+  ubyte _21;
+  int _29;
+  uint _30;
+
+  <bb 2>:
+  _12 = base_3(D) + 4294967294;
+  if (_12 <= 14)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  _D5trace5WriteFkkZv.part.0 ();
+
+  <bb 4>:
+  __builtin_memset (&buffer, -1, 10);
+  ivtmp.74_38 = (unsigned int) &MEM[(void *)&buffer + 9B];
+
+  <bb 5>:
+  # value_17 = PHI <value_2(D)(4), value_26(6)>
+  # ivtmp.74_48 = PHI <ivtmp.74_38(4), ivtmp.74_49(6)>
+  index_18 = value_17 % base_3(D);
+  p_20 = (char *) ivtmp.74_48;
+  _21 = (ubyte) index_18;
+  iftmp.1_22 = _21 + 48;
+  iftmp.1_24 = _21 + 55;
+  iftmp.1_25 = index_18 <= 9 ? iftmp.1_22 : iftmp.1_24;
+  MEM[base: p_20, offset: 0B] = iftmp.1_25;
+  ivtmp.74_49 = ivtmp.74_48 - 1;
+  value_26 = value_17 / base_3(D);
+  if (value_26 == 0)
+    goto <bb 7>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  goto <bb 5>;
+
+  <bb 7>:
+  # p_52 = PHI <p_20(5)>
+  end.2_27 = (int) &MEM[(void *)&buffer + 10B];
+  p.3_28 = (int) p_52;
+  _29 = end.2_27 - p.3_28;
+  _30 = (uint) _29;
+  ptr.0_31 = (uint) p_52;
+  message[0] = 2;
+  message[1] = ptr.0_31;
+  message[2] = _30;
+  __asm__ __volatile__("mov r0, %[cmd];
+         mov r1, %[msg];
+         bkpt #0xAB" :  : "cmd" "r" 5, "msg" "r" &message : "r0", "r1", "memory", "r1", "memory", "memory");
+  message ={v} {CLOBBER};
+  buffer ={v} {CLOBBER};
+  ptr.0_6 = (uint) "\r\n";
+  message[0] = 2;
+  message[1] = ptr.0_6;
+  message[2] = 2;
+  __asm__ __volatile__("mov r0, %[cmd];
+         mov r1, %[msg];
+         bkpt #0xAB" :  : "cmd" "r" 5, "msg" "r" &message : "r0", "r1", "memory", "r1", "memory", "memory");
+  message ={v} {CLOBBER};
+  return;
+
+}
+
+
+
+;; Function trace.WriteLine (_D5trace9WriteLineFikZv, funcdef_no=5, decl_uid=3593, cgraph_uid=5)
+
+trace.WriteLine (int value, uint base)
+{
+  unsigned int ivtmp.96;
+  unsigned int ivtmp.86;
+  uint ptr.0;
+  uint message[3];
+  uint index;
+  char buffer[10];
+  char * p;
+  int p.3;
+  int end.2;
+  char iftmp.1;
+  uint value;
+  uint ptr.0;
+  uint message[3];
+  uint index;
+  char buffer[10];
+  char * p;
+  int p.3;
+  int end.2;
+  char iftmp.1;
+  uint value;
+  uint message[3];
+  uint ptr.0;
+  uint message[3];
+  uint ptr.0;
+  int _13;
+  uint _16;
+  ubyte _25;
+  int _33;
+  uint _34;
+  uint _40;
+  ubyte _49;
+  int _57;
+  uint _58;
+
+  <bb 2>:
+  if (value_2(D) < 0)
+    goto <bb 3>;
+  else
+    goto <bb 9>;
+
+  <bb 3>:
+  ptr.0_12 = (uint) "-";
+  message[0] = 2;
+  message[1] = ptr.0_12;
+  message[2] = 1;
+  __asm__ __volatile__("mov r0, %[cmd];
+         mov r1, %[msg];
+         bkpt #0xAB" :  : "cmd" "r" 5, "msg" "r" &message : "r0", "r1", "memory", "r1", "memory", "memory");
+  message ={v} {CLOBBER};
+  _13 = -value_2(D);
+  value_14 = (uint) _13;
+  _16 = base_3(D) + 4294967294;
+  if (_16 <= 14)
+    goto <bb 5>;
+  else
+    goto <bb 4>;
+
+  <bb 4>:
+  _D5trace5WriteFkkZv.part.0 ();
+
+  <bb 5>:
+  __builtin_memset (&buffer, -1, 10);
+  ivtmp.86_19 = (unsigned int) &MEM[(void *)&buffer + 9B];
+
+  <bb 6>:
+  # value_21 = PHI <value_14(5), value_30(7)>
+  # ivtmp.86_93 = PHI <ivtmp.86_19(5), ivtmp.86_82(7)>
+  index_22 = value_21 % base_3(D);
+  p_24 = (char *) ivtmp.86_93;
+  _25 = (ubyte) index_22;
+  iftmp.1_26 = _25 + 48;
+  iftmp.1_28 = _25 + 55;
+  iftmp.1_29 = index_22 <= 9 ? iftmp.1_26 : iftmp.1_28;
+  MEM[base: p_24, offset: 0B] = iftmp.1_29;
+  ivtmp.86_82 = ivtmp.86_93 - 1;
+  value_30 = value_21 / base_3(D);
+  if (value_30 == 0)
+    goto <bb 8>;
+  else
+    goto <bb 7>;
+
+  <bb 7>:
+  goto <bb 6>;
+
+  <bb 8>:
+  # p_104 = PHI <p_24(6)>
+  end.2_31 = (int) &MEM[(void *)&buffer + 10B];
+  p.3_32 = (int) p_104;
+  _33 = end.2_31 - p.3_32;
+  _34 = (uint) _33;
+  ptr.0_35 = (uint) p_104;
+  message[0] = 2;
+  message[1] = ptr.0_35;
+  message[2] = _34;
+  __asm__ __volatile__("mov r0, %[cmd];
+         mov r1, %[msg];
+         bkpt #0xAB" :  : "cmd" "r" 5, "msg" "r" &message : "r0", "r1", "memory", "r1", "memory", "memory");
+  message ={v} {CLOBBER};
+  buffer ={v} {CLOBBER};
+  goto <bb 14>;
+
+  <bb 9>:
+  value_15 = (uint) value_2(D);
+  _40 = base_3(D) + 4294967294;
+  if (_40 <= 14)
+    goto <bb 10>;
+  else
+    goto <bb 4>;
+
+  <bb 10>:
+  __builtin_memset (&buffer, -1, 10);
+  ivtmp.96_98 = (unsigned int) &MEM[(void *)&buffer + 9B];
+
+  <bb 11>:
+  # value_45 = PHI <value_15(10), value_54(12)>
+  # ivtmp.96_23 = PHI <ivtmp.96_98(10), ivtmp.96_96(12)>
+  index_46 = value_45 % base_3(D);
+  p_48 = (char *) ivtmp.96_23;
+  _49 = (ubyte) index_46;
+  iftmp.1_50 = _49 + 48;
+  iftmp.1_52 = _49 + 55;
+  iftmp.1_53 = index_46 <= 9 ? iftmp.1_50 : iftmp.1_52;
+  MEM[base: p_48, offset: 0B] = iftmp.1_53;
+  ivtmp.96_96 = ivtmp.96_23 - 1;
+  value_54 = value_45 / base_3(D);
+  if (value_54 == 0)
+    goto <bb 13>;
+  else
+    goto <bb 12>;
+
+  <bb 12>:
+  goto <bb 11>;
+
+  <bb 13>:
+  # p_103 = PHI <p_48(11)>
+  end.2_55 = (int) &MEM[(void *)&buffer + 10B];
+  p.3_56 = (int) p_103;
+  _57 = end.2_55 - p.3_56;
+  _58 = (uint) _57;
+  ptr.0_59 = (uint) p_103;
+  message[0] = 2;
+  message[1] = ptr.0_59;
+  message[2] = _58;
+  __asm__ __volatile__("mov r0, %[cmd];
+         mov r1, %[msg];
+         bkpt #0xAB" :  : "cmd" "r" 5, "msg" "r" &message : "r0", "r1", "memory", "r1", "memory", "memory");
+  message ={v} {CLOBBER};
+  buffer ={v} {CLOBBER};
+
+  <bb 14>:
+  ptr.0_6 = (uint) "\r\n";
+  message[0] = 2;
+  message[1] = ptr.0_6;
+  message[2] = 2;
+  __asm__ __volatile__("mov r0, %[cmd];
+         mov r1, %[msg];
+         bkpt #0xAB" :  : "cmd" "r" 5, "msg" "r" &message : "r0", "r1", "memory", "r1", "memory", "memory");
+  message ={v} {CLOBBER};
+  return;
+
+}
+
+
+
+;; Function trace.Write (_D5trace5WriteFxAyaZv, funcdef_no=6, decl_uid=3585, cgraph_uid=6)
+
+trace.Write (const struct  text)
+{
+  uint ptr.0;
+  uint message[3];
+  const char * _2;
+  uint _3;
+
+  <bb 2>:
+  _2 = text.ptr;
+  _3 = text.length;
+  ptr.0_5 = (uint) _2;
+  message[0] = 2;
+  message[1] = ptr.0_5;
+  message[2] = _3;
+  __asm__ __volatile__("mov r0, %[cmd];
+         mov r1, %[msg];
+         bkpt #0xAB" :  : "cmd" "r" 5, "msg" "r" &message : "r0", "r1", "memory", "r1", "memory", "memory");
+  message ={v} {CLOBBER};
+  return;
+
+}
+
+

@@ -1,0 +1,83 @@
+
+;; Function gcc.memset (memset, funcdef_no=0, decl_uid=3546, cgraph_uid=0)
+
+gcc.memset (void * dest, int value, uint num)
+{
+  int i;
+  uint i.0;
+  byte * _7;
+  int _9;
+  byte pretmp_13;
+
+  <bb 2>:
+  if (num_6(D) == 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  return dest_3(D);
+
+  <bb 4>:
+  pretmp_13 = (byte) value_8(D);
+  _9 = (int) num_6(D);
+
+  <bb 5>:
+  # i_15 = PHI <i_11(6), 0(4)>
+  # i.0_18 = PHI <i.0_5(6), 0(4)>
+  _7 = dest_3(D) + i.0_18;
+  *_7 = pretmp_13;
+  i_11 = i_15 + 1;
+  i.0_5 = (uint) i_11;
+  if (i_11 == _9)
+    goto <bb 3>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  goto <bb 5>;
+
+}
+
+
+
+;; Function gcc._Unwind_Resume (_Unwind_Resume, funcdef_no=1, decl_uid=3556, cgraph_uid=1)
+
+gcc._Unwind_Resume (void * ucbp)
+{
+  struct  D.3606;
+  const struct  t;
+
+  <bb 2>:
+  MEM[(struct  *)&t] = 14;
+  MEM[(struct  *)&t + 4B] = "_Unwind_Resume";
+  Write (t);
+  t ={v} {CLOBBER};
+  D.3606.length = 2;
+  D.3606.ptr = "\r\n";
+  Write (D.3606);
+  return;
+
+}
+
+
+
+;; Function trace.WriteLine!(string).WriteLine (_D5trace18__T9WriteLineTAyaZ9WriteLineFxAyaZv, funcdef_no=2, decl_uid=3559, cgraph_uid=2)
+
+trace.WriteLine!(string).WriteLine (const struct  _param_0)
+{
+  const struct  t;
+  struct  D.3587;
+
+  <bb 2>:
+  t = _param_0;
+  Write (t);
+  t ={v} {CLOBBER};
+  D.3587.length = 2;
+  D.3587.ptr = "\r\n";
+  Write (D.3587);
+  return;
+
+}
+
+

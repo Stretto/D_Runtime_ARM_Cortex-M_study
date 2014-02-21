@@ -1,0 +1,2902 @@
+
+;; Function _D6memory5Block7AddressMFNdZk.part.0 (_D6memory5Block7AddressMFNdZk.part.0, funcdef_no=30, decl_uid=4124, cgraph_uid=33)
+
+_D6memory5Block7AddressMFNdZk.part.0 ()
+{
+  struct  D.4128;
+  struct  D.4127;
+
+  <bb 2>:
+  D.4128.length = 9;
+  D.4128.ptr = "null this";
+  D.4127.length = 15;
+  D.4127.ptr = "source/memory.d";
+  _d_assert_msg (D.4128, D.4127, 137);
+
+}
+
+
+
+;; Function _D6memory5Block6MemoryMFNdZPv.part.1 (_D6memory5Block6MemoryMFNdZPv.part.1, funcdef_no=31, decl_uid=4134, cgraph_uid=34) (unlikely executed)
+
+_D6memory5Block6MemoryMFNdZPv.part.1 ()
+{
+  struct  D.4139;
+  struct  D.4138;
+
+  <bb 2>:
+  D.4139.length = 9;
+  D.4139.ptr = "null this";
+  D.4138.length = 15;
+  D.4138.ptr = "source/memory.d";
+  _d_assert_msg (D.4139, D.4138, 158);
+
+}
+
+
+
+;; Function _D6memory5Block13MemoryAddressMFNdZk.part.2 (_D6memory5Block13MemoryAddressMFNdZk.part.2, funcdef_no=32, decl_uid=4143, cgraph_uid=35) (unlikely executed)
+
+_D6memory5Block13MemoryAddressMFNdZk.part.2 ()
+{
+  struct  D.4147;
+  struct  D.4146;
+
+  <bb 2>:
+  D.4147.length = 9;
+  D.4147.ptr = "null this";
+  D.4146.length = 15;
+  D.4146.ptr = "source/memory.d";
+  _d_assert_msg (D.4147, D.4146, 117);
+
+}
+
+
+
+;; Function _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4NextMFNaNbNdZPS6memory5Block.part.3 (_D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4NextMFNaNbNdZPS6memory5Block.part.3, funcdef_no=33, decl_uid=4151, cgraph_uid=36) (unlikely executed)
+
+_D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4NextMFNaNbNdZPS6memory5Block.part.3 ()
+{
+  struct  D.4155;
+  struct  D.4154;
+
+  <bb 2>:
+  D.4155.length = 9;
+  D.4155.ptr = "null this";
+  D.4154.length = 15;
+  D.4154.ptr = "source/memory.d";
+  _d_assert_msg (D.4155, D.4154, 77);
+
+}
+
+
+
+;; Function _D6memory5Block4NextMFNdZPS6memory5Block.part.4 (_D6memory5Block4NextMFNdZPS6memory5Block.part.4, funcdef_no=34, decl_uid=4161, cgraph_uid=37) (unlikely executed)
+
+_D6memory5Block4NextMFNdZPS6memory5Block.part.4 ()
+{
+  struct  D.4166;
+  struct  D.4165;
+
+  <bb 2>:
+  D.4166.length = 9;
+  D.4166.ptr = "null this";
+  D.4165.length = 15;
+  D.4165.ptr = "source/memory.d";
+  _d_assert_msg (D.4166, D.4165, 132);
+
+}
+
+
+
+;; Function _D6memory5Block6IsLastMFNdZb.part.5 (_D6memory5Block6IsLastMFNdZb.part.5, funcdef_no=35, decl_uid=4170, cgraph_uid=38) (unlikely executed)
+
+_D6memory5Block6IsLastMFNdZb.part.5 ()
+{
+  struct  D.4174;
+  struct  D.4173;
+
+  <bb 2>:
+  D.4174.length = 9;
+  D.4174.ptr = "null this";
+  D.4173.length = 15;
+  D.4173.ptr = "source/memory.d";
+  _d_assert_msg (D.4174, D.4173, 142);
+
+}
+
+
+
+;; Function _D6memory5Block6nBytesMFNdZk.part.6 (_D6memory5Block6nBytesMFNdZk.part.6, funcdef_no=36, decl_uid=4182, cgraph_uid=39) (unlikely executed)
+
+_D6memory5Block6nBytesMFNdZk.part.6 ()
+{
+  struct  D.4188;
+  struct  D.4187;
+
+  <bb 2>:
+  D.4188.length = 9;
+  D.4188.ptr = "null this";
+  D.4187.length = 15;
+  D.4187.ptr = "source/memory.d";
+  _d_assert_msg (D.4188, D.4187, 147);
+
+}
+
+
+
+;; Function _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4NextMFNaNbNdNfPS6memory5BlockZv.part.7 (_D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4NextMFNaNbNdNfPS6memory5BlockZv.part.7, funcdef_no=37, decl_uid=4192, cgraph_uid=40)
+
+_D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4NextMFNaNbNdNfPS6memory5BlockZv.part.7 ()
+{
+  struct  D.4198;
+  struct  D.4197;
+
+  <bb 2>:
+  D.4198.length = 9;
+  D.4198.ptr = "null this";
+  D.4197.length = 15;
+  D.4197.ptr = "source/memory.d";
+  _d_assert_msg (D.4198, D.4197, 82);
+
+}
+
+
+
+;; Function _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData6IsFreeMFNaNbNdNfZb.part.8 (_D6memory29__T9BlockDataTS6memory5BlockZ9BlockData6IsFreeMFNaNbNdNfZb.part.8, funcdef_no=38, decl_uid=4202, cgraph_uid=41) (unlikely executed)
+
+_D6memory29__T9BlockDataTS6memory5BlockZ9BlockData6IsFreeMFNaNbNdNfZb.part.8 ()
+{
+  struct  D.4206;
+  struct  D.4205;
+
+  <bb 2>:
+  D.4206.length = 9;
+  D.4206.ptr = "null this";
+  D.4205.length = 15;
+  D.4205.ptr = "source/memory.d";
+  _d_assert_msg (D.4206, D.4205, 87);
+
+}
+
+
+
+;; Function _D6memory5Block6IsFreeMFNdZb.part.9 (_D6memory5Block6IsFreeMFNdZb.part.9, funcdef_no=39, decl_uid=4212, cgraph_uid=42) (unlikely executed)
+
+_D6memory5Block6IsFreeMFNdZb.part.9 ()
+{
+  struct  D.4217;
+  struct  D.4216;
+
+  <bb 2>:
+  D.4217.length = 9;
+  D.4217.ptr = "null this";
+  D.4216.length = 15;
+  D.4216.ptr = "source/memory.d";
+  _d_assert_msg (D.4217, D.4216, 122);
+
+}
+
+
+
+;; Function _D6memory5Block15CombineWithNextMFZv.part.10 (_D6memory5Block15CombineWithNextMFZv.part.10, funcdef_no=40, decl_uid=4224, cgraph_uid=43) (unlikely executed)
+
+_D6memory5Block15CombineWithNextMFZv.part.10 ()
+{
+  struct  D.4229;
+  struct  D.4228;
+
+  <bb 2>:
+  D.4229.length = 9;
+  D.4229.ptr = "null this";
+  D.4228.length = 15;
+  D.4228.ptr = "source/memory.d";
+  _d_assert_msg (D.4229, D.4228, 163);
+
+}
+
+
+
+;; Function _D6memory5Block11IsAllocatedMFNdZb.part.11 (_D6memory5Block11IsAllocatedMFNdZb.part.11, funcdef_no=41, decl_uid=4237, cgraph_uid=44)
+
+_D6memory5Block11IsAllocatedMFNdZb.part.11 ()
+{
+  struct  D.4241;
+  struct  D.4240;
+
+  <bb 2>:
+  D.4241.length = 9;
+  D.4241.ptr = "null this";
+  D.4240.length = 15;
+  D.4240.ptr = "source/memory.d";
+  _d_assert_msg (D.4241, D.4240, 127);
+
+}
+
+
+
+;; Function _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4FreeMFNaNbNfZv.part.12 (_D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4FreeMFNaNbNfZv.part.12, funcdef_no=42, decl_uid=4245, cgraph_uid=45) (unlikely executed)
+
+_D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4FreeMFNaNbNfZv.part.12 ()
+{
+  struct  D.4249;
+  struct  D.4248;
+
+  <bb 2>:
+  D.4249.length = 9;
+  D.4249.ptr = "null this";
+  D.4248.length = 15;
+  D.4248.ptr = "source/memory.d";
+  _d_assert_msg (D.4249, D.4248, 97);
+
+}
+
+
+
+;; Function _D6memory5Block6ResizeMFxkZv.part.13 (_D6memory5Block6ResizeMFxkZv.part.13, funcdef_no=43, decl_uid=4268, cgraph_uid=46) (unlikely executed)
+
+_D6memory5Block6ResizeMFxkZv.part.13 ()
+{
+  struct  D.4280;
+  struct  D.4279;
+
+  <bb 2>:
+  D.4280.length = 9;
+  D.4280.ptr = "null this";
+  D.4279.length = 15;
+  D.4279.ptr = "source/memory.d";
+  _d_assert_msg (D.4280, D.4279, 172);
+
+}
+
+
+
+;; Function _D6memory5Block4FreeMFZv.part.14 (_D6memory5Block4FreeMFZv.part.14, funcdef_no=44, decl_uid=4285, cgraph_uid=47) (unlikely executed)
+
+_D6memory5Block4FreeMFZv.part.14 ()
+{
+  struct  D.4289;
+  struct  D.4288;
+
+  <bb 2>:
+  D.4289.length = 9;
+  D.4289.ptr = "null this";
+  D.4288.length = 15;
+  D.4288.ptr = "source/memory.d";
+  _d_assert_msg (D.4289, D.4288, 200);
+
+}
+
+
+
+;; Function _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData8AllocateMFNaNbNfZv.part.15 (_D6memory29__T9BlockDataTS6memory5BlockZ9BlockData8AllocateMFNaNbNfZv.part.15, funcdef_no=45, decl_uid=4293, cgraph_uid=48) (unlikely executed)
+
+_D6memory29__T9BlockDataTS6memory5BlockZ9BlockData8AllocateMFNaNbNfZv.part.15 ()
+{
+  struct  D.4297;
+  struct  D.4296;
+
+  <bb 2>:
+  D.4297.length = 9;
+  D.4297.ptr = "null this";
+  D.4296.length = 15;
+  D.4296.ptr = "source/memory.d";
+  _d_assert_msg (D.4297, D.4296, 102);
+
+}
+
+
+
+;; Function memory.memcpy (memcpy, funcdef_no=0, decl_uid=3550, cgraph_uid=0)
+
+memory.memcpy (void * dest, const void * const src, uint n)
+{
+  sizetype ivtmp.115;
+  unsigned int ivtmp.113;
+  unsigned int ivtmp.104;
+  vector(4) ubyte vect_var_.91;
+  void * tmp.86;
+  const void * const tmp.85;
+  uint tmp.84;
+  uint ratio_mult_vf.83;
+  uint bnd.82;
+  signed int addr2int0_2;
+  signed int orptrs1_14;
+  signed int andmask_15;
+  signed int addr2int1_17;
+  <unnamed type> _24;
+  <unnamed type> _25;
+  <unnamed type> _26;
+  vector(4) ubyte * _27;
+  <unnamed type> _28;
+  vector(4) ubyte * _29;
+  <unnamed type> _30;
+  <unnamed type> _31;
+  <unnamed type> _32;
+  ubyte _37;
+  ubyte _49;
+  ubyte _55;
+  const void * _62;
+  ubyte _76;
+  void * _81;
+  void * _82;
+
+  <bb 2>:
+  if (n_7(D) == 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  return dest_6(D);
+
+  <bb 4>:
+  addr2int0_2 = (signed int) src_5(D);
+  addr2int1_17 = (signed int) dest_6(D);
+  orptrs1_14 = addr2int0_2 | addr2int1_17;
+  andmask_15 = orptrs1_14 & 3;
+  _24 = n_7(D) > 9;
+  _25 = andmask_15 == 0;
+  _27 = src_5(D) + 4;
+  _28 = dest_6(D) >= _27;
+  _29 = dest_6(D) + 4;
+  _30 = src_5(D) >= _29;
+  _31 = _28 | _30;
+  _26 = _31 & _24;
+  _32 = _26 & _25;
+  if (_32 != 0)
+    goto <bb 5>;
+  else
+    goto <bb 14>;
+
+  <bb 5>:
+  bnd.82_43 = n_7(D) >> 2;
+  ratio_mult_vf.83_44 = bnd.82_43 << 2;
+
+  <bb 6>:
+  # ivtmp.113_34 = PHI <ivtmp.113_33(13), 0(5)>
+  # ivtmp.115_41 = PHI <ivtmp.115_40(13), 0(5)>
+  vect_var_.91_70 = MEM[base: src_5(D), index: ivtmp.115_41, offset: 0B];
+  MEM[base: dest_6(D), index: ivtmp.115_41, offset: 0B] = vect_var_.91_70;
+  ivtmp.113_33 = ivtmp.113_34 + 1;
+  ivtmp.115_40 = ivtmp.115_41 + 4;
+  if (ivtmp.113_33 >= bnd.82_43)
+    goto <bb 8>;
+  else
+    goto <bb 13>;
+
+  <bb 7>:
+  _49 = MEM[(ubyte *)tmp.85_65 + 2B];
+  MEM[(ubyte *)tmp.86_66 + 2B] = _49;
+  goto <bb 11>;
+
+  <bb 8>:
+  tmp.84_64 = n_7(D) - ratio_mult_vf.83_44;
+  tmp.85_65 = src_5(D) + ratio_mult_vf.83_44;
+  tmp.86_66 = dest_6(D) + ratio_mult_vf.83_44;
+  if (n_7(D) == ratio_mult_vf.83_44)
+    goto <bb 11>;
+  else
+    goto <bb 9>;
+
+  <bb 9>:
+  _55 = MEM[(ubyte *)tmp.85_65];
+  MEM[(ubyte *)tmp.86_66] = _55;
+  dest_19 = tmp.86_66 + 1;
+  n_9 = tmp.84_64 + 4294967295;
+  if (n_9 == 0)
+    goto <bb 11>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  _76 = MEM[(ubyte *)tmp.85_65 + 1B];
+  MEM[(ubyte *)tmp.86_66 + 1B] = _76;
+  if (tmp.84_64 == 2)
+    goto <bb 11>;
+  else
+    goto <bb 7>;
+
+  <bb 11>:
+
+  <bb 12>:
+  goto <bb 3>;
+
+  <bb 13>:
+  goto <bb 6>;
+
+  <bb 14>:
+  _62 = src_5(D) + 4294967295;
+  ivtmp.104_63 = (unsigned int) _62;
+  _82 = dest_6(D) + n_7(D);
+
+  <bb 15>:
+  # dest_35 = PHI <dest_6(D)(14), dest_39(16)>
+  # ivtmp.104_57 = PHI <ivtmp.104_63(14), ivtmp.104_59(16)>
+  ivtmp.104_59 = ivtmp.104_57 + 1;
+  _81 = (void *) ivtmp.104_59;
+  _37 = MEM[base: _81, offset: 0B];
+  MEM[base: dest_35, offset: 0B] = _37;
+  dest_39 = dest_35 + 1;
+  if (dest_39 == _82)
+    goto <bb 12>;
+  else
+    goto <bb 16>;
+
+  <bb 16>:
+  goto <bb 15>;
+
+}
+
+
+
+;; Function memory.memcmp (memcmp, funcdef_no=1, decl_uid=3560, cgraph_uid=1)
+
+memory.memcmp (const void * const ptr1, const void * const ptr2, uint num)
+{
+  struct  D.4464;
+  const struct  t;
+
+  <bb 2>:
+  MEM[(struct  *)&t] = 6;
+  MEM[(struct  *)&t + 4B] = "memcmp";
+  Write (t);
+  t ={v} {CLOBBER};
+  D.4464.length = 2;
+  D.4464.ptr = "\r\n";
+  Write (D.4464);
+  return 0;
+
+}
+
+
+
+;; Function memory.Normalize (_D6memory9NormalizeFkZk, funcdef_no=2, decl_uid=3570, cgraph_uid=2)
+
+memory.Normalize (uint nBytes)
+{
+  uint _2;
+  uint _3;
+
+  <bb 2>:
+  _2 = nBytes_1(D) + 3;
+  _3 = _2 & 4294967292;
+  return _3;
+
+}
+
+
+
+;; Function memory.Block.MemoryAddress (_D6memory5Block13MemoryAddressMFNdZk, funcdef_no=3, decl_uid=3612, cgraph_uid=3)
+
+memory.Block.MemoryAddress (struct memory.Block & this)
+{
+  uint _6;
+  uint _7;
+
+  <bb 2>:
+  if (this_1(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  _D6memory5Block13MemoryAddressMFNdZk.part.2 ();
+
+  <bb 4>:
+  _6 = (uint) this_1(D);
+  _7 = _6 + 4;
+  return _7;
+
+}
+
+
+
+;; Function memory.Block.IsFree (_D6memory5Block6IsFreeMFNdZb, funcdef_no=4, decl_uid=3617, cgraph_uid=4)
+
+memory.Block.IsFree (struct memory.Block & this)
+{
+  uint _5;
+  uint _6;
+  bool _7;
+  uint _9;
+
+  <bb 2>:
+  if (this_1(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  _D6memory5Block6IsFreeMFNdZb.part.9 ();
+
+  <bb 4>:
+  _5 = MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D)]._data;
+  _6 = _5 & 1;
+  _9 = _6 ^ 1;
+  _7 = (bool) _9;
+  return _7;
+
+}
+
+
+
+;; Function memory.Block.IsAllocated (_D6memory5Block11IsAllocatedMFNdZb, funcdef_no=5, decl_uid=3621, cgraph_uid=5)
+
+memory.Block.IsAllocated (struct memory.Block & this)
+{
+  uint _6;
+  uint _7;
+  bool _9;
+
+  <bb 2>:
+  if (this_1(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  _D6memory5Block11IsAllocatedMFNdZb.part.11 ();
+
+  <bb 4>:
+  _6 = MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D)]._data;
+  _7 = _6 & 1;
+  _9 = (bool) _7;
+  return _9;
+
+}
+
+
+
+;; Function memory.Block.Next (_D6memory5Block4NextMFNdZPS6memory5Block, funcdef_no=6, decl_uid=3625, cgraph_uid=6)
+
+memory.Block.Next (struct memory.Block & this)
+{
+  uint _5;
+  uint _6;
+  struct memory.Block * _7;
+
+  <bb 2>:
+  if (this_1(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  _D6memory5Block4NextMFNdZPS6memory5Block.part.4 ();
+
+  <bb 4>:
+  _5 = MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D)]._data;
+  _6 = _5 & 4294967292;
+  _7 = (struct memory.Block *) _6;
+  return _7;
+
+}
+
+
+
+;; Function memory.Block.Address (_D6memory5Block7AddressMFNdZk, funcdef_no=7, decl_uid=3629, cgraph_uid=7)
+
+memory.Block.Address (struct memory.Block & this)
+{
+  uint _3;
+
+  <bb 2>:
+  if (this_1(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  _D6memory5Block7AddressMFNdZk.part.0 ();
+
+  <bb 4>:
+  _3 = (uint) this_1(D);
+  return _3;
+
+}
+
+
+
+;; Function memory.Block.IsLast (_D6memory5Block6IsLastMFNdZb, funcdef_no=8, decl_uid=3632, cgraph_uid=8)
+
+memory.Block.IsLast (struct memory.Block & this)
+{
+  bool _5;
+  uint _7;
+  uint _8;
+  struct memory.Block * _9;
+
+  <bb 2>:
+  if (this_1(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  _D6memory5Block6IsLastMFNdZb.part.5 ();
+
+  <bb 4>:
+  _7 = MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D)]._data;
+  _8 = _7 & 4294967292;
+  _9 = (struct memory.Block *) _8;
+  _5 = _9 == 0B;
+  return _5;
+
+}
+
+
+
+;; Function memory.Block.nBytes (_D6memory5Block6nBytesMFNdZk, funcdef_no=9, decl_uid=3635, cgraph_uid=9)
+
+memory.Block.nBytes (struct memory.Block & this)
+{
+  uint _1;
+  uint _11;
+  uint _19;
+  uint _20;
+  struct memory.Block * _21;
+  uint _26;
+  uint _27;
+
+  <bb 2>:
+  if (this_2(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  _D6memory5Block6nBytesMFNdZk.part.6 ();
+
+  <bb 4>:
+  _19 = MEM[(struct memory.BlockData!(Block).BlockData &)this_2(D)]._data;
+  _20 = _19 & 4294967292;
+  _21 = (struct memory.Block *) _20;
+  if (_21 == 0B)
+    goto <bb 6>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  _26 = (uint) this_2(D);
+  _27 = _20 + 4294967292;
+  _11 = _27 - _26;
+
+  <bb 6>:
+  # _1 = PHI <0(4), _11(5)>
+  return _1;
+
+}
+
+
+
+;; Function memory.Block.Memory (_D6memory5Block6MemoryMFNdZPv, funcdef_no=10, decl_uid=3616, cgraph_uid=10)
+
+memory.Block.Memory (struct memory.Block & this)
+{
+  uint _4;
+  void * _5;
+  uint _6;
+
+  <bb 2>:
+  if (this_1(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  _D6memory5Block6MemoryMFNdZPv.part.1 ();
+
+  <bb 4>:
+  _6 = (uint) this_1(D);
+  _4 = _6 + 4;
+  _5 = (void *) _4;
+  return _5;
+
+}
+
+
+
+;; Function memory.Block.CombineWithNext (_D6memory5Block15CombineWithNextMFZv, funcdef_no=11, decl_uid=3640, cgraph_uid=11)
+
+memory.Block.CombineWithNext (struct memory.Block & this)
+{
+  uint _5;
+  uint _17;
+  uint _18;
+  uint _19;
+  uint _23;
+  struct memory.Block * _24;
+  uint _25;
+  uint _26;
+  uint _27;
+  uint _34;
+  uint _35;
+  struct memory.Block * _41;
+  uint _42;
+  uint _43;
+
+  <bb 2>:
+  if (this_2(D) != 0)
+    goto <bb 3>;
+  else
+    goto <bb 4>;
+
+  <bb 3>:
+  _5 = MEM[(struct memory.BlockData!(Block).BlockData &)this_2(D)]._data;
+  _25 = _5 & 4294967292;
+  _41 = (struct memory.Block *) _25;
+  if (_41 != 0)
+    goto <bb 5>;
+  else
+    goto <bb 7>;
+
+  <bb 4>:
+  _D6memory5Block15CombineWithNextMFZv.part.10 ();
+
+  <bb 5>:
+  _42 = MEM[(struct memory.BlockData!(Block).BlockData &)_41]._data;
+  _43 = _42 & 1;
+  if (_43 == 0)
+    goto <bb 6>;
+  else
+    goto <bb 11>;
+
+  <bb 6>:
+  goto <bb 10>;
+
+  <bb 7>:
+  _D6memory5Block6IsFreeMFNdZb.part.9 ();
+
+  <bb 8>:
+  _26 = MEM[(struct memory.BlockData!(Block).BlockData &)_24]._data;
+  _27 = _26 & 1;
+  if (_27 == 0)
+    goto <bb 9>;
+  else
+    goto <bb 11>;
+
+  <bb 9>:
+
+  <bb 10>:
+  # _34 = PHI <_19(9), _5(6)>
+  # _17 = PHI <_26(9), _42(6)>
+  _35 = _17 & 4294967292;
+  _18 = _34 & 3;
+  _19 = _35 | _18;
+  MEM[(struct memory.BlockData!(Block).BlockData &)this_2(D)]._data = _19;
+  _23 = _19 & 4294967292;
+  _24 = (struct memory.Block *) _23;
+  if (_24 != 0)
+    goto <bb 8>;
+  else
+    goto <bb 7>;
+
+  <bb 11>:
+  return;
+
+}
+
+
+
+;; Function memory.Block.Resize (_D6memory5Block6ResizeMFxkZv, funcdef_no=12, decl_uid=3645, cgraph_uid=12)
+
+memory.Block.Resize (struct memory.Block & this, const uint nBytes)
+{
+  uint _7;
+  struct memory.BlockData!(Block).BlockData * _11;
+  struct memory.BlockData!(Block).BlockData * _14;
+  uint _18;
+  uint _19;
+  uint _20;
+  uint _22;
+  uint _23;
+  uint _24;
+  struct memory.Block * _25;
+  uint _26;
+  uint _27;
+  uint _28;
+  uint _29;
+  struct memory.Block * _30;
+  uint _33;
+  uint _34;
+  uint _35;
+  uint _41;
+  uint _42;
+  uint _44;
+  uint _45;
+
+  <bb 2>:
+  if (this_1(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  _D6memory5Block6ResizeMFxkZv.part.13 ();
+
+  <bb 4>:
+  _41 = MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D)]._data;
+  _42 = _41 & 4294967292;
+  _44 = (uint) this_1(D);
+  _18 = nBytes_6(D) + 3;
+  _19 = _18 & 4294967292;
+  _45 = _19 + 4;
+  _7 = _45 + _44;
+  _20 = _7 & 4294967292;
+  _22 = _41 & 3;
+  _23 = _20 | _22;
+  MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D)]._data = _23;
+  _24 = _23 & 4294967292;
+  _25 = (struct memory.Block *) _24;
+  _11 = &_25->_data;
+  if (_11 != 0)
+    goto <bb 6>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4FreeMFNaNbNfZv.part.12 ();
+
+  <bb 6>:
+  _26 = MEM[(struct memory.BlockData!(Block).BlockData &)_25]._data;
+  _27 = _26 & 4294967294;
+  MEM[(struct memory.BlockData!(Block).BlockData &)_25]._data = _27;
+  _28 = MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D)]._data;
+  _29 = _28 & 4294967292;
+  _30 = (struct memory.Block *) _29;
+  _14 = &_30->_data;
+  if (_14 != 0)
+    goto <bb 8>;
+  else
+    goto <bb 7>;
+
+  <bb 7>:
+  _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4NextMFNaNbNdNfPS6memory5BlockZv.part.7 ();
+
+  <bb 8>:
+  _33 = MEM[(struct memory.BlockData!(Block).BlockData &)_30]._data;
+  _34 = _33 & 3;
+  _35 = _42 | _34;
+  MEM[(struct memory.BlockData!(Block).BlockData &)_30]._data = _35;
+  return;
+
+}
+
+
+
+;; Function memory.Block.Init (_D6memory5Block4InitMFxkZv, funcdef_no=13, decl_uid=3652, cgraph_uid=13)
+
+memory.Block.Init (struct memory.Block & this, const uint nBytes)
+{
+  struct  D.3909;
+  struct  D.3908;
+  uint _10;
+  struct memory.BlockData!(Block).BlockData * _11;
+  struct memory.Block * _14;
+  struct memory.BlockData!(Block).BlockData * _15;
+  uint _18;
+  struct memory.BlockData!(Block).BlockData * _19;
+  uint _22;
+  uint _23;
+  uint _24;
+  uint _25;
+  uint _26;
+  uint _27;
+  uint _34;
+  uint _35;
+  uint _36;
+  uint _38;
+  uint _40;
+  uint _41;
+  uint _42;
+  struct memory.Block * _43;
+  struct memory.BlockData!(Block).BlockData * _44;
+  uint _45;
+  uint _46;
+  uint _47;
+  uint _48;
+  struct memory.Block * _49;
+  struct memory.BlockData!(Block).BlockData * _50;
+  uint _53;
+  uint _54;
+  uint _55;
+  uint _57;
+  uint _58;
+  uint _60;
+  uint _61;
+  uint _64;
+  uint _65;
+  struct memory.Block * _66;
+  uint _68;
+  uint _69;
+  struct memory.Block * _70;
+  uint _72;
+  uint _73;
+  struct memory.Block * _74;
+  uint _76;
+  uint _77;
+  uint _78;
+  uint _86;
+  uint _87;
+  uint _90;
+  struct memory.Block * _91;
+  uint _92;
+  uint _93;
+  uint _94;
+  uint _102;
+  uint _119;
+
+  <bb 2>:
+  if (this_1(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  D.3908.length = 9;
+  D.3908.ptr = "null this";
+  D.3909.length = 15;
+  D.3909.ptr = "source/memory.d";
+  _d_assert_msg (D.3908, D.3909, 185);
+
+  <bb 4>:
+  _57 = MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D)]._data;
+  _58 = _57 & 4294967292;
+  _60 = (uint) this_1(D);
+  _34 = nBytes_7(D) + 3;
+  _35 = _34 & 4294967292;
+  _61 = _35 + 4;
+  _36 = _61 + _60;
+  _38 = _36 & 4294967292;
+  _40 = _57 & 3;
+  _41 = _38 | _40;
+  MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D)]._data = _41;
+  _42 = _41 & 4294967292;
+  _43 = (struct memory.Block *) _42;
+  _44 = &_43->_data;
+  if (_44 != 0)
+    goto <bb 6>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4FreeMFNaNbNfZv.part.12 ();
+
+  <bb 6>:
+  _45 = MEM[(struct memory.BlockData!(Block).BlockData &)_43]._data;
+  _46 = _45 & 4294967294;
+  MEM[(struct memory.BlockData!(Block).BlockData &)_43]._data = _46;
+  _47 = MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D)]._data;
+  _48 = _47 & 4294967292;
+  _49 = (struct memory.Block *) _48;
+  _50 = &_49->_data;
+  if (_50 != 0)
+    goto <bb 8>;
+  else
+    goto <bb 7>;
+
+  <bb 7>:
+  _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4NextMFNaNbNdNfPS6memory5BlockZv.part.7 ();
+
+  <bb 8>:
+  _53 = MEM[(struct memory.BlockData!(Block).BlockData &)_49]._data;
+  _54 = _53 & 3;
+  _55 = _58 | _54;
+  MEM[(struct memory.BlockData!(Block).BlockData &)_49]._data = _55;
+  _64 = MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D)]._data;
+  _65 = _64 & 4294967292;
+  _66 = (struct memory.Block *) _65;
+  _11 = &_66->_data;
+  if (_11 != 0)
+    goto <bb 9>;
+  else
+    goto <bb 7>;
+
+  <bb 9>:
+  _22 = MEM[(struct memory.BlockData!(Block).BlockData &)_66]._data;
+  _23 = _22 & 3;
+  MEM[(struct memory.BlockData!(Block).BlockData &)_66]._data = _23;
+  _68 = MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D)]._data;
+  _69 = _68 & 4294967292;
+  _70 = (struct memory.Block *) _69;
+  _15 = &_70->_data;
+  if (_15 != 0)
+    goto <bb 10>;
+  else
+    goto <bb 5>;
+
+  <bb 10>:
+  _24 = MEM[(struct memory.BlockData!(Block).BlockData &)_70]._data;
+  _25 = _24 & 4294967294;
+  MEM[(struct memory.BlockData!(Block).BlockData &)_70]._data = _25;
+  _72 = MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D)]._data;
+  _73 = _72 & 4294967292;
+  _74 = (struct memory.Block *) _73;
+  _19 = &_74->_data;
+  if (_19 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 11>;
+
+  <bb 11>:
+  _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData8AllocateMFNaNbNfZv.part.15 ();
+
+  <bb 12>:
+  _26 = MEM[(struct memory.BlockData!(Block).BlockData &)_74]._data;
+  _27 = _26 | 1;
+  MEM[(struct memory.BlockData!(Block).BlockData &)_74]._data = _27;
+  _76 = MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D)]._data;
+  _77 = _76 & 4294967294;
+  MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D)]._data = _77;
+  _10 = _76 & 4294967292;
+  _14 = (struct memory.Block *) _10;
+  if (_14 != 0)
+    goto <bb 13>;
+  else
+    goto <bb 15>;
+
+  <bb 13>:
+  _18 = MEM[(struct memory.BlockData!(Block).BlockData &)_14]._data;
+  _78 = _18 & 1;
+  if (_78 == 0)
+    goto <bb 14>;
+  else
+    goto <bb 19>;
+
+  <bb 14>:
+  goto <bb 18>;
+
+  <bb 15>:
+  _D6memory5Block6IsFreeMFNdZb.part.9 ();
+
+  <bb 16>:
+  _93 = MEM[(struct memory.BlockData!(Block).BlockData &)_91]._data;
+  _94 = _93 & 1;
+  if (_94 == 0)
+    goto <bb 17>;
+  else
+    goto <bb 19>;
+
+  <bb 17>:
+
+  <bb 18>:
+  # _92 = PHI <_87(17), _77(14)>
+  # _119 = PHI <_93(17), _18(14)>
+  _102 = _119 & 4294967292;
+  _86 = _92 & 3;
+  _87 = _102 | _86;
+  MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D)]._data = _87;
+  _90 = _87 & 4294967292;
+  _91 = (struct memory.Block *) _90;
+  if (_91 != 0)
+    goto <bb 16>;
+  else
+    goto <bb 15>;
+
+  <bb 19>:
+  return;
+
+}
+
+
+
+;; Function memory.Block.Free (_D6memory5Block4FreeMFZv, funcdef_no=14, decl_uid=3657, cgraph_uid=14)
+
+memory.Block.Free (struct memory.Block & this)
+{
+  uint _6;
+  uint _7;
+  uint _17;
+  uint _18;
+  uint _21;
+  struct memory.Block * _22;
+  uint _23;
+  uint _24;
+  uint _25;
+  uint _33;
+  uint _41;
+  uint _42;
+  uint _43;
+  uint _44;
+  struct memory.Block * _45;
+
+  <bb 2>:
+  if (this_1(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  _D6memory5Block4FreeMFZv.part.14 ();
+
+  <bb 4>:
+  _6 = MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D)]._data;
+  _7 = _6 & 4294967294;
+  MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D)]._data = _7;
+  _23 = _6 & 4294967292;
+  _45 = (struct memory.Block *) _23;
+  if (_45 != 0)
+    goto <bb 5>;
+  else
+    goto <bb 7>;
+
+  <bb 5>:
+  _41 = MEM[(struct memory.BlockData!(Block).BlockData &)_45]._data;
+  _42 = _41 & 1;
+  if (_42 == 0)
+    goto <bb 6>;
+  else
+    goto <bb 11>;
+
+  <bb 6>:
+  goto <bb 10>;
+
+  <bb 7>:
+  _D6memory5Block6IsFreeMFNdZb.part.9 ();
+
+  <bb 8>:
+  _24 = MEM[(struct memory.BlockData!(Block).BlockData &)_22]._data;
+  _25 = _24 & 1;
+  if (_25 == 0)
+    goto <bb 9>;
+  else
+    goto <bb 11>;
+
+  <bb 9>:
+
+  <bb 10>:
+  # _43 = PHI <_18(9), _7(6)>
+  # _44 = PHI <_24(9), _41(6)>
+  _33 = _44 & 4294967292;
+  _17 = _43 & 3;
+  _18 = _33 | _17;
+  MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D)]._data = _18;
+  _21 = _18 & 4294967292;
+  _22 = (struct memory.Block *) _21;
+  if (_22 != 0)
+    goto <bb 8>;
+  else
+    goto <bb 7>;
+
+  <bb 11>:
+  return;
+
+}
+
+
+
+;; Function memory.Block.Allocate (_D6memory5Block8AllocateMFxkZb, funcdef_no=15, decl_uid=3660, cgraph_uid=15)
+
+memory.Block.Allocate (struct memory.Block & this, const uint nBytes)
+{
+  bool succeeded;
+  struct  D.3929;
+  struct  D.3928;
+  uint _21;
+  uint _23;
+  uint _24;
+  uint _25;
+  struct memory.Block * _27;
+  uint _35;
+  uint _36;
+  uint _38;
+  uint _39;
+  struct memory.Block * _40;
+  uint _41;
+  uint _42;
+  uint _43;
+  uint _51;
+  uint _55;
+  uint _58;
+  uint _70;
+  uint _71;
+  uint _75;
+  uint _96;
+  uint _97;
+  uint _98;
+  uint _99;
+  uint _100;
+  uint _102;
+  uint _103;
+  uint _104;
+  struct memory.Block * _105;
+  struct memory.BlockData!(Block).BlockData * _106;
+  uint _107;
+  uint _108;
+  uint _109;
+  uint _110;
+  struct memory.Block * _111;
+  struct memory.BlockData!(Block).BlockData * _112;
+  uint _113;
+  uint _114;
+  uint _115;
+  uint _116;
+  uint _117;
+
+  <bb 2>:
+  if (this_3(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  D.3928.length = 9;
+  D.3928.ptr = "null this";
+  D.3929.length = 15;
+  D.3929.ptr = "source/memory.d";
+  _d_assert_msg (D.3928, D.3929, 209);
+
+  <bb 4>:
+  _24 = MEM[(struct memory.BlockData!(Block).BlockData &)this_3(D)]._data;
+  _25 = _24 & 1;
+  if (_25 == 0)
+    goto <bb 6>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  goto <bb 21>;
+
+  <bb 6>:
+  _23 = _24 & 4294967292;
+  _27 = (struct memory.Block *) _23;
+  if (_27 != 0)
+    goto <bb 7>;
+  else
+    goto <bb 9>;
+
+  <bb 7>:
+  _41 = MEM[(struct memory.BlockData!(Block).BlockData &)_27]._data;
+  _55 = _41 & 1;
+  if (_55 == 0)
+    goto <bb 8>;
+  else
+    goto <bb 13>;
+
+  <bb 8>:
+  goto <bb 12>;
+
+  <bb 9>:
+  _D6memory5Block6IsFreeMFNdZb.part.9 ();
+
+  <bb 10>:
+  _42 = MEM[(struct memory.BlockData!(Block).BlockData &)_40]._data;
+  _43 = _42 & 1;
+  if (_43 == 0)
+    goto <bb 11>;
+  else
+    goto <bb 13>;
+
+  <bb 11>:
+
+  <bb 12>:
+  # _75 = PHI <_36(11), _24(8)>
+  # _99 = PHI <_42(11), _41(8)>
+  _51 = _99 & 4294967292;
+  _35 = _75 & 3;
+  _36 = _51 | _35;
+  MEM[(struct memory.BlockData!(Block).BlockData &)this_3(D)]._data = _36;
+  _39 = _36 & 4294967292;
+  _40 = (struct memory.Block *) _39;
+  if (_40 != 0)
+    goto <bb 10>;
+  else
+    goto <bb 9>;
+
+  <bb 13>:
+  # _113 = PHI <_36(10), _24(7)>
+  # _114 = PHI <_39(10), _23(7)>
+  _70 = (uint) this_3(D);
+  _71 = _70 + 4;
+  _58 = _114 - _71;
+  if (nBytes_14(D) <= _58)
+    goto <bb 14>;
+  else
+    goto <bb 5>;
+
+  <bb 14>:
+  if (nBytes_14(D) < _58)
+    goto <bb 16>;
+  else
+    goto <bb 15>;
+
+  <bb 15>:
+  _21 = _113 | 1;
+  MEM[(struct memory.BlockData!(Block).BlockData &)this_3(D)]._data = _21;
+  goto <bb 21>;
+
+  <bb 16>:
+  _96 = nBytes_14(D) + 3;
+  _97 = _96 & 4294967292;
+  _98 = _71 + _97;
+  _100 = _98 & 4294967292;
+  _38 = _113 & 3;
+  _102 = _100 | 1;
+  _103 = _102 | _38;
+  MEM[(struct memory.BlockData!(Block).BlockData &)this_3(D)]._data = _103;
+  _104 = _103 & 4294967292;
+  _105 = (struct memory.Block *) _104;
+  _106 = &_105->_data;
+  if (_106 != 0)
+    goto <bb 18>;
+  else
+    goto <bb 17>;
+
+  <bb 17>:
+  _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4FreeMFNaNbNfZv.part.12 ();
+
+  <bb 18>:
+  _107 = MEM[(struct memory.BlockData!(Block).BlockData &)_105]._data;
+  _108 = _107 & 4294967294;
+  MEM[(struct memory.BlockData!(Block).BlockData &)_105]._data = _108;
+  _109 = MEM[(struct memory.BlockData!(Block).BlockData &)this_3(D)]._data;
+  _110 = _109 & 4294967292;
+  _111 = (struct memory.Block *) _110;
+  _112 = &_111->_data;
+  if (_112 != 0)
+    goto <bb 20>;
+  else
+    goto <bb 19>;
+
+  <bb 19>:
+  _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4NextMFNaNbNdNfPS6memory5BlockZv.part.7 ();
+
+  <bb 20>:
+  _115 = MEM[(struct memory.BlockData!(Block).BlockData &)_111]._data;
+  _116 = _115 & 3;
+  _117 = _114 | _116;
+  MEM[(struct memory.BlockData!(Block).BlockData &)_111]._data = _117;
+
+  <bb 21>:
+  # succeeded_1 = PHI <0(5), 1(15), 1(20)>
+  return succeeded_1;
+
+}
+
+
+
+;; Function memory.BlockData!(Block).BlockData.Next (_D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4NextMFNaNbNdZPS6memory5Block, funcdef_no=16, decl_uid=3628, cgraph_uid=16)
+
+memory.BlockData!(Block).BlockData.Next (struct memory.BlockData!(Block).BlockData & this)
+{
+  uint _3;
+  uint _4;
+  struct memory.Block * _5;
+
+  <bb 2>:
+  if (this_1(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4NextMFNaNbNdZPS6memory5Block.part.3 ();
+
+  <bb 4>:
+  _3 = this_1(D)->_data;
+  _4 = _3 & 4294967292;
+  _5 = (struct memory.Block *) _4;
+  return _5;
+
+}
+
+
+
+;; Function memory.BlockData!(Block).BlockData.Next (_D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4NextMFNaNbNdNfPS6memory5BlockZv, funcdef_no=17, decl_uid=3644, cgraph_uid=17)
+
+memory.BlockData!(Block).BlockData.Next (struct memory.BlockData!(Block).BlockData & this, struct memory.Block * value)
+{
+  uint value.0;
+  uint _5;
+  uint _6;
+  uint _7;
+  uint _8;
+
+  <bb 2>:
+  if (this_1(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4NextMFNaNbNdNfPS6memory5BlockZv.part.7 ();
+
+  <bb 4>:
+  value.0_4 = (uint) value_3(D);
+  _5 = value.0_4 & 4294967292;
+  _6 = this_1(D)->_data;
+  _7 = _6 & 3;
+  _8 = _5 | _7;
+  this_1(D)->_data = _8;
+  return;
+
+}
+
+
+
+;; Function memory.BlockData!(Block).BlockData.IsFree (_D6memory29__T9BlockDataTS6memory5BlockZ9BlockData6IsFreeMFNaNbNdNfZb, funcdef_no=18, decl_uid=3620, cgraph_uid=18)
+
+memory.BlockData!(Block).BlockData.IsFree (struct memory.BlockData!(Block).BlockData & this)
+{
+  uint _3;
+  uint _4;
+  bool _5;
+  uint _7;
+
+  <bb 2>:
+  if (this_1(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData6IsFreeMFNaNbNdNfZb.part.8 ();
+
+  <bb 4>:
+  _3 = this_1(D)->_data;
+  _4 = _3 & 1;
+  _7 = _4 ^ 1;
+  _5 = (bool) _7;
+  return _5;
+
+}
+
+
+
+;; Function memory.BlockData!(Block).BlockData.IsAllocated (_D6memory29__T9BlockDataTS6memory5BlockZ9BlockData11IsAllocatedMFNaNbNdNfZb, funcdef_no=19, decl_uid=3624, cgraph_uid=19)
+
+memory.BlockData!(Block).BlockData.IsAllocated (struct memory.BlockData!(Block).BlockData & this)
+{
+  struct  D.3978;
+  struct  D.3977;
+  bool _8;
+  uint _9;
+  uint _10;
+
+  <bb 2>:
+  if (this_1(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  D.3977.length = 9;
+  D.3977.ptr = "null this";
+  D.3978.length = 15;
+  D.3978.ptr = "source/memory.d";
+  _d_assert_msg (D.3977, D.3978, 92);
+
+  <bb 4>:
+  _9 = this_1(D)->_data;
+  _10 = _9 & 1;
+  _8 = (bool) _10;
+  return _8;
+
+}
+
+
+
+;; Function memory.BlockData!(Block).BlockData.Free (_D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4FreeMFNaNbNfZv, funcdef_no=20, decl_uid=3650, cgraph_uid=20)
+
+memory.BlockData!(Block).BlockData.Free (struct memory.BlockData!(Block).BlockData & this)
+{
+  uint _3;
+  uint _4;
+
+  <bb 2>:
+  if (this_1(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4FreeMFNaNbNfZv.part.12 ();
+
+  <bb 4>:
+  _3 = this_1(D)->_data;
+  _4 = _3 & 4294967294;
+  this_1(D)->_data = _4;
+  return;
+
+}
+
+
+
+;; Function memory.BlockData!(Block).BlockData.Allocate (_D6memory29__T9BlockDataTS6memory5BlockZ9BlockData8AllocateMFNaNbNfZv, funcdef_no=21, decl_uid=3656, cgraph_uid=21)
+
+memory.BlockData!(Block).BlockData.Allocate (struct memory.BlockData!(Block).BlockData & this)
+{
+  uint _3;
+  uint _4;
+
+  <bb 2>:
+  if (this_1(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData8AllocateMFNaNbNfZv.part.15 ();
+
+  <bb 4>:
+  _3 = this_1(D)->_data;
+  _4 = _3 | 1;
+  this_1(D)->_data = _4;
+  return;
+
+}
+
+
+
+;; Function memory.HeapMemory.Instance (_D6memory10HeapMemory8InstanceFNdZPS6memory10HeapMemory, funcdef_no=22, decl_uid=3720, cgraph_uid=22)
+
+memory.HeapMemory.Instance ()
+{
+  int __bss_end.3;
+  int __sram_end.2;
+  struct memory.HeapMemory * memory.HeapMemory.instance.1;
+  int _7;
+  int _8;
+  uint _9;
+  struct memory.BlockData!(Block).BlockData * _14;
+  uint _15;
+  uint _16;
+  struct memory.BlockData!(Block).BlockData * _18;
+  uint _19;
+  uint _20;
+  uint _21;
+  struct memory.BlockData!(Block).BlockData * _22;
+  uint _23;
+  uint _24;
+  uint _28;
+  uint _29;
+  uint _30;
+  uint _32;
+  uint _34;
+  uint _35;
+  uint _36;
+  struct memory.Block * _37;
+  struct memory.BlockData!(Block).BlockData * _38;
+  uint _39;
+  uint _40;
+  uint _41;
+  uint _42;
+  struct memory.Block * _43;
+  struct memory.BlockData!(Block).BlockData * _44;
+  uint _47;
+  uint _48;
+  uint _49;
+  uint _51;
+  uint _52;
+  uint _54;
+  uint _55;
+  uint _58;
+  uint _59;
+  struct memory.Block * _60;
+  uint _62;
+  uint _63;
+  struct memory.Block * _64;
+  uint _66;
+  uint _67;
+  struct memory.Block * _68;
+  uint _70;
+  uint _71;
+  struct memory.Block * _72;
+  uint _79;
+  uint _80;
+  uint _81;
+  uint _84;
+  struct memory.Block * _85;
+  uint _86;
+  uint _87;
+  uint _88;
+  uint _91;
+  struct memory.HeapMemory * pretmp_93;
+  uint _94;
+  uint _96;
+  struct memory.HeapMemory * prephitmp_114;
+
+  <bb 2>:
+  memory.HeapMemory.instance.1_3 = memory.HeapMemory.instance;
+  if (memory.HeapMemory.instance.1_3 == 0B)
+    goto <bb 3>;
+  else
+    goto <bb 19>;
+
+  <bb 3>:
+  memory.HeapMemory.instance = &__bss_end;
+  __sram_end.2_5 = (int) &__sram_end;
+  __bss_end.3_6 = (int) &__bss_end;
+  _7 = __sram_end.2_5 - __bss_end.3_6;
+  _8 = _7 / 4;
+  _9 = (uint) _8;
+  _51 = MEM[(struct memory.BlockData!(Block).BlockData &)&__bss_end + 4]._data;
+  _52 = _51 & 4294967292;
+  _54 = (uint) &MEM[(struct memory.HeapMemory &)&__bss_end].base;
+  _55 = _54 + 4;
+  _28 = _9 + 3;
+  _29 = _28 & 4294967292;
+  _30 = _55 + _29;
+  _32 = _30 & 4294967292;
+  _34 = _51 & 3;
+  _35 = _32 | _34;
+  MEM[(struct memory.BlockData!(Block).BlockData &)&__bss_end + 4]._data = _35;
+  _36 = _35 & 4294967292;
+  _37 = (struct memory.Block *) _36;
+  _38 = &_37->_data;
+  if (_38 != 0)
+    goto <bb 5>;
+  else
+    goto <bb 4>;
+
+  <bb 4>:
+  _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4FreeMFNaNbNfZv.part.12 ();
+
+  <bb 5>:
+  _39 = MEM[(struct memory.BlockData!(Block).BlockData &)_37]._data;
+  _40 = _39 & 4294967294;
+  MEM[(struct memory.BlockData!(Block).BlockData &)_37]._data = _40;
+  _41 = MEM[(struct memory.BlockData!(Block).BlockData &)&__bss_end + 4]._data;
+  _42 = _41 & 4294967292;
+  _43 = (struct memory.Block *) _42;
+  _44 = &_43->_data;
+  if (_44 != 0)
+    goto <bb 7>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4NextMFNaNbNdNfPS6memory5BlockZv.part.7 ();
+
+  <bb 7>:
+  _47 = MEM[(struct memory.BlockData!(Block).BlockData &)_43]._data;
+  _48 = _47 & 3;
+  _49 = _52 | _48;
+  MEM[(struct memory.BlockData!(Block).BlockData &)_43]._data = _49;
+  _58 = MEM[(struct memory.BlockData!(Block).BlockData &)&__bss_end + 4]._data;
+  _59 = _58 & 4294967292;
+  _60 = (struct memory.Block *) _59;
+  _14 = &_60->_data;
+  if (_14 != 0)
+    goto <bb 8>;
+  else
+    goto <bb 6>;
+
+  <bb 8>:
+  _15 = MEM[(struct memory.BlockData!(Block).BlockData &)_60]._data;
+  _16 = _15 & 3;
+  MEM[(struct memory.BlockData!(Block).BlockData &)_60]._data = _16;
+  _62 = MEM[(struct memory.BlockData!(Block).BlockData &)&__bss_end + 4]._data;
+  _63 = _62 & 4294967292;
+  _64 = (struct memory.Block *) _63;
+  _18 = &_64->_data;
+  if (_18 != 0)
+    goto <bb 9>;
+  else
+    goto <bb 4>;
+
+  <bb 9>:
+  _19 = MEM[(struct memory.BlockData!(Block).BlockData &)_64]._data;
+  _20 = _19 & 4294967294;
+  MEM[(struct memory.BlockData!(Block).BlockData &)_64]._data = _20;
+  _66 = MEM[(struct memory.BlockData!(Block).BlockData &)&__bss_end + 4]._data;
+  _67 = _66 & 4294967292;
+  _68 = (struct memory.Block *) _67;
+  _22 = &_68->_data;
+  if (_22 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData8AllocateMFNaNbNfZv.part.15 ();
+
+  <bb 11>:
+  _23 = MEM[(struct memory.BlockData!(Block).BlockData &)_68]._data;
+  _24 = _23 | 1;
+  MEM[(struct memory.BlockData!(Block).BlockData &)_68]._data = _24;
+  _70 = MEM[(struct memory.BlockData!(Block).BlockData &)&__bss_end + 4]._data;
+  _71 = _70 & 4294967294;
+  MEM[(struct memory.BlockData!(Block).BlockData &)&__bss_end + 4]._data = _71;
+  _21 = _70 & 4294967292;
+  _72 = (struct memory.Block *) _21;
+  if (_72 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 14>;
+
+  <bb 12>:
+  _86 = MEM[(struct memory.BlockData!(Block).BlockData &)_72]._data;
+  _94 = _86 & 1;
+  if (_94 == 0)
+    goto <bb 13>;
+  else
+    goto <bb 18>;
+
+  <bb 13>:
+  goto <bb 17>;
+
+  <bb 14>:
+  _D6memory5Block6IsFreeMFNdZb.part.9 ();
+
+  <bb 15>:
+  _87 = MEM[(struct memory.BlockData!(Block).BlockData &)_85]._data;
+  _88 = _87 & 1;
+  if (_88 == 0)
+    goto <bb 16>;
+  else
+    goto <bb 18>;
+
+  <bb 16>:
+
+  <bb 17>:
+  # _91 = PHI <_81(16), _71(13)>
+  # _79 = PHI <_87(16), _86(13)>
+  _96 = _79 & 4294967292;
+  _80 = _91 & 3;
+  _81 = _96 | _80;
+  MEM[(struct memory.BlockData!(Block).BlockData &)&__bss_end + 4]._data = _81;
+  _84 = _81 & 4294967292;
+  _85 = (struct memory.Block *) _84;
+  if (_85 != 0)
+    goto <bb 15>;
+  else
+    goto <bb 14>;
+
+  <bb 18>:
+  MEM[(struct memory.HeapMemory &)&__bss_end].firstFree = &MEM[(struct memory.HeapMemory &)&__bss_end].base;
+  pretmp_93 = memory.HeapMemory.instance;
+
+  <bb 19>:
+  # prephitmp_114 = PHI <memory.HeapMemory.instance.1_3(2), pretmp_93(18)>
+  return prephitmp_114;
+
+}
+
+
+
+;; Function memory.HeapMemory.GetBlock (_D6memory10HeapMemory8GetBlockMFxPvZPS6memory5Block, funcdef_no=23, decl_uid=3725, cgraph_uid=23)
+
+memory.HeapMemory.GetBlock (struct memory.HeapMemory & this, const void * const memory)
+{
+  byte * block;
+
+  <bb 2>:
+  block_2 = &MEM[(void *)memory_1(D) + 4294967292B];
+  return block_2;
+
+}
+
+
+
+;; Function memory.HeapMemory.UpdateFirstFreeBlock (_D6memory10HeapMemory20UpdateFirstFreeBlockMFPS6memory5BlockZv, funcdef_no=24, decl_uid=3731, cgraph_uid=24)
+
+memory.HeapMemory.UpdateFirstFreeBlock (struct memory.HeapMemory & this, struct memory.Block * block)
+{
+  uint _2;
+  struct memory.Block * _10;
+  uint _26;
+  uint _28;
+  uint _29;
+  uint _31;
+  uint _32;
+  uint prephitmp_35;
+  uint _38;
+  uint _39;
+  uint _43;
+  uint _46;
+  uint _51;
+  uint _53;
+  uint _59;
+  uint _61;
+  uint _62;
+  uint _65;
+  struct memory.Block * _66;
+  uint _67;
+  uint _68;
+  uint _69;
+  uint _77;
+  uint _92;
+  uint _94;
+
+  <bb 2>:
+  _10 = this_9(D)->firstFree;
+  if (_10 != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  _D6memory5Block11IsAllocatedMFNdZb.part.11 ();
+
+  <bb 4>:
+  _31 = MEM[(struct memory.BlockData!(Block).BlockData &)_10]._data;
+  _32 = _31 & 1;
+  if (_32 != 0)
+    goto <bb 8>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  if (block_12(D) != 0)
+    goto <bb 7>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  _D6memory5Block7AddressMFNdZk.part.0 ();
+
+  <bb 7>:
+  _28 = (uint) block_12(D);
+  _29 = (uint) _10;
+  if (_28 < _29)
+    goto <bb 9>;
+  else
+    goto <bb 22>;
+
+  <bb 8>:
+  if (block_12(D) != 0)
+    goto <bb 9>;
+  else
+    goto <bb 11>;
+
+  <bb 9>:
+  _53 = MEM[(struct memory.BlockData!(Block).BlockData &)block_12(D)]._data;
+  _67 = _53 & 4294967292;
+  block_5 = (struct memory.Block *) _67;
+  if (block_5 == 0B)
+    goto <bb 23>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+  _2 = _53 & 1;
+  if (_2 == 0)
+    goto <bb 24>;
+  else
+    goto <bb 12>;
+
+  <bb 11>:
+  _D6memory5Block6IsLastMFNdZb.part.5 ();
+
+  <bb 12>:
+
+  <bb 13>:
+  # block_57 = PHI <block_5(12), block_40(15)>
+  _38 = MEM[(struct memory.BlockData!(Block).BlockData &)block_57]._data;
+  _39 = _38 & 4294967292;
+  block_40 = (struct memory.Block *) _39;
+  if (block_40 == 0B)
+    goto <bb 23>;
+  else
+    goto <bb 14>;
+
+  <bb 14>:
+  _43 = _38 & 1;
+  if (_43 == 0)
+    goto <bb 24>;
+  else
+    goto <bb 15>;
+
+  <bb 15>:
+  goto <bb 13>;
+
+  <bb 16>:
+  goto <bb 20>;
+
+  <bb 17>:
+  _D6memory5Block6IsFreeMFNdZb.part.9 ();
+
+  <bb 18>:
+  _68 = MEM[(struct memory.BlockData!(Block).BlockData &)_66]._data;
+  _69 = _68 & 1;
+  if (_69 == 0)
+    goto <bb 19>;
+  else
+    goto <bb 21>;
+
+  <bb 19>:
+
+  <bb 20>:
+  # _94 = PHI <_62(19), prephitmp_35(16)>
+  # _46 = PHI <_68(19), _59(16)>
+  _77 = _46 & 4294967292;
+  _61 = _94 & 3;
+  _62 = _77 | _61;
+  MEM[(struct memory.BlockData!(Block).BlockData &)block_1]._data = _62;
+  _65 = _62 & 4294967292;
+  _66 = (struct memory.Block *) _65;
+  if (_66 != 0)
+    goto <bb 18>;
+  else
+    goto <bb 17>;
+
+  <bb 21>:
+  # block_89 = PHI <block_78(23), block_1(18), block_1(24)>
+  this_9(D)->firstFree = block_89;
+
+  <bb 22>:
+  return;
+
+  <bb 23>:
+  # block_78 = PHI <block_57(13), block_12(D)(9)>
+  # _92 = PHI <_38(13), _53(9)>
+  _51 = _92 & 1;
+  if (_51 == 0)
+    goto <bb 17>;
+  else
+    goto <bb 21>;
+
+  <bb 24>:
+  # block_1 = PHI <block_12(D)(10), block_57(14)>
+  # prephitmp_35 = PHI <_53(10), _38(14)>
+  # block_70 = PHI <block_5(10), block_40(14)>
+  _59 = MEM[(struct memory.BlockData!(Block).BlockData &)block_70]._data;
+  _26 = _59 & 1;
+  if (_26 == 0)
+    goto <bb 16>;
+  else
+    goto <bb 21>;
+
+}
+
+
+
+;; Function memory.HeapMemory.Init (_D6memory10HeapMemory4InitMFxkZv, funcdef_no=25, decl_uid=3723, cgraph_uid=25)
+
+memory.HeapMemory.Init (struct memory.HeapMemory & this, const uint nBytes)
+{
+  struct  D.4053;
+  struct  D.4052;
+  struct memory.Block * _7;
+  struct memory.BlockData!(Block).BlockData * _12;
+  uint _13;
+  uint _14;
+  uint _15;
+  struct memory.BlockData!(Block).BlockData * _16;
+  uint _17;
+  uint _18;
+  struct memory.Block * _19;
+  struct memory.BlockData!(Block).BlockData * _20;
+  uint _21;
+  uint _22;
+  uint _26;
+  uint _27;
+  uint _28;
+  uint _30;
+  uint _32;
+  uint _33;
+  uint _34;
+  struct memory.Block * _35;
+  struct memory.BlockData!(Block).BlockData * _36;
+  uint _37;
+  uint _38;
+  uint _39;
+  uint _40;
+  struct memory.Block * _41;
+  struct memory.BlockData!(Block).BlockData * _42;
+  uint _45;
+  uint _46;
+  uint _47;
+  uint _49;
+  uint _50;
+  uint _52;
+  uint _53;
+  uint _56;
+  uint _57;
+  struct memory.Block * _58;
+  uint _60;
+  uint _61;
+  struct memory.Block * _62;
+  uint _64;
+  uint _65;
+  struct memory.Block * _66;
+  uint _68;
+  uint _69;
+  uint _70;
+  uint _78;
+  uint _79;
+  uint _82;
+  struct memory.Block * _83;
+  uint _84;
+  uint _85;
+  uint _86;
+  uint _94;
+  uint _114;
+  uint _115;
+
+  <bb 2>:
+  if (this_1(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  D.4052.length = 9;
+  D.4052.ptr = "null this";
+  D.4053.length = 15;
+  D.4053.ptr = "source/memory.d";
+  _d_assert_msg (D.4052, D.4053, 304);
+
+  <bb 4>:
+  _7 = &this_1(D)->base;
+  _49 = MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D) + 4]._data;
+  _50 = _49 & 4294967292;
+  _52 = (uint) _7;
+  _53 = _52 + 4;
+  _26 = nBytes_8(D) + 3;
+  _27 = _26 & 4294967292;
+  _28 = _53 + _27;
+  _30 = _28 & 4294967292;
+  _32 = _49 & 3;
+  _33 = _30 | _32;
+  MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D) + 4]._data = _33;
+  _34 = _33 & 4294967292;
+  _35 = (struct memory.Block *) _34;
+  _36 = &_35->_data;
+  if (_36 != 0)
+    goto <bb 6>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4FreeMFNaNbNfZv.part.12 ();
+
+  <bb 6>:
+  _37 = MEM[(struct memory.BlockData!(Block).BlockData &)_35]._data;
+  _38 = _37 & 4294967294;
+  MEM[(struct memory.BlockData!(Block).BlockData &)_35]._data = _38;
+  _39 = MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D) + 4]._data;
+  _40 = _39 & 4294967292;
+  _41 = (struct memory.Block *) _40;
+  _42 = &_41->_data;
+  if (_42 != 0)
+    goto <bb 8>;
+  else
+    goto <bb 7>;
+
+  <bb 7>:
+  _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4NextMFNaNbNdNfPS6memory5BlockZv.part.7 ();
+
+  <bb 8>:
+  _45 = MEM[(struct memory.BlockData!(Block).BlockData &)_41]._data;
+  _46 = _45 & 3;
+  _47 = _50 | _46;
+  MEM[(struct memory.BlockData!(Block).BlockData &)_41]._data = _47;
+  _56 = MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D) + 4]._data;
+  _57 = _56 & 4294967292;
+  _58 = (struct memory.Block *) _57;
+  _12 = &_58->_data;
+  if (_12 != 0)
+    goto <bb 9>;
+  else
+    goto <bb 7>;
+
+  <bb 9>:
+  _13 = MEM[(struct memory.BlockData!(Block).BlockData &)_58]._data;
+  _14 = _13 & 3;
+  MEM[(struct memory.BlockData!(Block).BlockData &)_58]._data = _14;
+  _60 = MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D) + 4]._data;
+  _61 = _60 & 4294967292;
+  _62 = (struct memory.Block *) _61;
+  _16 = &_62->_data;
+  if (_16 != 0)
+    goto <bb 10>;
+  else
+    goto <bb 5>;
+
+  <bb 10>:
+  _17 = MEM[(struct memory.BlockData!(Block).BlockData &)_62]._data;
+  _18 = _17 & 4294967294;
+  MEM[(struct memory.BlockData!(Block).BlockData &)_62]._data = _18;
+  _64 = MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D) + 4]._data;
+  _65 = _64 & 4294967292;
+  _66 = (struct memory.Block *) _65;
+  _20 = &_66->_data;
+  if (_20 != 0)
+    goto <bb 12>;
+  else
+    goto <bb 11>;
+
+  <bb 11>:
+  _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData8AllocateMFNaNbNfZv.part.15 ();
+
+  <bb 12>:
+  _21 = MEM[(struct memory.BlockData!(Block).BlockData &)_66]._data;
+  _22 = _21 | 1;
+  MEM[(struct memory.BlockData!(Block).BlockData &)_66]._data = _22;
+  _68 = MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D) + 4]._data;
+  _69 = _68 & 4294967294;
+  MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D) + 4]._data = _69;
+  _15 = _68 & 4294967292;
+  _19 = (struct memory.Block *) _15;
+  if (_19 != 0)
+    goto <bb 13>;
+  else
+    goto <bb 15>;
+
+  <bb 13>:
+  _70 = MEM[(struct memory.BlockData!(Block).BlockData &)_19]._data;
+  _84 = _70 & 1;
+  if (_84 == 0)
+    goto <bb 14>;
+  else
+    goto <bb 19>;
+
+  <bb 14>:
+  goto <bb 18>;
+
+  <bb 15>:
+  _D6memory5Block6IsFreeMFNdZb.part.9 ();
+
+  <bb 16>:
+  _85 = MEM[(struct memory.BlockData!(Block).BlockData &)_83]._data;
+  _86 = _85 & 1;
+  if (_86 == 0)
+    goto <bb 17>;
+  else
+    goto <bb 19>;
+
+  <bb 17>:
+
+  <bb 18>:
+  # _114 = PHI <_79(17), _69(14)>
+  # _115 = PHI <_85(17), _70(14)>
+  _94 = _115 & 4294967292;
+  _78 = _114 & 3;
+  _79 = _94 | _78;
+  MEM[(struct memory.BlockData!(Block).BlockData &)this_1(D) + 4]._data = _79;
+  _82 = _79 & 4294967292;
+  _83 = (struct memory.Block *) _82;
+  if (_83 != 0)
+    goto <bb 16>;
+  else
+    goto <bb 15>;
+
+  <bb 19>:
+  this_1(D)->firstFree = _7;
+  return;
+
+}
+
+
+
+;; Function memory.HeapMemory.Allocate (_D6memory10HeapMemory8AllocateMFxkZPv, funcdef_no=26, decl_uid=3739, cgraph_uid=26)
+
+memory.HeapMemory.Allocate (struct memory.HeapMemory & this, const uint nBytes)
+{
+  void * memory;
+  struct memory.Block * block;
+  struct  D.4059;
+  struct  D.4058;
+  uint _18;
+  uint _25;
+  uint _26;
+  struct memory.Block * _27;
+  uint _32;
+  uint _34;
+  uint _37;
+  uint _39;
+  uint _47;
+  uint _48;
+  uint _51;
+  struct memory.Block * _52;
+  uint _53;
+  uint _54;
+  uint _55;
+  uint _63;
+  struct memory.Block * _67;
+  uint _70;
+  uint _82;
+  uint _83;
+  struct memory.Block * pretmp_88;
+  uint pretmp_104;
+  uint _107;
+  uint _108;
+  uint _109;
+  uint _110;
+  uint _112;
+  uint _114;
+  uint _115;
+  uint _116;
+  struct memory.Block * _117;
+  struct memory.BlockData!(Block).BlockData * _118;
+  uint _119;
+  uint _120;
+  uint _121;
+  uint _122;
+  struct memory.Block * _123;
+  struct memory.BlockData!(Block).BlockData * _124;
+  uint _127;
+  uint _128;
+  uint _129;
+  uint _135;
+  uint _138;
+  struct memory.Block * _140;
+  struct memory.Block * _141;
+  uint _143;
+  uint _144;
+  uint _145;
+  uint _146;
+  uint _149;
+  uint _153;
+  uint _154;
+  uint _160;
+  uint _161;
+  uint _165;
+  struct memory.Block * prephitmp_169;
+  uint _173;
+  uint _180;
+  uint _181;
+  uint _183;
+  uint _184;
+  uint _187;
+  struct memory.Block * _188;
+  uint _190;
+  uint _191;
+  uint _197;
+  uint _198;
+  uint _199;
+  uint _201;
+  uint _206;
+  uint _211;
+  uint _223;
+  uint _236;
+  uint _241;
+  uint _261;
+
+  <bb 2>:
+  if (this_5(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  D.4058.length = 9;
+  D.4058.ptr = "null this";
+  D.4059.length = 15;
+  D.4059.ptr = "source/memory.d";
+  _d_assert_msg (D.4058, D.4059, 311);
+
+  <bb 4>:
+  block_11 = this_5(D)->firstFree;
+  if (block_11 != 0)
+    goto <bb 5>;
+  else
+    goto <bb 8>;
+
+  <bb 5>:
+  _39 = MEM[(struct memory.BlockData!(Block).BlockData &)block_11]._data;
+  _53 = _39 & 4294967292;
+  _67 = (struct memory.Block *) _53;
+  if (_67 == 0B)
+    goto <bb 7>;
+  else
+    goto <bb 6>;
+
+  <bb 6>:
+  goto <bb 11>;
+
+  <bb 7>:
+  goto <bb 38> (<L8>);
+
+  <bb 8>:
+  _D6memory5Block6IsLastMFNdZb.part.5 ();
+
+  <bb 9>:
+  # block_167 = PHI <pretmp_88(41), prephitmp_169(19)>
+  _25 = MEM[(struct memory.BlockData!(Block).BlockData &)block_167]._data;
+  _26 = _25 & 4294967292;
+  _27 = (struct memory.Block *) _26;
+  if (_27 == 0B)
+    goto <bb 7>;
+  else
+    goto <bb 10>;
+
+  <bb 10>:
+
+  <bb 11>:
+  # block_159 = PHI <block_167(10), block_11(6)>
+  # _206 = PHI <_25(10), _39(6)>
+  _37 = _206 & 1;
+  if (_37 == 0)
+    goto <bb 12>;
+  else
+    goto <bb 41>;
+
+  <bb 12>:
+  _18 = _206 & 4294967292;
+  _141 = (struct memory.Block *) _18;
+  if (_141 != 0)
+    goto <bb 13>;
+  else
+    goto <bb 15>;
+
+  <bb 13>:
+  _143 = MEM[(struct memory.BlockData!(Block).BlockData &)_141]._data;
+  _144 = _143 & 1;
+  if (_144 == 0)
+    goto <bb 14>;
+  else
+    goto <bb 19>;
+
+  <bb 14>:
+  goto <bb 18>;
+
+  <bb 15>:
+  _D6memory5Block6IsFreeMFNdZb.part.9 ();
+
+  <bb 16>:
+  _54 = MEM[(struct memory.BlockData!(Block).BlockData &)_52]._data;
+  _55 = _54 & 1;
+  if (_55 == 0)
+    goto <bb 17>;
+  else
+    goto <bb 19>;
+
+  <bb 17>:
+
+  <bb 18>:
+  # _149 = PHI <_48(17), _206(14)>
+  # _107 = PHI <_54(17), _143(14)>
+  _63 = _107 & 4294967292;
+  _47 = _149 & 3;
+  _48 = _63 | _47;
+  MEM[(struct memory.BlockData!(Block).BlockData &)block_159]._data = _48;
+  _51 = _48 & 4294967292;
+  _52 = (struct memory.Block *) _51;
+  if (_52 != 0)
+    goto <bb 16>;
+  else
+    goto <bb 15>;
+
+  <bb 19>:
+  # _201 = PHI <_48(16), _206(13)>
+  # _180 = PHI <_51(16), _18(13)>
+  # prephitmp_169 = PHI <_52(16), _141(13)>
+  _82 = (uint) block_159;
+  _83 = 4294967292 - _82;
+  _70 = _83 + _180;
+  if (nBytes_14(D) <= _70)
+    goto <bb 20>;
+  else
+    goto <bb 9>;
+
+  <bb 20>:
+  # _241 = PHI <_70(19)>
+  # _236 = PHI <_82(19)>
+  # block_224 = PHI <block_159(19)>
+  # _211 = PHI <_180(19)>
+  # _197 = PHI <_201(19)>
+  if (nBytes_14(D) < _241)
+    goto <bb 21>;
+  else
+    goto <bb 39>;
+
+  <bb 21>:
+  _108 = nBytes_14(D) + 3;
+  _109 = _108 & 4294967292;
+  _135 = _109 + 4;
+  _110 = _135 + _236;
+  _112 = _110 & 4294967292;
+  _146 = _197 & 3;
+  _114 = _146 | 1;
+  _115 = _114 | _112;
+  MEM[(struct memory.BlockData!(Block).BlockData &)block_224]._data = _115;
+  _116 = _115 & 4294967292;
+  _117 = (struct memory.Block *) _116;
+  _118 = &_117->_data;
+  if (_118 != 0)
+    goto <bb 23>;
+  else
+    goto <bb 22>;
+
+  <bb 22>:
+  _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4FreeMFNaNbNfZv.part.12 ();
+
+  <bb 23>:
+  _119 = MEM[(struct memory.BlockData!(Block).BlockData &)_117]._data;
+  _120 = _119 & 4294967294;
+  MEM[(struct memory.BlockData!(Block).BlockData &)_117]._data = _120;
+  _121 = MEM[(struct memory.BlockData!(Block).BlockData &)block_224]._data;
+  _122 = _121 & 4294967292;
+  _123 = (struct memory.Block *) _122;
+  _124 = &_123->_data;
+  if (_124 != 0)
+    goto <bb 25>;
+  else
+    goto <bb 24>;
+
+  <bb 24>:
+  _D6memory29__T9BlockDataTS6memory5BlockZ9BlockData4NextMFNaNbNdNfPS6memory5BlockZv.part.7 ();
+
+  <bb 25>:
+  _127 = MEM[(struct memory.BlockData!(Block).BlockData &)_123]._data;
+  _128 = _127 & 3;
+  _129 = _211 | _128;
+  MEM[(struct memory.BlockData!(Block).BlockData &)_123]._data = _129;
+  goto <bb 40>;
+
+  <bb 26>:
+  _D6memory5Block11IsAllocatedMFNdZb.part.11 ();
+
+  <bb 27>:
+  _153 = MEM[(struct memory.BlockData!(Block).BlockData &)_140]._data;
+  _154 = _153 & 1;
+  if (_154 != 0)
+    goto <bb 29>;
+  else
+    goto <bb 28>;
+
+  <bb 28>:
+  _145 = (uint) _140;
+  if (_145 > _236)
+    goto <bb 29>;
+  else
+    goto <bb 38> (<L8>);
+
+  <bb 29>:
+
+  <bb 30>:
+  # block_200 = PHI <block_159(29), block_162(32)>
+  _160 = MEM[(struct memory.BlockData!(Block).BlockData &)block_200]._data;
+  _161 = _160 & 4294967292;
+  block_162 = (struct memory.Block *) _161;
+  if (block_162 == 0B)
+    goto <bb 42>;
+  else
+    goto <bb 31>;
+
+  <bb 31>:
+  _165 = _160 & 1;
+  if (_165 == 0)
+    goto <bb 43>;
+  else
+    goto <bb 32>;
+
+  <bb 32>:
+  goto <bb 30>;
+
+  <bb 33>:
+  goto <bb 36>;
+
+  <bb 34>:
+  _190 = MEM[(struct memory.BlockData!(Block).BlockData &)_188]._data;
+  _191 = _190 & 1;
+  if (_191 == 0)
+    goto <bb 35>;
+  else
+    goto <bb 37>;
+
+  <bb 35>:
+
+  <bb 36>:
+  # _34 = PHI <_184(35), _160(33)>
+  # _198 = PHI <_190(35), _261(33)>
+  _199 = _198 & 4294967292;
+  _183 = _34 & 3;
+  _184 = _199 | _183;
+  MEM[(struct memory.BlockData!(Block).BlockData &)block_195]._data = _184;
+  _187 = _184 & 4294967292;
+  _188 = (struct memory.Block *) _187;
+  if (_188 != 0)
+    goto <bb 34>;
+  else
+    goto <bb 15>;
+
+  <bb 37>:
+  # block_196 = PHI <block_200(43), block_200(34), block_200(42)>
+  this_5(D)->firstFree = block_196;
+
+  # memory_1 = PHI <0B(7), memory_139(37), memory_139(28)>
+<L8>:
+  return memory_1;
+
+  <bb 39>:
+  _32 = _197 | 1;
+  MEM[(struct memory.BlockData!(Block).BlockData &)block_224]._data = _32;
+
+  <bb 40>:
+  _138 = _236 + 4;
+  memory_139 = (void *) _138;
+  _140 = this_5(D)->firstFree;
+  if (_140 != 0)
+    goto <bb 27>;
+  else
+    goto <bb 26>;
+
+  <bb 41>:
+  pretmp_104 = _206 & 4294967292;
+  pretmp_88 = (struct memory.Block *) pretmp_104;
+  if (pretmp_88 != 0)
+    goto <bb 9>;
+  else
+    goto <bb 8>;
+
+  <bb 42>:
+  # _223 = PHI <_160(30)>
+  _173 = _223 & 1;
+  if (_173 == 0)
+    goto <bb 15>;
+  else
+    goto <bb 37>;
+
+  <bb 43>:
+  # block_172 = PHI <block_162(31)>
+  # block_195 = PHI <block_200(31)>
+  _261 = MEM[(struct memory.BlockData!(Block).BlockData &)block_172]._data;
+  _181 = _261 & 1;
+  if (_181 == 0)
+    goto <bb 33>;
+  else
+    goto <bb 37>;
+
+}
+
+
+
+;; Function memory.HeapMemory.Free (_D6memory10HeapMemory4FreeMFxPvZv, funcdef_no=27, decl_uid=3749, cgraph_uid=27)
+
+memory.HeapMemory.Free (struct memory.HeapMemory & this, const void * const memory)
+{
+  struct memory.Block * block;
+  struct  D.4082;
+  struct  D.4081;
+  uint _12;
+  uint _13;
+  uint _22;
+  uint _23;
+  uint _26;
+  struct memory.Block * _27;
+  uint _28;
+  uint _29;
+  uint _30;
+  uint _38;
+  struct memory.Block * _40;
+  uint _41;
+  uint _43;
+  uint _45;
+  uint _49;
+  uint _53;
+  uint _54;
+  uint _60;
+  uint _61;
+  uint _65;
+  uint _73;
+  uint _75;
+  uint _81;
+  uint _82;
+  uint _83;
+  uint _84;
+  uint _87;
+  struct memory.Block * _88;
+  struct memory.Block * _89;
+  uint _90;
+  uint _91;
+  uint _99;
+  uint _121;
+  uint _127;
+  uint _128;
+  uint _129;
+
+  <bb 2>:
+  if (this_1(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  D.4081.length = 9;
+  D.4081.ptr = "null this";
+  D.4082.length = 15;
+  D.4082.ptr = "source/memory.d";
+  _d_assert_msg (D.4081, D.4082, 342);
+
+  <bb 4>:
+  block_8 = &MEM[(void *)memory_7(D) + 4294967292B];
+  if (block_8 != 0)
+    goto <bb 6>;
+  else
+    goto <bb 5>;
+
+  <bb 5>:
+  _D6memory5Block4FreeMFZv.part.14 ();
+
+  <bb 6>:
+  _12 = MEM[(struct memory.BlockData!(Block).BlockData &)memory_7(D) + 4294967292]._data;
+  _13 = _12 & 4294967294;
+  MEM[(struct memory.BlockData!(Block).BlockData &)memory_7(D) + 4294967292]._data = _13;
+  _75 = _12 & 4294967292;
+  _89 = (struct memory.Block *) _75;
+  if (_89 != 0)
+    goto <bb 7>;
+  else
+    goto <bb 9>;
+
+  <bb 7>:
+  _49 = MEM[(struct memory.BlockData!(Block).BlockData &)_89]._data;
+  _82 = _49 & 1;
+  if (_82 == 0)
+    goto <bb 8>;
+  else
+    goto <bb 13>;
+
+  <bb 8>:
+  goto <bb 12>;
+
+  <bb 9>:
+  _D6memory5Block6IsFreeMFNdZb.part.9 ();
+
+  <bb 10>:
+  _29 = MEM[(struct memory.BlockData!(Block).BlockData &)_27]._data;
+  _30 = _29 & 1;
+  if (_30 == 0)
+    goto <bb 11>;
+  else
+    goto <bb 13>;
+
+  <bb 11>:
+
+  <bb 12>:
+  # _81 = PHI <_23(11), _13(8)>
+  # _127 = PHI <_29(11), _49(8)>
+  _38 = _127 & 4294967292;
+  _22 = _81 & 3;
+  _23 = _38 | _22;
+  MEM[(struct memory.BlockData!(Block).BlockData &)memory_7(D) + 4294967292]._data = _23;
+  _26 = _23 & 4294967292;
+  _27 = (struct memory.Block *) _26;
+  if (_27 != 0)
+    goto <bb 10>;
+  else
+    goto <bb 9>;
+
+  <bb 13>:
+  _40 = this_1(D)->firstFree;
+  if (_40 != 0)
+    goto <bb 15>;
+  else
+    goto <bb 14>;
+
+  <bb 14>:
+  _D6memory5Block11IsAllocatedMFNdZb.part.11 ();
+
+  <bb 15>:
+  _53 = MEM[(struct memory.BlockData!(Block).BlockData &)_40]._data;
+  _54 = _53 & 1;
+  if (_54 != 0)
+    goto <bb 17>;
+  else
+    goto <bb 16>;
+
+  <bb 16>:
+  _43 = (uint) block_8;
+  _45 = (uint) _40;
+  if (_43 < _45)
+    goto <bb 17>;
+  else
+    goto <bb 26>;
+
+  <bb 17>:
+
+  <bb 18>:
+  # block_98 = PHI <block_8(17), block_62(20)>
+  _60 = MEM[(struct memory.BlockData!(Block).BlockData &)block_98]._data;
+  _61 = _60 & 4294967292;
+  block_62 = (struct memory.Block *) _61;
+  if (block_62 == 0B)
+    goto <bb 27>;
+  else
+    goto <bb 19>;
+
+  <bb 19>:
+  _65 = _60 & 1;
+  if (_65 == 0)
+    goto <bb 28>;
+  else
+    goto <bb 20>;
+
+  <bb 20>:
+  goto <bb 18>;
+
+  <bb 21>:
+  goto <bb 24>;
+
+  <bb 22>:
+  _90 = MEM[(struct memory.BlockData!(Block).BlockData &)_88]._data;
+  _91 = _90 & 1;
+  if (_91 == 0)
+    goto <bb 23>;
+  else
+    goto <bb 25>;
+
+  <bb 23>:
+
+  <bb 24>:
+  # _128 = PHI <_84(23), _60(21)>
+  # _129 = PHI <_90(23), _28(21)>
+  _99 = _129 & 4294967292;
+  _83 = _128 & 3;
+  _84 = _99 | _83;
+  MEM[(struct memory.BlockData!(Block).BlockData &)block_72]._data = _84;
+  _87 = _84 & 4294967292;
+  _88 = (struct memory.Block *) _87;
+  if (_88 != 0)
+    goto <bb 22>;
+  else
+    goto <bb 9>;
+
+  <bb 25>:
+  # block_93 = PHI <block_98(28), block_98(22), block_98(27)>
+  this_1(D)->firstFree = block_93;
+
+  <bb 26>:
+  return;
+
+  <bb 27>:
+  # _121 = PHI <_60(18)>
+  _73 = _121 & 1;
+  if (_73 == 0)
+    goto <bb 9>;
+  else
+    goto <bb 25>;
+
+  <bb 28>:
+  # block_25 = PHI <block_62(19)>
+  # block_72 = PHI <block_98(19)>
+  _28 = MEM[(struct memory.BlockData!(Block).BlockData &)block_25]._data;
+  _41 = _28 & 1;
+  if (_41 == 0)
+    goto <bb 21>;
+  else
+    goto <bb 25>;
+
+}
+
+
+
+;; Function memory.HeapMemory.Print (_D6memory10HeapMemory5PrintMFZv, funcdef_no=28, decl_uid=3755, cgraph_uid=28)
+
+memory.HeapMemory.Print (struct memory.HeapMemory & this)
+{
+  struct  D.5011;
+  const struct  t;
+  struct memory.Block * block;
+  struct  D.4107;
+  struct  D.4105;
+  struct  D.4100;
+  struct  D.4098;
+  struct  D.4088;
+  struct  D.4087;
+  uint _36;
+  uint _43;
+  uint _44;
+  struct memory.Block * _45;
+  uint _51;
+  uint _52;
+  uint _56;
+  uint _57;
+  struct memory.Block * _58;
+  uint _64;
+  uint _66;
+  uint _67;
+  uint _71;
+  uint _72;
+
+  <bb 2>:
+  if (this_4(D) != 0)
+    goto <bb 4>;
+  else
+    goto <bb 3>;
+
+  <bb 3>:
+  D.4087.length = 9;
+  D.4087.ptr = "null this";
+  D.4088.length = 15;
+  D.4088.ptr = "source/memory.d";
+  _d_assert_msg (D.4087, D.4088, 354);
+
+  <bb 4>:
+  block_10 = &this_4(D)->base;
+  goto <bb 7>;
+
+  <bb 5>:
+  _D6memory5Block6IsLastMFNdZb.part.5 ();
+
+  <bb 6>:
+
+  <bb 7>:
+  # block_90 = PHI <block_10(4), block_73(6)>
+  _43 = MEM[(struct memory.BlockData!(Block).BlockData &)block_90]._data;
+  _44 = _43 & 4294967292;
+  _45 = (struct memory.Block *) _44;
+  if (_45 == 0B)
+    goto <bb 14>;
+  else
+    goto <bb 8>;
+
+  <bb 8>:
+  _36 = (uint) block_90;
+  Write (_36, 10);
+  D.4098.length = 2;
+  D.4098.ptr = ": ";
+  Write (D.4098);
+  _56 = MEM[(struct memory.BlockData!(Block).BlockData &)block_90]._data;
+  _57 = _56 & 4294967292;
+  _58 = (struct memory.Block *) _57;
+  if (_58 == 0B)
+    goto <bb 10>;
+  else
+    goto <bb 9>;
+
+  <bb 9>:
+  _64 = _57 + 4294967292;
+  _51 = _64 - _36;
+
+  <bb 10>:
+  # _52 = PHI <0(8), _51(9)>
+  Write (_52, 10);
+  D.4100.length = 2;
+  D.4100.ptr = ": ";
+  Write (D.4100);
+  _66 = MEM[(struct memory.BlockData!(Block).BlockData &)block_90]._data;
+  _67 = _66 & 1;
+  if (_67 != 0)
+    goto <bb 11>;
+  else
+    goto <bb 12>;
+
+  <bb 11>:
+  D.4105.length = 1;
+  D.4105.ptr = "1";
+  Write (D.4105);
+  goto <bb 13>;
+
+  <bb 12>:
+  D.4107.length = 1;
+  D.4107.ptr = "0";
+  Write (D.4107);
+
+  <bb 13>:
+  MEM[(struct  *)&t] = 0;
+  MEM[(struct  *)&t + 4B] = "";
+  Write (t);
+  t ={v} {CLOBBER};
+  D.5011.length = 2;
+  D.5011.ptr = "\r\n";
+  Write (D.5011);
+  _71 = MEM[(struct memory.BlockData!(Block).BlockData &)block_90]._data;
+  _72 = _71 & 4294967292;
+  block_73 = (struct memory.Block *) _72;
+  if (block_73 != 0)
+    goto <bb 6>;
+  else
+    goto <bb 5>;
+
+  <bb 14>:
+  return;
+
+}
+
+
+
+;; Function trace.WriteLine!(string).WriteLine (_D5trace18__T9WriteLineTAyaZ9WriteLineFxAyaZv, funcdef_no=29, decl_uid=3565, cgraph_uid=29)
+
+trace.WriteLine!(string).WriteLine (const struct  _param_0)
+{
+  const struct  t;
+  struct  D.4115;
+
+  <bb 2>:
+  t = _param_0;
+  Write (t);
+  t ={v} {CLOBBER};
+  D.4115.length = 2;
+  D.4115.ptr = "\r\n";
+  Write (D.4115);
+  return;
+
+}
+
+
