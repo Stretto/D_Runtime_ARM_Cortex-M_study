@@ -41,10 +41,10 @@
  {
      mixin Register!(0x2000_0000, 0x0000_0000);
 
-     alias BitField!(size_t, 31,  0, Policy.Read)      EntireRegister;
-     alias BitField!(ushort, 16,  1, Policy.Read)      Bits16To1;
-     alias Bit     !(             0, Policy.Write)     Bit0;
-     alias BitField!(ubyte,  24, 17, Policy.ReadWrite) Bits24To17;
+     alias EntireRegister = BitField!(size_t, 31, 0, Policy.Read);
+     alias Bits16To1 = BitField!(ushort, 16, 1, Policy.Read);
+     alias Bit0 = Bit !( 0, Policy.Write);
+     alias Bits24To17 = BitField!(ubyte, 24, 17, Policy.ReadWrite);
  }
  --------------------
 
