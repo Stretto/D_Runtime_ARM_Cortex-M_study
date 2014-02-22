@@ -72,6 +72,12 @@ void main()
     /************************************************************************************
      link
     */
+    string binaryDir = "binary";
+    if (!exists(binaryDir))
+    {
+        mkdirRecurse(binaryDir);
+    }
+    
     string linkCmd = 
         "~/gdc-arm-none-eabi/bin/arm-none-eabi-ld "
         ~ "-T link/link.ld -Map binary/memory.map --gc-sections";
