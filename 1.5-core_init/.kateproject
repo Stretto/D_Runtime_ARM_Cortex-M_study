@@ -1,0 +1,11 @@
+{
+    "name": "ARM Cortex-M in D"
+  , "files": [ { "directory": "source", "filters": ["*.d"], "recursive": 1 } ]
+  , "build":
+  {
+      "directory": "."
+    , "build": "rdmd makefile.d"
+    , "clean": ""
+    , "install": ""
+  }
+}
