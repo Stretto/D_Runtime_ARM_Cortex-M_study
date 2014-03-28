@@ -41,10 +41,10 @@
  {
      mixin Register!(0x2000_0000, 0x0000_0000);
 
-     alias BitField!(size_t, 31,  0, Mutability.Read)      EntireRegister;
-     alias BitField!(ushort, 16,  1, Mutability.Read)      Bits16To1;
-     alias Bit     !(             0, Mutability.Write)     Bit0;
-     alias BitField!(ubyte,  24, 17, Mutability.ReadWrite) Bits24To17;
+     alias BitField!(31,  0, Mutability.r)  EntireRegister;
+     alias BitField!(16,  1, Mutability.r)  Bits16To1;
+     alias Bit     !(     0, Mutability.w)  Bit0;
+     alias BitField!(24, 17, Mutability.rw) Bits24To17;
  }
  --------------------
 
@@ -536,6 +536,9 @@ mixin template Register(size_t peripheralAddress, size_t addressOffset, Access a
         }
     }
      
+    /***********************************************************************
+      Sets multiple bit fields simultaneously
+    */
     static void setValue(T...)()
     {            
         // number of arguments must be even
