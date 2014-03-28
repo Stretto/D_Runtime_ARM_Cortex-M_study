@@ -2,6 +2,8 @@
 
 import trace;
 import mmio;
+import Test;
+import gcc.attribute;
 
 // These are marked extern(C) to avoid name mangling, so we can refer to them in our linker script
 alias ISR = void function(); // Alias Interrupt Service Routine function pointers
@@ -12,7 +14,7 @@ extern(C) immutable ISR HardFaultHandler = &OnHardFault; // Pointer to hard faul
 void OnHardFault()
 {
     // Display a message notifying us that a hard fault occurred
-    trace.WriteLine("Hard Fault");
+    trace.writeLine("Hard Fault");
     
     // Enter an infinite loop so we can use the debugger
     // to examine registers, memory, etc...
@@ -20,26 +22,24 @@ void OnHardFault()
     { }
 }
 
-struct MyRegister
-{ 
-    // Address 0x2000_1000 is chosen as an arbitrary location in SRAM that's not being used
-    mixin Register!(0x2000_1000, 0x0000_0000);
-    
-    alias EntireRegister = BitField!(size_t, 31,  0, Policy.ReadWrite);
-    alias Bits16To1      = BitField!(ushort, 17,  2, Policy.ReadWrite);
-    alias Bit0           = Bit!(0, Policy.ReadWrite);    
-}
-
 void OnReset()
-{   
-    MyRegister.EntireRegister.Value = 0b0101_0101_0101_0101_0101_0101_0101_0101;
-    MyRegister.Bits16To1.Value      = 0b1111_1111_1111_1111;
-    MyRegister.Bit0.Value           = false;
+{
+    MyRegister.Bit0.value = true;
     
-    assert(MyRegister.EntireRegister.Value == 0b0101_0101_0101_0111_1111_1111_1111_1100);
+    if (MyRegister.Bit0.value)
+    {
+        MyRegister.Bit1.value = true;
+    }
     
-    trace.WriteLine("Success!");
-    
+//     MyRegister.setValue!(
+//         MyRegister.Bit1, true,
+//         MyRegister.Bit0, true)();
+        
+
+
     while(true)
-    { }
+    { 
+        //Test.Bit0.value = !Test.Bit0.value;
+        trace.writeLine(MyRegister.Bits1to0.value);
+    }
 }

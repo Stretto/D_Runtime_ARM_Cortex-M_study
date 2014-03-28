@@ -15,6 +15,13 @@ SECTIONS
         *(.ARM.extab*)
         *(.ARM.exidx*)
     }
+    
+    /* Appears to be just meta-data, so discard it */
+    /DISCARD/ :
+    {
+        *(.ARM.attributes*)
+        *(.comment)
+    }
 
     /* Code */
     .text :
@@ -23,12 +30,14 @@ SECTIONS
         KEEP(*(*.ResetHandler))            /* Pointer to program's entry point */
         LONG(0)                            /* Pointer to non-maskable interrupt handler (ignore for now) */
         KEEP(*(*.HardFaultHandler))        /* Pointer to hard fault handler */
-        *(*.text)                          /* Our executable code */
+        *(.text)                           /* Our executable code */
+        *(.text*)                          
     } > FLASH
 
     /* Immutable data */
     .rodata :
     {
-        *(*.rodata)
+        *(.rodata)
+        *(.rodata*)
     } > FLASH
 }

@@ -1,6 +1,6 @@
-// gcc.d
+// memory.d
 
-module gcc;
+module memory;
 import trace;
 
 extern(C) void* memset(void* dest, int value, size_t num)
@@ -12,4 +12,4 @@ extern(C) void* memset(void* dest, int value, size_t num)
     }
     
     return dest;
-}
+} 

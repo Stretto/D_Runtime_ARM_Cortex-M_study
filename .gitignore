@@ -1,3 +1,5 @@
 .kateproject.d
 .directory
 *.kate-swp
+*/objects
+*/binary

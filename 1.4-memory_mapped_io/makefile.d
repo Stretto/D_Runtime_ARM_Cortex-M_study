@@ -49,6 +49,7 @@ void main()
  	    ~ "-fno-emit-moduleinfo -ffunction-sections -fdata-sections "
  	    ~ "-O3 "
  	    ~ "-c "
+ 	    //~ "-S -fverbose-asm -Wa,-adhln "  //generate assembly
  	    ~ dFile.name
  	    ~ " -o "
  	    ~ objectFile;
@@ -70,7 +71,7 @@ void main()
     }
     
     /************************************************************************************
-     link
+     link 
     */
     string binaryDir = "binary";
     if (!exists(binaryDir))
@@ -79,8 +80,8 @@ void main()
     }
     
     string linkCmd = 
-        "~/gdc-arm-none-eabi/bin/arm-none-eabi-ld "
-        ~ "-T link/link.ld -Map binary/memory.map --gc-sections";
+        "~/gdc-arm-none-eabi/bin/arm-none-eabi-gdc -nostdlib "
+        ~ "-Wl,-T link/link.ld -Wl,-Map binary/memory.map -Wl,--gc-sections ";
         
     foreach(oFile; objectFiles)
     {

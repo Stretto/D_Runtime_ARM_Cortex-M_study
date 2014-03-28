@@ -1,4 +1,4 @@
-// assert.d
+module exception;
 
 import trace;
 
@@ -7,7 +7,7 @@ import trace;
 */
 extern(C) void _d_assert(string file, uint line)
 {
-    trace.WriteLine(file, ":", line);
+    trace.writeLine(file, ":", line);
 }
 
 /***********************************************************************
@@ -15,5 +15,15 @@ extern(C) void _d_assert(string file, uint line)
 */
 extern(C) void _d_assert_msg(string msg, string file, uint line)
 {
-    trace.WriteLine(file, ":", line, ":", msg);
+    trace.writeLine(file, ":", line, ":", msg);
 }
+
+/***********************************************************************
+  Assert with ModuleInfo
+*/
+// void _d_assertm(ModuleInfo* m, uint line)
+// {
+//     trace.writeLine(m.name, ":", line);
+// }
+
+

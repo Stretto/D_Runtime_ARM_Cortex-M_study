@@ -160,7 +160,7 @@ mixin template BitFieldImplementation(size_t msb, size_t lsb, Policy policy)
 /***********************************************************************
  Template for modeling a 32-bit register
 */
-mixin template Register(size_t address, size_t resetValue = 0)
+mixin template Register(size_t addressOffset, size_t resetValue_ = 0)
 {
     private alias typeof(this) ThisRegister;
     
@@ -176,7 +176,7 @@ mixin template Register(size_t address, size_t resetValue = 0)
       Gets all bits in the register as a single value.  It's only exposed
       privately to prevent circumventing the access policy.
     */
-    private static @property auto Value()
+    private static @property auto value()
     {
         //verify that this is evaluated at compile time
         static assert(__ctfe);
@@ -188,7 +188,7 @@ mixin template Register(size_t address, size_t resetValue = 0)
       Sets all bits in the register as a single value.  It's only exposed
       privately to prevent circumventing the access policy.
     */
-    private static @property void Value(size_t value)
+    private static @property void value(size_t value)
     {
         //verify that this is evaluated at compile time
         static assert(__ctfe);
@@ -215,8 +215,8 @@ mixin template Register(size_t address, size_t resetValue = 0)
     /***********************************************************************
       Gets this register's reset value as specified in the datasheet
     */
-    static @property auto ResetValue()
+    static @property auto resetValue()
     {
-        return resetValue;
+        return resetValue_;
     }
 }

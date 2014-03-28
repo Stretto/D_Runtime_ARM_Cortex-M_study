@@ -3,7 +3,7 @@ module trace;
 /************************************************************************************
 * Initiate semihosting command
 */
-private void SemihostingInvoke(in int command, in void* message)
+private void semihostingInvoke(in int command, in void* message)
 {
   // LDC and GDC use slightly different inline assembly syntax, so we have to
   // differentiate them with D's conditional compilation feature, version.
@@ -33,9 +33,10 @@ private void SemihostingInvoke(in int command, in void* message)
 }
 
 /************************************************************************************
-* Create semihosting message and forward it to PerformCommand
+* Create semihosting message and forward it to  
+PerformCommand
 */
-private void SemihostingWrite(in void* ptr, in uint length)
+private void semihostingWrite(in void* ptr, in uint length)
 {
     // Create semihosting message message
     uint[3] message =
@@ -47,13 +48,13 @@ private void SemihostingWrite(in void* ptr, in uint length)
 
     // Send semihosting command
     // 0x05 = Write
-    SemihostingInvoke(0x05, &message);
+    semihostingInvoke(0x05, &message);
 }
 
 /************************************************************************************
 * Print unsigned integer
 */
-void Write(uint value, uint base = 10)
+void write(uint value, uint base = 10)
 {
     assert(base >= 2 && base <= 16);
 
@@ -76,72 +77,106 @@ void Write(uint value, uint base = 10)
 
     //p = pointer to most significant digit
     //end - p = length of string
-    SemihostingWrite(p, end - p);
+    semihostingWrite(p, end - p);
 }
 
 /************************************************************************************
 * Print signed integer
 */
-void Write(int value, uint base = 10)
+void write(int value, uint base = 10)
 {
     // if negative, write minus sign and get absolute value
     if (value < 0)
     {
-        Write("-");
-        Write(cast(uint)(value * -1), base);
+        write("-");
+        write(cast(uint)(value * -1), base);
     }
     // if greater than or equal to 0, just treat it as an unsigned int
     else
     {
-        Write(cast(uint)value, base);
+        write(cast(uint)value, base);
     }
+}
+
+/************************************************************************************
+* Print boolean
+*/
+void write(bool value)
+{
+    write(value ? "true" : "false");
+}
+
+/************************************************************************************
+* Print unsigned byte
+*/
+void write(ubyte value)
+{
+    write(cast(uint)value);
 }
 
 /************************************************************************************
 * Print unsigned integer with a new line
 */
-void WriteLine(uint value, uint base = 10)
+void writeLine(uint value, uint base = 10)
 {
-    Write(value, base);
-    Write("\r\n");
+    write(value, base);
+    write("\r\n");
+}
+
+/************************************************************************************
+* Print boolean with a newline
+*/
+void writeLine(bool value)
+{
+    write(value);
+    write("\r\n");
+}
+
+/************************************************************************************
+* Print unsigned byte with a newline
+*/
+void writeLine(ubyte value)
+{
+    write(cast(uint)value);
+    write("\r\n");
 }
 
 /************************************************************************************
 * Print signed integer with a new line
 */
-void WriteLine(int value, uint base = 10)
+void writeLine(int value, uint base = 10)
 {
-    Write(value, base);
-    Write("\r\n");
+    write(value, base);
+    write("\r\n");
 }
 
 /************************************************************************************
 * Print string of charactes
 */
-void Write(in string text)
+void write(in string text)
 {
-    SemihostingWrite(text.ptr, text.length);
+    semihostingWrite(text.ptr, text.length);
 }
 
 /************************************************************************************
 * Print several values at once
 */
-void Write(A...)(in A a)
+void write(A...)(in A a)
 {
     foreach(t; a)
     {
-        Write(t);
+        write(t);
     }
 }
 
 /************************************************************************************
 * Print several values at once with a new line
 */
-void WriteLine(A...)(in A a)
+void writeLine(A...)(in A a)
 {
     foreach(t; a)
     {
-        Write(t);
+        write(t);
     }
-    Write("\r\n");
+    write("\r\n");
 }
