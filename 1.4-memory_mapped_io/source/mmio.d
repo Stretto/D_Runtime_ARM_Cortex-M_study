@@ -270,11 +270,41 @@ mixin template BitFieldMutation(Mutability mutability, ValueType_)
         , "Mutability is only applicable to a single bit"
     );
     
+    /***********************************************************************
+        Whether or not the mutability policy allows for reading the bit/
+        bitfield's value
+    */
+    private static @property canRead()
+    {
+        return mutability == Mutability.r     || mutability == Mutability.rw   
+            || mutability == Mutability.rt_w  || mutability == Mutability.rs 
+            || mutability == Mutability.rc_r  || mutability == Mutability.rc_w0
+            || mutability == Mutability.rc_w1;
+    }
+    
+    /***********************************************************************
+        Whether or not the mutability policy allows for writing the bit/
+        bitfield's value
+    */
+    private static @property canWrite()
+    {
+        return mutability == Mutability.w     || mutability == Mutability.rw 
+            || mutability == Mutability.rc_w0 || mutability == Mutability.rc_w1
+            || mutability == Mutability.rs;
+    }
+    
+    /***********************************************************************
+        Whether or not the mutability policy allows for only setting or
+        clearing a bit
+    */
+    private static @property canOnlySetOrClear()
+    {
+        return mutability == Mutability.rc_w0 || mutability == Mutability.rc_w1 
+            || mutability == Mutability.rs;
+    }
 
-    // If mutability allows reading
-    static if (mutability == Mutability.r     || mutability == Mutability.rw   || mutability == Mutability.rt_w
-            || mutability == Mutability.rs    || mutability == Mutability.rc_r || mutability == Mutability.rc_w0
-            || mutability == Mutability.rc_w1)
+    // if mutabililty policy allows for reading the bit/bitfield's value
+    static if (canRead)
     {
         /***********************************************************************
             Get this BitField's value
@@ -285,27 +315,13 @@ mixin template BitFieldMutation(Mutability mutability, ValueType_)
             {
                 return *(cast(shared ValueType*)bitBandAddress);
             }
-            else static if 
-            (
-                isHalfWordAligned 
-                && 
-                (
-                       access == Access.Byte_HalfWord_Word 
-                    || access == Access.HalfWord_Word
-                )
-            )
+            else static if (isHalfWordAligned 
+                && (access == Access.Byte_HalfWord_Word || access == Access.HalfWord_Word))
             {
                 return *(cast(shared ValueType*)halfWordAlignedAddress);
             }
-            else static if 
-            (
-                isByteAligned 
-                && 
-                (
-                       access == Access.Byte_HalfWord_Word 
-                    || access == Access.Byte_Word
-                )
-            )
+            else static if (isByteAligned 
+                && (access == Access.Byte_HalfWord_Word || access == Access.Byte_Word))
             {
                 return *(cast(shared ValueType*)byteAlignedAddress);
             }
@@ -317,62 +333,15 @@ mixin template BitFieldMutation(Mutability mutability, ValueType_)
     }
 
     // If mutability allows setting the bit/bitfield in some way
-    static if (mutability == Mutability.w     || mutability == Mutability.rw || mutability == Mutability.rc_w0 
-            || mutability == Mutability.rc_w1 || mutability == Mutability.rs)
+    static if (canWrite)
     {
-        static if (mutability == Mutability.rc_w0 || mutability == Mutability.rc_w1 || mutability == Mutability.rs)
+        // Can modify the bit/bitfield's value, but only with a set or clear
+        static if (canOnlySetOrClear)
         {
-            // value is private in favor of clear/set methods
-        
-            /***********************************************************************
-             Set this BitField's value
-            */
-            private static @property void value(ValueType value_)
-            { 
-                //TODO: This logic is a duplication of logic below.  Try to consolidate.
-                
-                // If only a single bit, use bit banding
-                static if (numberOfBits == 1)
-                {
-                    *(cast(shared ValueType*)bitBandAddress) = value_;
-                }
-                // if can access data with perfect halfword alignment
-                else static if 
-                (
-                    isHalfWordAligned 
-                    && 
-                    (
-                        access == Access.Byte_HalfWord_Word 
-                        || access == Access.HalfWord_Word
-                    )
-                )
-                {
-                    *(cast(shared ValueType*)halfWordAlignedAddress) = value_;
-                }
-                // if can access data with perfect byte alignment
-                else static if 
-                (
-                    isByteAligned 
-                    && 
-                    (
-                        access == Access.Byte_HalfWord_Word 
-                        || access == Access.Byte_Word
-                    )
-                )
-                {
-                    *(cast(shared ValueType*)byteAlignedAddress) = value_;
-                }
-                // catch-all.  Not optimizations possible, so just do read-modify-write
-                else
-                {
-                    *(cast(shared size_t*)address) = (*(cast(shared size_t*)address) & ~bitMask) | ((cast(size_t)value_) << leastSignificantBitIndex);
-                }
-            }
-            
             static if (mutability == Mutability.rc_w0)
             {
                 /***********************************************************************
-                 Clears bit by writing a '0'
+                    Clears bit by writing a '0'
                 */
                 static void clear()
                 {
@@ -382,7 +351,7 @@ mixin template BitFieldMutation(Mutability mutability, ValueType_)
             else static if (mutability == Mutability.rc_w1)
             {
                 /***********************************************************************
-                 Clears bit by writing a '1'
+                    Clears bit by writing a '1'
                 */
                 static void clear()
                 {
@@ -392,34 +361,46 @@ mixin template BitFieldMutation(Mutability mutability, ValueType_)
             else static if (mutability == Mutability.rs)
             {
                 /***********************************************************************
-                 Sets bit by writing a '1'
+                    Sets bit by writing a '1'
                 */
                 static void set()
                 {
                     value = true;
                 }
             }
+        
+            // 'value' is private in favor of clear/set methods
+            private:
         }
-        else
-        {
-            /***********************************************************************
-             Set this BitField's value
-            */
-            static @property void value(ValueType value_)
-            {   
-                //TODO: This logic is a duplication of logic above.  Try to consolidate.
-                static if (numberOfBits == 1)
-                {
-                    *(cast(shared ValueType*)bitBandAddress) = value_;
-                }
-                else static if (isByteAligned)
-                {
-                    *(cast(shared ValueType*)byteAlignedAddress) = value_;
-                }
-                else
-                {
-                    *(cast(shared size_t*)address) = (*(cast(shared size_t*)address) & ~bitMask) | ((cast(size_t)value_) << leastSignificantBitIndex);
-                }
+        
+        /***********************************************************************
+            Set this BitField's value
+        */
+        static @property void value(ValueType value_)
+        { 
+            //TODO: This logic is a duplication of logic below.  Try to consolidate.
+            
+            // If only a single bit, use bit banding
+            static if (numberOfBits == 1)
+            {
+                *(cast(shared ValueType*)bitBandAddress) = value_;
+            }
+            // if can access data with perfect halfword alignment
+            else static if (isHalfWordAligned 
+                && (access == Access.Byte_HalfWord_Word || access == Access.HalfWord_Word))
+            {
+                *(cast(shared ValueType*)halfWordAlignedAddress) = value_;
+            }
+            // if can access data with perfect byte alignment
+            else static if (isByteAligned 
+                && (access == Access.Byte_HalfWord_Word || access == Access.Byte_Word))
+            {
+                *(cast(shared ValueType*)byteAlignedAddress) = value_;
+            }
+            // catch-all.  No optimizations possible, so just do read-modify-write
+            else
+            {
+                *(cast(shared size_t*)address) = (*(cast(shared size_t*)address) & ~bitMask) | ((cast(size_t)value_) << leastSignificantBitIndex);
             }
         }
     }
