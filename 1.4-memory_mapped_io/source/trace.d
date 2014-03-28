@@ -56,7 +56,7 @@ private void semihostingWrite(in void* ptr, in uint length)
 */
 void write(uint value, uint base = 10)
 {
-    assert(base >= 2 && base <= 16);
+    assert(base >= 2 && base <= 16, "Only base 10 and base 16 are supported");
 
     //Will use at most 10 digits, for a 32-bit base-10 number
     char[10] buffer;
