@@ -135,6 +135,49 @@ enum Mutability
 }
 
 /***********************************************************************
+    Whether or not the mutability policy allows for reading the bit/
+    bitfield's value
+*/
+static bool canRead(Mutability m)
+{
+    return m == Mutability.r     || m == Mutability.rw   
+        || m == Mutability.rt_w  || m == Mutability.rs 
+        || m == Mutability.rc_r  || m == Mutability.rc_w0
+        || m == Mutability.rc_w1;
+}
+
+/***********************************************************************
+    Whether or not the mutability policy allows for writing the bit/
+    bitfield's value
+*/
+static bool canWrite(Mutability m)
+{
+    return m == Mutability.w     || m == Mutability.rw 
+        || m == Mutability.rc_w0 || m == Mutability.rc_w1
+        || m == Mutability.rs;
+}
+
+ /***********************************************************************
+    Whether or not the mutability policy allows for only setting or
+    clearing a bit
+*/
+static bool canOnlySetOrClear(Mutability m)
+{
+    return m == Mutability.rc_w0 || m == Mutability.rc_w1 
+        || m == Mutability.rs;
+}
+
+ /***********************************************************************
+    Whether or not the mutability policy applies only to single bits
+*/
+static bool isForBitsOnly(Mutability m)
+{
+    return m == Mutability.rc_w0 || m == Mutability.rc_w1 
+        || m == Mutability.rs    || m == Mutability.rc_r
+        || m == Mutability.rt_w;
+}
+
+/***********************************************************************
  Provides information about a bit field given the specified bit indices
 */
 mixin template BitFieldDimensions(size_t bitIndex0, size_t bitIndex1)
@@ -255,56 +298,10 @@ mixin template BitFieldMutation(Mutability mutability, ValueType_)
 
     // Ensure correct mutability for the size of the bitfield.  Some policies
     // are only relevant to single bits
-    static assert
-    (
-        // a single bit
-        numberOfBits == 1 
-        
-        // Only policies r, w, and rw are valid for bitfieds greater than
-        // a single bit.  If numberOfBits is greater than 1 and not r, w,
-        // or rw, it's an error.
-        || mutability == Mutability.r   
-        || mutability == Mutability.w 
-        || mutability == Mutability.rw
-
-        , "Mutability is only applicable to a single bit"
-    );
-    
-    /***********************************************************************
-        Whether or not the mutability policy allows for reading the bit/
-        bitfield's value
-    */
-    private static @property canRead()
-    {
-        return mutability == Mutability.r     || mutability == Mutability.rw   
-            || mutability == Mutability.rt_w  || mutability == Mutability.rs 
-            || mutability == Mutability.rc_r  || mutability == Mutability.rc_w0
-            || mutability == Mutability.rc_w1;
-    }
-    
-    /***********************************************************************
-        Whether or not the mutability policy allows for writing the bit/
-        bitfield's value
-    */
-    private static @property canWrite()
-    {
-        return mutability == Mutability.w     || mutability == Mutability.rw 
-            || mutability == Mutability.rc_w0 || mutability == Mutability.rc_w1
-            || mutability == Mutability.rs;
-    }
-    
-    /***********************************************************************
-        Whether or not the mutability policy allows for only setting or
-        clearing a bit
-    */
-    private static @property canOnlySetOrClear()
-    {
-        return mutability == Mutability.rc_w0 || mutability == Mutability.rc_w1 
-            || mutability == Mutability.rs;
-    }
+    static assert(numberOfBits == 1 || !mutability.isForBitsOnly(), "Mutability is only applicable to a single bit");
 
     // if mutabililty policy allows for reading the bit/bitfield's value
-    static if (canRead)
+    static if (mutability.canRead())
     {
         /***********************************************************************
             Get this BitField's value
@@ -333,10 +330,10 @@ mixin template BitFieldMutation(Mutability mutability, ValueType_)
     }
 
     // If mutability allows setting the bit/bitfield in some way
-    static if (canWrite)
+    static if (mutability.canWrite)
     {
         // Can modify the bit/bitfield's value, but only with a set or clear
-        static if (canOnlySetOrClear)
+        static if (mutability.canOnlySetOrClear)
         {
             static if (mutability == Mutability.rc_w0)
             {
@@ -369,7 +366,7 @@ mixin template BitFieldMutation(Mutability mutability, ValueType_)
                 }
             }
         
-            // 'value' is private in favor of clear/set methods
+            // 'value' is private in favor of the above clear/set methods
             private:
         }
         
