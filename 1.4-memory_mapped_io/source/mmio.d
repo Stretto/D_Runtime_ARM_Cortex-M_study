@@ -207,7 +207,7 @@ mixin template BitFieldDimensions(size_t bitIndex0, size_t bitIndex1)
     }
 
     /***************************************************************
-      Determineds if bitIndex is a valid index for this register
+      Determines if bitIndex is a valid index for this register
       
       Returns: true if the bitIndex is valid, false if not
     */
