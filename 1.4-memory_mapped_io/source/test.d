@@ -1,4 +1,4 @@
-module Test;
+module test;
 
 import mmio;
 
