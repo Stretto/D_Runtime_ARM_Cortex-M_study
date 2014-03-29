@@ -542,6 +542,10 @@ abstract class Peripheral(Address peripheralAddress_)
             *(cast(shared Word*)address) = value;
         }
         
+        /***********************************************************************
+          Recursive template to combine values of each bitfield passed to the 
+          setValue function
+        */
         private static Word combineValues(T...)()
         {    
             static if (T.length > 0)
@@ -563,6 +567,10 @@ abstract class Peripheral(Address peripheralAddress_)
             }
         }
         
+        /***********************************************************************
+          Recursive template to combine masks of each bitfield passed to the 
+          setValue function
+        */
         private static Word combineMasks(T...)()
         {
             static if (T.length > 0)
