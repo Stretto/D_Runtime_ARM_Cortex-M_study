@@ -24,24 +24,16 @@ void OnHardFault()
 
 void OnReset()
 {
-    MyRegister.Bit0.value = true;
-    
-    if (MyRegister.Bit0.value)
-    {
-        MyRegister.Bit1.value = true;
-    }
-    
-    //static assert(false, __traits(parent, MyRegister.Bit0).stringof);
-    
-    MyRegister.setValue!(
-        MyRegister.Bit1, true,
-        MyRegister.Bit0, true)();
-        
+    MyPeripheral.MyRegister.Bit0.value = true;
 
+    if (MyPeripheral.MyRegister.Bit0.value)
+    {
+        MyPeripheral.MyRegister.Bit1.value = false;
+    }       
 
     while(true)
     { 
         //Test.Bit0.value = !Test.Bit0.value;
-        trace.writeLine(MyRegister.Bits1to0.value);
+        trace.writeLine(MyPeripheral.MyRegister.Bits1to0.value);
     }
 }

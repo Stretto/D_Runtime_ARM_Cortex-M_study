@@ -26,7 +26,7 @@
  http://yogiken.files.wordpress.com/2010/02/c-register-access.pdf
  
  The idea, is that all of this logic will actually be evaluated at compile
- time and each BitField access will only cost a 2~3 instructions of assembly.
+ time and each BitField access will only cost a few instructions of assembly.
  
  Right now, this will probably only work for 32-bit platforms. I'd like to 
  modify this so it is portable to even 16, and 8 bit platforms, but one step 
@@ -37,30 +37,48 @@
  Examples:
  --------------------
  // Declare register with it's contained fields like this
- struct MyRegister
- {
-     mixin Register!(0x2000_0000, 0x0000_0000);
-
-     alias BitField!(31,  0, Mutability.r)  EntireRegister;
-     alias BitField!(16,  1, Mutability.r)  Bits16To1;
-     alias Bit     !(     0, Mutability.w)  Bit0;
-     alias BitField!(24, 17, Mutability.rw) Bits24To17;
- }
+ // TODO: make a more meaningful example
+final abstract class MyPeripheral : Peripheral!(0x2000_1000)
+{   
+    final abstract class MyRegister0 : Register!(0x0000, Access.Word)
+    {
+        alias EntireRegister = BitField!(31, 0, Mutability.rw);
+        alias Bits31To17     = BitField!(17, 2, Mutability.rw);
+        alias Bits15to8      = BitField!(15, 8, Mutability.rw);
+        alias Bits1to0       = BitField!( 1, 0, Mutability.rw); 
+        alias Bit1           = Bit!(1, Mutability.rw);
+        alias Bit0           = Bit!(0, Mutability.rw);
+    }
+    
+    final abstract class MyRegister1 : Register!(0x0004, Access.Word)
+    {
+        alias EntireRegister = BitField!(31, 0, Mutability.rw);
+        alias Bits31To17     = BitField!(17, 2, Mutability.rw);
+        alias Bits15to8      = BitField!(15, 8, Mutability.rw);
+        alias Bits1to0       = BitField!( 1, 0, Mutability.rw); 
+        alias Bit1           = Bit!(1, Mutability.rw);
+        alias Bit0           = Bit!(0, Mutability.rw);
+    }
+}
  --------------------
-
- TODO:
- - Find a way to set multiple bit fields in one Load/Modify/Store cycle
- - Find a way to enforce 8-bit, 16-bit, or 32-bit access as specified in the
-   datasheet
 */
 module mmio;
 
-import trace;
+private alias Address    = uint;
+private alias BitIndex   = uint;
+private alias HalfWord   = ushort;
+private alias Word       = uint;
 
-alias Address    = uint;
-alias BitIndex   = uint;
-alias HalfWord   = ushort;
-alias Word       = uint;
+private immutable Address PeripheralRegionStart        = 0x4000_0000u;
+private immutable size_t  PeripheralRegionSize         = 0x000F_FFFFu;
+private immutable Address PeripheralRegionEnd          = PeripheralRegionStart + PeripheralRegionSize - 1;
+private immutable Address PeripheralBitBandRegionStart = 0x4200_0000u;
+
+
+private immutable Address SRAMRegionStart              = 0x2000_0000u;
+private immutable size_t  SRAMRegionSize               = 0x000F_FFFFu;
+private immutable Address SRAMRegionEnd                = SRAMRegionStart + SRAMRegionSize - 1;
+private immutable Address SRAMBitBandRegionStart       = 0x2200_0000u;
 
 enum Access
 {    
@@ -143,7 +161,7 @@ enum Mutability
     Whether or not the mutability policy allows for reading the bit/
     bitfield's value
 */
-static bool canRead(Mutability m)
+static auto canRead(Mutability m)
 {
     return m == Mutability.r     || m == Mutability.rw   
         || m == Mutability.rt_w  || m == Mutability.rs 
@@ -155,7 +173,7 @@ static bool canRead(Mutability m)
     Whether or not the mutability policy allows for writing the bit/
     bitfield's value
 */
-static bool canWrite(Mutability m)
+static auto canWrite(Mutability m)
 {
     return m == Mutability.w     || m == Mutability.rw 
         || m == Mutability.rc_w0 || m == Mutability.rc_w1
@@ -166,7 +184,7 @@ static bool canWrite(Mutability m)
     Whether or not the mutability policy allows for only setting or
     clearing a bit
 */
-static bool canOnlySetOrClear(Mutability m)
+static auto canOnlySetOrClear(Mutability m)
 {
     return m == Mutability.rc_w0 || m == Mutability.rc_w1 
         || m == Mutability.rs;
@@ -175,7 +193,7 @@ static bool canOnlySetOrClear(Mutability m)
  /***********************************************************************
     Whether or not the mutability policy applies only to single bits
 */
-static bool isForBitsOnly(Mutability m)
+static auto isForBitsOnly(Mutability m)
 {
     return m == Mutability.rc_w0 || m == Mutability.rc_w1 
         || m == Mutability.rs    || m == Mutability.rc_r
@@ -216,7 +234,7 @@ mixin template BitFieldDimensions(BitIndex bitIndex0, BitIndex bitIndex1)
       
       Returns: true if the bitIndex is valid, false if not
     */
-    private static bool isValidBitIndex(BitIndex bitIndex) pure
+    private static auto isValidBitIndex(BitIndex bitIndex) pure
     {
         return bitIndex >= 0 && bitIndex < (Word.sizeof * 8);
     }
@@ -238,7 +256,7 @@ mixin template BitFieldDimensions(BitIndex bitIndex0, BitIndex bitIndex1)
     /***********************************************************************
       Whether or not this bitfield is aligned to an even multiple of bytes
     */
-    private static @property bool isByteAligned() pure
+    private static @property auto isByteAligned() pure
     {
         return ((mostSignificantBitIndex + 1) % 8) == 0 
             && (leastSignificantBitIndex % 8) == 0;
@@ -248,7 +266,7 @@ mixin template BitFieldDimensions(BitIndex bitIndex0, BitIndex bitIndex1)
       Whether or not this bitfield is aligned to an even multiple 16-Bit
       half-words
     */
-    private static @property bool isHalfWordAligned() pure
+    private static @property auto isHalfWordAligned() pure
     {
         return ((mostSignificantBitIndex + 1) % 16) == 0 
             && (leastSignificantBitIndex % 16) == 0;
@@ -272,17 +290,13 @@ mixin template BitFieldDimensions(BitIndex bitIndex0, BitIndex bitIndex1)
     
     private static @property Address bitBandAddress() pure
     {
-        //TODO: need to find some way to externalize this. 
-        // From reference manual pp. 69
-        // bit_word_addr = bit_band_base + (byte_offset x 32) + (bit_number × 4)
-        
-        static if (address >= 0x4000_0000u && address <= 0x400F_FFFFu)
+        static if (address >= PeripheralRegionStart && address <= PeripheralRegionEnd)
         {
-            return 0x4200_0000u + ((address - 0x4000_0000u) * 32u) + (leastSignificantBitIndex * 4);
+            return PeripheralBitBandRegionStart + ((address - PeripheralRegionStart) * 32u) + (leastSignificantBitIndex * 4);
         }
-        else static if (address >= 0x2000_0000u && address <= 0x200F_FFFFu)
+        else static if (address >= SRAMRegionStart && address <= SRAMRegionEnd)
         {
-            return 0x2200_0000u + ((address - 0x2000_0000u) * 32u) + (leastSignificantBitIndex * 4);
+            return SRAMBitBandRegionStart + ((address - SRAMRegionStart) * 32u) + (leastSignificantBitIndex * 4);
         }
         else
         {
@@ -381,7 +395,7 @@ mixin template BitFieldMutation(Mutability mutability, ValueType_)
         static @property void value(ValueType value_)
         {             
             // If only a single bit, use bit banding
-            static if (numberOfBits == 1)
+            static if (numberOfBits == 1 && isBitBandable)
             {
                 *(cast(shared ValueType*)bitBandAddress) = value_;
             }
@@ -451,140 +465,164 @@ mixin template BitFieldImplementation(BitIndex bitIndex0, BitIndex bitIndex1, Mu
 }
 
 /***********************************************************************
- Template for modeling a register
+ Template for modeling a peripheral register bank
 */
-mixin template Register(Address peripheralAddress, size_t addressOffset, Access access_ = Access.Byte_HalfWord_Word, Word resetValue_ = 0)
-{    
-    /***********************************************************************
-      Gets this register's address as specified in the datasheet
-    */
-    static @property auto address() pure
+abstract class Peripheral(Address peripheralAddress_)
+{
+    // this alias is used by some of the child mixins
+    private alias peripheralAddress = peripheralAddress_;
+    
+    static @property Address address()
     {
-        return peripheralAddress + addressOffset;
+        return peripheralAddress_;
     }
     
     /***********************************************************************
-      Gets the data width(byte, half-word, word) access policy for this
-      register.
+      A register for this peripheral
     */
-    static @property auto access() pure
+    abstract class Register(ptrdiff_t addressOffset, Access access_ = Access.Byte_HalfWord_Word, Word resetValue_ = 0)
     {
-        return access_;
-    }
-    
-    /***********************************************************************
-      Gets this register's reset value as specified in the datasheet
-    */
-    static @property auto resetValue() pure
-    {
-        return resetValue_;
-    }
-
-    /***********************************************************************
-      Reset this register to its initial reset value
-    */
-    private static void reset()
-    {
-        value = resetValue;
-    }
-    
-    /***********************************************************************
-      Gets all bits in the register as a single value.  It's only exposed
-      privately to prevent circumventing the access mutability.
-    */
-    private static @property auto value()
-    {        
-        return *(cast(shared Word*)address);
-    }
-
-    /***********************************************************************
-      Sets all bits in the register as a single value.  It's only exposed
-      privately to prevent circumventing the access mutability.
-    */
-    private static @property void value(Word value)
-    {        
-        *(cast(shared Word*)address) = value;
-    }
-    
-    private static Word combineValues(T...)()
-    {    
-        static if (T.length > 0)
+        /***********************************************************************
+          Gets this register's address as specified in the datasheet
+        */
+        static @property auto address() pure
         {
-            //TODO: ensure T[0] is a child of this register
-            //static assert(false, __traits(parent, T[0]).access);
-        
-            // ensure value assignment is legal
-            static assert(__traits(compiles, T[0].value = T[1]), "Invalid assignment");
-        
-            // merge all specified bitFields and assign to this register's value
-            return T[0].maskValue(T[1]) | combineValues!(T[2..$])();
+            return peripheralAddress + addressOffset;
         }
-        else
+        
+        /***********************************************************************
+          Whether or not the address has a bit-banded alias
+        */
+        private static @property auto isBitBandable()
         {
-            // no more values left to combine
-            return 0;
+            return (address >= PeripheralRegionStart && address <= PeripheralRegionEnd)
+                || (address >= SRAMRegionStart && address <= SRAMRegionEnd);
         }
-    }
-    
-    private static Word combineMasks(T...)()
-    {
-        static if (T.length > 0)
+        
+        /***********************************************************************
+          Gets the data width(byte, half-word, word) access policy for this
+          register.
+        */
+        static @property auto access() pure
+        {
+            return access_;
+        }
+        
+        /***********************************************************************
+          Gets this register's reset value as specified in the datasheet
+        */
+        static @property auto resetValue() pure
+        {
+            return resetValue_;
+        }
+
+        /***********************************************************************
+          Reset this register to its initial reset value
+        */
+        private static void reset()
+        {
+            value = resetValue;
+        }
+        
+        /***********************************************************************
+          Gets all bits in the register as a single value.  It's only exposed
+          privately to prevent circumventing the access mutability.
+        */
+        private static @property auto value()
         {        
-            // merge all specified bitFields and assign to this register's value
-            return T[0].bitMask | combineMasks!(T[2..$])();
+            return *(cast(shared Word*)address);
         }
-        else
-        {
-            // no more values left to combine
-            return 0;
-        }
-    }
-     
-    /***********************************************************************
-      Sets multiple bit fields simultaneously
-    */
-    static void setValue(T...)()
-    {                   
-        // number of arguments must be even
-        static assert(!(T.length & 1), "Wrong number of arguments");
-        
-        value = (value & ~combineMasks!(T)()) | combineValues!(T)();
-    }
 
-    /***********************************************************************
-      A range of bits in the this register.  Return type is automatically
-      determined.
-    */
-    final abstract class BitField(BitIndex bitIndex0, BitIndex bitIndex1, Mutability mutability)
-    {
-	mixin BitFieldImplementation!(bitIndex0, bitIndex1, mutability);
+        /***********************************************************************
+          Sets all bits in the register as a single value.  It's only exposed
+          privately to prevent circumventing the access mutability.
+        */
+        private static @property void value(Word value)
+        {        
+            *(cast(shared Word*)address) = value;
+        }
+        
+        private static Word combineValues(T...)()
+        {    
+            static if (T.length > 0)
+            {
+                //TODO: ensure T[0] is a child of this register
+                //static assert(false, __traits(parent, T[0]).access);
+            
+                // ensure value assignment is legal
+                static assert(__traits(compiles, T[0].value = T[1]), "Invalid assignment");
+            
+                // merge all specified bitFields into a single Word value and assign to this 
+                // register's value
+                return T[0].maskValue(T[1]) | combineValues!(T[2..$])();
+            }
+            else
+            {
+                // no more values left to combine
+                return 0;
+            }
+        }
+        
+        private static Word combineMasks(T...)()
+        {
+            static if (T.length > 0)
+            {        
+                // merge all specified bitFields and assign to this register's value
+                return T[0].bitMask | combineMasks!(T[2..$])();
+            }
+            else
+            {
+                // no more values left to combine
+                return 0;
+            }
+        }
+        
+        /***********************************************************************
+          Sets multiple bit fields simultaneously
+        */
+        static void setValue(T...)()
+        {                   
+            // number of arguments must be even
+            static assert(!(T.length & 1), "Wrong number of arguments");
+            
+            value = (value & ~combineMasks!(T)()) | combineValues!(T)();
+        }
+
+        /***********************************************************************
+          A range of bits in the this register.  Return type is automatically
+          determined.
+        */
+        final abstract class BitField(BitIndex bitIndex0, BitIndex bitIndex1, Mutability mutability)
+        {
+            mixin BitFieldImplementation!(bitIndex0, bitIndex1, mutability);
+        }
+        
+        /***********************************************************************
+          A range of bits in the this register.  User must specify the return
+          type.
+        */
+        final abstract class BitField(BitIndex bitIndex0, BitIndex bitIndex1, Mutability mutability, ValueType)
+        {
+            mixin BitFieldImplementation!(bitIndex0, bitIndex1, mutability, ValueType);
+        }
+        
+        /***********************************************************************
+          A special case of BitField (a single bit).   Return type is automatically
+          determined.
+        */
+        final abstract class Bit(BitIndex bitIndex, Mutability mutability)
+        {
+            mixin BitFieldImplementation!(bitIndex, bitIndex, mutability);
+        }
+        
+        /***********************************************************************
+          A special case of BitField (a single bit). User must specify the return
+          type.
+        */
+        final abstract class Bit(BitIndex bitIndex, Mutability mutability, ValueType)
+        {
+            mixin BitFieldImplementation!(bitIndex, bitIndex, mutability, ValueType);
+        }
     }
-    
-    /***********************************************************************
-      A range of bits in the this register.  User must specify the return
-      type.
-    */
-    final abstract class BitField(BitIndex bitIndex0, BitIndex bitIndex1, Mutability mutability, ValueType)
-    {
-        mixin BitFieldImplementation!(bitIndex0, bitIndex1, mutability, ValueType);
-    }
-    
-    /***********************************************************************
-      A special case of BitField (a single bit).   Return type is automatically
-      determined.
-    */
-    final abstract class Bit(BitIndex bitIndex, Mutability mutability)
-    {
-	mixin BitFieldImplementation!(bitIndex, bitIndex, mutability);
-    }
-    
-    /***********************************************************************
-      A special case of BitField (a single bit). User must specify the return
-      type.
-    */
-    final abstract class Bit(BitIndex bitIndex, Mutability mutability, ValueType)
-    {
-        mixin BitFieldImplementation!(bitIndex, bitIndex, mutability, ValueType);
-    }
-}
+} 
 
