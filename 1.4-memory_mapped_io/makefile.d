@@ -49,6 +49,7 @@ void main()
  	    ~ "-fno-emit-moduleinfo -ffunction-sections -fdata-sections "
  	    ~ "-O3 "
  	    ~ "-c "
+ 	    ~ "-Wa,-adhln=" ~ objectFile ~ ".s -fverbose-asm "
  	    //~ "-S -fverbose-asm -Wa,-adhln "  //generate assembly
  	    ~ dFile.name
  	    ~ " -o "
@@ -100,6 +101,14 @@ void main()
 	writeln("Link failed");
 	return;
     }
+    
+    /************************************************************************************
+     Generate assembly listing
+    */
+    string listingCmd = "~/gdc-arm-none-eabi/bin/arm-none-eabi-objdump -d -S -l binary/start.elf > binary/start.elf.s 2>&1";
+    writeln(listingCmd);
+    pid = spawnShell(listingCmd);
+    wait(pid);
     
     /************************************************************************************
      Display executable size
