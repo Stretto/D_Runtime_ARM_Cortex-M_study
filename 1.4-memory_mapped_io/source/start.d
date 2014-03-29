@@ -2,7 +2,7 @@
 
 import trace;
 import mmio;
-import Test;
+import test;
 import gcc.attribute;
 
 // These are marked extern(C) to avoid name mangling, so we can refer to them in our linker script
@@ -31,9 +31,11 @@ void OnReset()
         MyRegister.Bit1.value = true;
     }
     
-//     MyRegister.setValue!(
-//         MyRegister.Bit1, true,
-//         MyRegister.Bit0, true)();
+    //static assert(false, __traits(parent, MyRegister.Bit0).stringof);
+    
+    MyRegister.setValue!(
+        MyRegister.Bit1, true,
+        MyRegister.Bit0, true)();
         
 
 

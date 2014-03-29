@@ -57,6 +57,11 @@ module mmio;
 
 import trace;
 
+alias Address    = uint;
+alias BitIndex   = uint;
+alias HalfWord   = ushort;
+alias Word       = uint;
+
 enum Access
 {    
     /****************************************************************************
@@ -180,7 +185,7 @@ static bool isForBitsOnly(Mutability m)
 /***********************************************************************
  Provides information about a bit field given the specified bit indices
 */
-mixin template BitFieldDimensions(size_t bitIndex0, size_t bitIndex1)
+mixin template BitFieldDimensions(BitIndex bitIndex0, BitIndex bitIndex1)
 {
     /***************************************************************
         Index of this BitField's most significant Bit
@@ -211,9 +216,9 @@ mixin template BitFieldDimensions(size_t bitIndex0, size_t bitIndex1)
       
       Returns: true if the bitIndex is valid, false if not
     */
-    private static bool isValidBitIndex(size_t bitIndex) pure
+    private static bool isValidBitIndex(BitIndex bitIndex) pure
     {
-        return bitIndex >= 0 && bitIndex < (size_t.sizeof * 8);
+        return bitIndex >= 0 && bitIndex < (Word.sizeof * 8);
     }
 
     /***********************************************************************
@@ -225,7 +230,7 @@ mixin template BitFieldDimensions(size_t bitIndex0, size_t bitIndex1)
         return ((1 << numberOfBits) - 1) << leastSignificantBitIndex;
     }
     
-    private static size_t maskValue(T)(T value) pure
+    private static Word maskValue(T)(T value) pure
     {
         return (value << leastSignificantBitIndex) & bitMask;
     }
@@ -252,7 +257,7 @@ mixin template BitFieldDimensions(size_t bitIndex0, size_t bitIndex1)
     /***********************************************************************
       Gets the address of this bitfield at its aligned byte's location
     */
-    private static @property size_t byteAlignedAddress() pure
+    private static @property Address byteAlignedAddress() pure
     {
         return address + (leastSignificantBitIndex / 8);
     }
@@ -260,24 +265,24 @@ mixin template BitFieldDimensions(size_t bitIndex0, size_t bitIndex1)
     /***********************************************************************
       Gets the address of this bitfield at its aligned half-word's location
     */
-    private static @property size_t halfWordAlignedAddress() pure
+    private static @property Address halfWordAlignedAddress() pure
     {
         return address + (leastSignificantBitIndex / 16);
     }
     
-    private static @property size_t bitBandAddress() pure
+    private static @property Address bitBandAddress() pure
     {
         //TODO: need to find some way to externalize this. 
         // From reference manual pp. 69
         // bit_word_addr = bit_band_base + (byte_offset x 32) + (bit_number × 4)
         
-        static if (address >= 0x4000_0000 && address <= 0x400F_FFFF)
+        static if (address >= 0x4000_0000u && address <= 0x400F_FFFFu)
         {
-            return 0x4200_0000 + ((address - 0x4000_0000) * 32) + (leastSignificantBitIndex * 4);
+            return 0x4200_0000u + ((address - 0x4000_0000u) * 32u) + (leastSignificantBitIndex * 4);
         }
-        else static if (address >= 0x2000_0000 && address <= 0x200F_FFFF)
+        else static if (address >= 0x2000_0000u && address <= 0x200F_FFFFu)
         {
-            return 0x2200_0000 + ((address - 0x2000_0000) * 32) + (leastSignificantBitIndex * 4);
+            return 0x2200_0000u + ((address - 0x2000_0000u) * 32u) + (leastSignificantBitIndex * 4);
         }
         else
         {
@@ -324,7 +329,7 @@ mixin template BitFieldMutation(Mutability mutability, ValueType_)
             }
             else
             {
-                return cast(ValueType)((*(cast(shared size_t*)address) & bitMask) >> leastSignificantBitIndex);
+                return cast(ValueType)((*(cast(shared Word*)address) & bitMask) >> leastSignificantBitIndex);
             }
         }
     }
@@ -366,7 +371,7 @@ mixin template BitFieldMutation(Mutability mutability, ValueType_)
                 }
             }
         
-            // 'value' is private in favor of the above clear/set methods
+            // 'value' is private as it is enpsulated by the clear/set methods above
             private:
         }
         
@@ -374,9 +379,7 @@ mixin template BitFieldMutation(Mutability mutability, ValueType_)
             Set this BitField's value
         */
         static @property void value(ValueType value_)
-        { 
-            //TODO: This logic is a duplication of logic below.  Try to consolidate.
-            
+        {             
             // If only a single bit, use bit banding
             static if (numberOfBits == 1)
             {
@@ -397,7 +400,7 @@ mixin template BitFieldMutation(Mutability mutability, ValueType_)
             // catch-all.  No optimizations possible, so just do read-modify-write
             else
             {
-                *(cast(shared size_t*)address) = (*(cast(shared size_t*)address) & ~bitMask) | ((cast(size_t)value_) << leastSignificantBitIndex);
+                *(cast(shared Word*)address) = (*(cast(shared Word*)address) & ~bitMask) | ((cast(Word)value_) << leastSignificantBitIndex);
             }
         }
     }
@@ -408,30 +411,30 @@ mixin template BitFieldMutation(Mutability mutability, ValueType_)
  version automatically determines the return type based on the size
  of the bitfield.
 */
-mixin template BitFieldImplementation(size_t bitIndex0, size_t bitIndex1, Mutability mutability)
+mixin template BitFieldImplementation(BitIndex bitIndex0, BitIndex bitIndex1, Mutability mutability)
 {    
     mixin BitFieldDimensions!(bitIndex0, bitIndex1);
     
     //TODO: do a test to determine if limiting return type to something less
     // than the natural word size results in slower code.  Perhaps it's better
-    // to simply make everything default to uint/size_t
+    // to simply make everything default to Word
     
     // determine the return type based on the number of bits
     static if (numberOfBits <= 1)
     {
         alias ValueType = bool;
     }
-    else static if (numberOfBits <= 8)
+    else static if (numberOfBits <= (ubyte.sizeof * 8))
     {
         alias ValueType = ubyte;
     }
-    else static if (numberOfBits <= 16)
+    else static if (numberOfBits <= (HalfWord.sizeof * 8))
     {
-        alias ValueType = ushort;
+        alias ValueType = HalfWord;
     }
-    else static if (numberOfBits <= 32)
+    else static if (numberOfBits <= (Word.sizeof * 8))
     {
-        alias ValueType = uint;
+        alias ValueType = Word;
     }
     
     mixin BitFieldMutation!(mutability, ValueType);
@@ -441,7 +444,7 @@ mixin template BitFieldImplementation(size_t bitIndex0, size_t bitIndex1, Mutabi
  Provides access to a limited range of bits in a register. User 
  must specify the return type.
 */
-mixin template BitFieldImplementation(size_t bitIndex0, size_t bitIndex1, Mutability mutability, ValueType)
+mixin template BitFieldImplementation(BitIndex bitIndex0, BitIndex bitIndex1, Mutability mutability, ValueType)
 {    
     mixin BitFieldDimensions!(bitIndex0, bitIndex1);
     mixin BitFieldImplementation!(mutability, ValueType);
@@ -450,7 +453,7 @@ mixin template BitFieldImplementation(size_t bitIndex0, size_t bitIndex1, Mutabi
 /***********************************************************************
  Template for modeling a register
 */
-mixin template Register(size_t peripheralAddress, size_t addressOffset, Access access_ = Access.Byte_HalfWord_Word, size_t resetValue_ = 0)
+mixin template Register(Address peripheralAddress, size_t addressOffset, Access access_ = Access.Byte_HalfWord_Word, Word resetValue_ = 0)
 {    
     /***********************************************************************
       Gets this register's address as specified in the datasheet
@@ -491,25 +494,26 @@ mixin template Register(size_t peripheralAddress, size_t addressOffset, Access a
     */
     private static @property auto value()
     {        
-        return *(cast(shared size_t*)address);
+        return *(cast(shared Word*)address);
     }
 
     /***********************************************************************
       Sets all bits in the register as a single value.  It's only exposed
       privately to prevent circumventing the access mutability.
     */
-    private static @property void value(size_t value)
+    private static @property void value(Word value)
     {        
-        *(cast(shared size_t*)address) = value;
+        *(cast(shared Word*)address) = value;
     }
     
-    private static size_t combineValues(T...)()
+    private static Word combineValues(T...)()
     {    
         static if (T.length > 0)
         {
             //TODO: ensure T[0] is a child of this register
-            //static assert(false, __traits(parent, T[0]).stringof);
+            //static assert(false, __traits(parent, T[0]).access);
         
+            // ensure value assignment is legal
             static assert(__traits(compiles, T[0].value = T[1]), "Invalid assignment");
         
             // merge all specified bitFields and assign to this register's value
@@ -522,7 +526,7 @@ mixin template Register(size_t peripheralAddress, size_t addressOffset, Access a
         }
     }
     
-    private static size_t combineMasks(T...)()
+    private static Word combineMasks(T...)()
     {
         static if (T.length > 0)
         {        
@@ -540,7 +544,7 @@ mixin template Register(size_t peripheralAddress, size_t addressOffset, Access a
       Sets multiple bit fields simultaneously
     */
     static void setValue(T...)()
-    {            
+    {                   
         // number of arguments must be even
         static assert(!(T.length & 1), "Wrong number of arguments");
         
@@ -551,7 +555,7 @@ mixin template Register(size_t peripheralAddress, size_t addressOffset, Access a
       A range of bits in the this register.  Return type is automatically
       determined.
     */
-    final abstract class BitField(size_t bitIndex0, size_t bitIndex1, Mutability mutability)
+    final abstract class BitField(BitIndex bitIndex0, BitIndex bitIndex1, Mutability mutability)
     {
 	mixin BitFieldImplementation!(bitIndex0, bitIndex1, mutability);
     }
@@ -560,7 +564,7 @@ mixin template Register(size_t peripheralAddress, size_t addressOffset, Access a
       A range of bits in the this register.  User must specify the return
       type.
     */
-    final abstract class BitField(size_t bitIndex0, size_t bitIndex1, Mutability mutability, ValueType)
+    final abstract class BitField(BitIndex bitIndex0, BitIndex bitIndex1, Mutability mutability, ValueType)
     {
         mixin BitFieldImplementation!(bitIndex0, bitIndex1, mutability, ValueType);
     }
@@ -569,7 +573,7 @@ mixin template Register(size_t peripheralAddress, size_t addressOffset, Access a
       A special case of BitField (a single bit).   Return type is automatically
       determined.
     */
-    final abstract class Bit(size_t bitIndex, Mutability mutability)
+    final abstract class Bit(BitIndex bitIndex, Mutability mutability)
     {
 	mixin BitFieldImplementation!(bitIndex, bitIndex, mutability);
     }
@@ -578,7 +582,7 @@ mixin template Register(size_t peripheralAddress, size_t addressOffset, Access a
       A special case of BitField (a single bit). User must specify the return
       type.
     */
-    final abstract class Bit(size_t bitIndex, Mutability mutability, ValueType)
+    final abstract class Bit(BitIndex bitIndex, Mutability mutability, ValueType)
     {
         mixin BitFieldImplementation!(bitIndex, bitIndex, mutability, ValueType);
     }
