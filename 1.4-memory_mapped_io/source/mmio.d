@@ -32,11 +32,23 @@
  modify this so it is portable to even 16, and 8 bit platforms, but one step 
  at a time.
  
- Using this code should allow one to go directly from datasheet to code as
- shown below.
- Examples:
+ * It enforces word, half-word, and byte access policy at compile time.  
+   See Access.
+ * It enforces mutability constraints such as read, write, readwrite, etc...
+   at compile time. See Mutability.
+ * It optimizes byte-aligned and half-word aligned bitfields generating atomic
+   read/write operations resulting in smaller code size and faster performance.
+ * It optimizes bitfieds of a single bit, via bit-banding, generating atomic 
+   read/write operations resulting in smaller code size and faster performance.
+ * It can combine multiple bitfield accesses within a single register into one
+   read-modify-write operation resulting in smaller code size and faster
+   performance.
+ * It enables intuitive and obvious register modeling that directly cross-references
+   back to register specifications.
+ 
+ Example:
  --------------------
- // Declare register with it's contained fields like this
+ // A peripherals's register specification can be modeled as follows
  // TODO: make a more meaningful example
 final abstract class MyPeripheral : Peripheral!(0x2000_1000)
 {   
@@ -307,7 +319,7 @@ mixin template BitFieldDimensions(BitIndex bitIndex0, BitIndex bitIndex1)
 }
 
 /***********************************************************************
- Provides mutability enforcement for a bitfield.
+ Provides access and mutability enforcement for a bitfield.
 */
 mixin template BitFieldMutation(Mutability mutability, ValueType_)
 {
@@ -481,7 +493,7 @@ abstract class Peripheral(Address peripheralAddress_)
     /***********************************************************************
       A register for this peripheral
     */
-    abstract class Register(ptrdiff_t addressOffset, Access access_ = Access.Byte_HalfWord_Word, Word resetValue_ = 0)
+    abstract class Register(ptrdiff_t addressOffset, Access access_ = Access.Byte_HalfWord_Word)
     {
         /***********************************************************************
           Gets this register's address as specified in the datasheet
@@ -507,22 +519,6 @@ abstract class Peripheral(Address peripheralAddress_)
         static @property auto access() pure
         {
             return access_;
-        }
-        
-        /***********************************************************************
-          Gets this register's reset value as specified in the datasheet
-        */
-        static @property auto resetValue() pure
-        {
-            return resetValue_;
-        }
-
-        /***********************************************************************
-          Reset this register to its initial reset value
-        */
-        private static void reset()
-        {
-            value = resetValue;
         }
         
         /***********************************************************************
@@ -589,6 +585,7 @@ abstract class Peripheral(Address peripheralAddress_)
         /***********************************************************************
           Sets multiple bit fields simultaneously
         */
+        //TODO: add a function for clearing or setting bits simultaneously
         static void setValue(T...)()
         {                   
             // number of arguments must be even

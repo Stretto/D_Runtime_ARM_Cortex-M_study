@@ -24,12 +24,16 @@ void OnHardFault()
 
 void OnReset()
 {
-     MyPeripheral.MyRegister.Bits15to8.value = 3;   
+//     MyPeripheral.MyRegister.Bits15to8.value = 3;   
 //    MyPeripheral.MyRegister.Bits1to0.value = 3; 
+    MyPeripheral.MyRegister.Bit0.value = true;
     
-//     MyPeripheral.MyRegister.setValue!(
-//         MyPeripheral.MyRegister.Bit0, true,
-//         MyPeripheral.MyRegister.Bit1, false)();
+//     with(MyPeripheral.MyRegister)
+//     {
+//         setValue!(
+//             Bit0, true,
+//             Bit1, false)();
+//     }
 
 //     while(true)
 //     { 
