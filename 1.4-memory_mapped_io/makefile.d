@@ -15,59 +15,40 @@ import std.range;
 void main()
 {
     /************************************************************************************
-     compilation
+     Compile
     */
     auto dFiles = filter!`endsWith(a.name,".d")`(dirEntries("source", SpanMode.depth));
     
-    string[] objectFiles = new string[0];
-    
     bool success = true;
     
+    // concatenate all source files for inclusion in command line.  This is dene because
+    // GDC doesn't yet support LTO for fully inlining functions compiled to separate
+    // object files
+    string sourceFiles = "";
     foreach(dFile; parallel(dFiles, 1))
     {
-	string objectFile = "objects" ~ chompPrefix(dFile.name, "source") ~ ".o";
-	objectFiles ~= objectFile;
-	
-	string objectDir = dirName(objectFile);
-	if (!exists(objectDir))
-	{
-	    mkdirRecurse(objectDir);
-	}
-	
-//  	string cmd = 
-//  	    "~/ldc2-0.13.0-linux-x86_64/bin/ldc2 " 
-//  	    ~ "-march=thumb -mcpu=cortex-m4 "
-//  	    ~ "-c "
-//  	    ~ dFile.name
-//  	    ~ " -of="
-//  	    ~ objectFile;
-		
-    
- 	string cmd = 
- 	    "~/gdc-arm-none-eabi/bin/arm-none-eabi-gdc " 
- 	    ~ "-Isource -mthumb -mcpu=cortex-m4 "
- 	    ~ "-fno-emit-moduleinfo -ffunction-sections -fdata-sections "
- 	    ~ "-O3 "
- 	    ~ "-c "
- 	    ~ "-Wa,-adhln=" ~ objectFile ~ ".s -fverbose-asm "
- 	    //~ "-S -fverbose-asm -Wa,-adhln "  //generate assembly
- 	    ~ dFile.name
- 	    ~ " -o "
- 	    ~ objectFile;
-	
-	writeln(cmd);
-	    
-	auto pid = spawnShell(cmd);
-	auto exitCode = wait(pid);
-	if (exitCode != 0)
-	{
-	    success = false;
-	}
+	sourceFiles ~= " " ~ dFile.name;
     }
-    
-    if (!success)
+		
+    string objectFile = "objects/start.o";
+    string cmd = 
+        "~/gdc-arm-none-eabi/bin/arm-none-eabi-gdc " 
+        ~ "-Isource -mthumb -mcpu=cortex-m4 "
+        ~ "-fno-emit-moduleinfo -ffunction-sections -fdata-sections "
+        ~ "-O3 "
+        ~ "-c "
+        ~ "-Wa,-adhln=" ~ objectFile ~ ".s -fverbose-asm "
+        ~ sourceFiles
+        ~ " -o "
+        ~ objectFile;
+
+    writeln(cmd);
+
+    auto pid = spawnShell(cmd);
+    if (wait(pid) != 0)
     {
-	writeln("Compilation failed");
+        success = false;
+        writeln("Compilation failed");
 	return;
     }
     
@@ -82,21 +63,15 @@ void main()
     
     string linkCmd = 
         "~/gdc-arm-none-eabi/bin/arm-none-eabi-gdc -nostdlib "
-        ~ "-Wl,-T link/link.ld -Wl,-Map binary/memory.map -Wl,--gc-sections ";
-        
-    foreach(oFile; objectFiles)
-    {
-	linkCmd ~= " " ~ oFile;
-    }
-    
-    linkCmd ~= " -o binary/start.elf";
+        ~ "-Wl,-T link/link.ld -Wl,-Map binary/memory.map -Wl,--gc-sections "
+        ~ objectFile
+        ~ " -o binary/start.elf";
     
     writeln(linkCmd);
     
-    auto pid = spawnShell(linkCmd);
-    auto exitCode = wait(pid);
+    pid = spawnShell(linkCmd);
     
-    if (exitCode != 0)
+    if (wait(pid) != 0)
     {
 	writeln("Link failed");
 	return;
