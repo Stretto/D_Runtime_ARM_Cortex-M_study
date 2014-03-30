@@ -14,7 +14,7 @@ extern(C) immutable ISR HardFaultHandler = &OnHardFault; // Pointer to hard faul
 void OnHardFault()
 {
     // Display a message notifying us that a hard fault occurred
-    trace.writeLine("Hard Fault");
+    //trace.writeLine("Hard Fault");
     
     // Enter an infinite loop so we can use the debugger
     // to examine registers, memory, etc...
@@ -24,16 +24,16 @@ void OnHardFault()
 
 void OnReset()
 {
-    MyPeripheral.MyRegister.Bit0.value = true;
+     MyPeripheral.MyRegister.Bits15to8.value = 3;   
+//    MyPeripheral.MyRegister.Bits1to0.value = 3; 
+    
+//     MyPeripheral.MyRegister.setValue!(
+//         MyPeripheral.MyRegister.Bit0, true,
+//         MyPeripheral.MyRegister.Bit1, false)();
 
-    if (MyPeripheral.MyRegister.Bit0.value)
-    {
-        MyPeripheral.MyRegister.Bit1.value = false;
-    }       
-
-    while(true)
-    { 
-        //Test.Bit0.value = !Test.Bit0.value;
-        trace.writeLine(MyPeripheral.MyRegister.Bits1to0.value);
-    }
+//     while(true)
+//     { 
+//         //Test.Bit0.value = !Test.Bit0.value;
+//         trace.writeLine(MyPeripheral.MyRegister.Bits1to0.value);
+//     }
 }

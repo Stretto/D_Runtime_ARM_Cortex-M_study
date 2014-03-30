@@ -69,11 +69,12 @@ private alias BitIndex   = uint;
 private alias HalfWord   = ushort;
 private alias Word       = uint;
 
+// These are the bit band address that can be translated to bit-band addresses
+// that can address a single bit
 private immutable Address PeripheralRegionStart        = 0x4000_0000u;
 private immutable size_t  PeripheralRegionSize         = 0x000F_FFFFu;
 private immutable Address PeripheralRegionEnd          = PeripheralRegionStart + PeripheralRegionSize - 1;
 private immutable Address PeripheralBitBandRegionStart = 0x4200_0000u;
-
 
 private immutable Address SRAMRegionStart              = 0x2000_0000u;
 private immutable size_t  SRAMRegionSize               = 0x000F_FFFFu;
