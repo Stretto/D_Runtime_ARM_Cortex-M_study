@@ -25,7 +25,7 @@ void main()
     // GDC doesn't yet support LTO for fully inlining functions compiled to separate
     // object files
     string sourceFiles = "";
-    foreach(dFile; parallel(dFiles, 1))
+    foreach(dFile; dFiles)
     {
 	sourceFiles ~= " " ~ dFile.name;
     }
@@ -91,6 +91,30 @@ void main()
     string sizeCmd = "~/gdc-arm-none-eabi/bin/arm-none-eabi-size binary/start.elf";
     writeln(sizeCmd);
     pid = spawnShell(sizeCmd);
+    wait(pid);
+    
+    /************************************************************************************
+     Generate symbol table
+    */
+    string symbolTableCmd = "~/gdc-arm-none-eabi/bin/arm-none-eabi-nm binary/start.elf > binary/start.elf.sym 2>&1";
+    writeln(symbolTableCmd);
+    pid = spawnShell(symbolTableCmd);
+    wait(pid);
+    
+    /************************************************************************************
+     Generate symbol table
+    */
+    string symbolTable2Cmd = "~/gdc-arm-none-eabi/bin/arm-none-eabi-objdump -t binary/start.elf > binary/start.elf.st 2>&1";
+    writeln(symbolTable2Cmd);
+    pid = spawnShell(symbolTable2Cmd);
+    wait(pid);
+    
+    /************************************************************************************
+     Generate symbol table
+    */
+    string x = "~/gdc-arm-none-eabi/bin/arm-none-eabi-readelf -Sl binary/start.elf > binary/start.elf.e 2>&1";
+    writeln(x);
+    pid = spawnShell(x);
     wait(pid);
     
 }
