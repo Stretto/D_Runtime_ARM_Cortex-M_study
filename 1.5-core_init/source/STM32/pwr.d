@@ -1,7 +1,11 @@
+module pwr;
+
+import bus;
+
 /****************************************************************************************
  Power controller
 */
-final abstract class PWR : Peripheral!(0x00007000)
+final abstract class PWR : Peripheral!(APB1, 0x00007000)
 {
     /************************************************************************************
      PWR power control register

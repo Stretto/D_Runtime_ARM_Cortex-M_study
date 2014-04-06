@@ -1,7 +1,11 @@
+module flash;
+
+import bus;
+
 /****************************************************************************************
  Embedded Flash memory interface
 */
-final abstract class Flash : Peripheral!(0x00003C00)
+final abstract class Flash : Peripheral!(AHB1, 0x00003C00)
 {
     /************************************************************************************
      Flash access control register

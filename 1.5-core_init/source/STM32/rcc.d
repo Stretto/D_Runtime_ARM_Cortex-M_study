@@ -1,7 +1,11 @@
+module rcc;
+
+import bus;
+
 /****************************************************************************************
  Reset and clock control
 */
-final abstract class RCC : Peripheral!(0x00003800)
+final abstract class RCC : Peripheral!(AHB1, 0x00003800)
 {
     /************************************************************************************
      RCC clock control register

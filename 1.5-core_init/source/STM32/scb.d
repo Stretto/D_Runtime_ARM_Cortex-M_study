@@ -1,7 +1,11 @@
-﻿/****************************************************************************************
+﻿module scb;
+
+import bus;
+
+/****************************************************************************************
  System Control Block
 */
-final abstract class SCB : Peripheral!(0x00000000)
+final abstract class SCB : Peripheral!(CorePeripherals, 0x0000ED00)
 {
     /************************************************************************************
      Auxiliary control register
@@ -12,7 +16,7 @@ final abstract class SCB : Peripheral!(0x00000000)
      ● write buffer use for accesses to the default memory map
      ● interruption of multi-cycle instructions.
     */
-    final abstract class ACTLR : Register!(0x00 (base adress = 0xE000 E008), Access.Word)
+    final abstract class ACTLR : Register!(-0x0CF8, Access.Word) //0xE000E008
     {
         /********************************************************************************
          Disables floating point instructions completing out of order with respect to integer instructions.
@@ -20,13 +24,11 @@ final abstract class SCB : Peripheral!(0x00000000)
         alias DISOOFP = Bit!(9, Mutability.rw);
 
         /********************************************************************************
-         
          Disables automatic update of CONTROL.FPCA.
         */
         alias DISFPCA = Bit!(8, Mutability.rw);
 
         /********************************************************************************
-         
          Disables folding of IT instructions: 
          0: Enables IT instructions folding.
          1: Disables IT instructions folding.
@@ -38,7 +40,6 @@ final abstract class SCB : Peripheral!(0x00000000)
         alias DISFOLD = Bit!(2, Mutability.rw);
 
         /********************************************************************************
-         
          This bit only affects write buffers implemented in the Cortex-M4 processor.
          Disables write buffer use during default memory map accesses: This causes all BusFaults to
          be precise BusFaults but decreases performance because any store to memory must
@@ -49,7 +50,6 @@ final abstract class SCB : Peripheral!(0x00000000)
         alias DISDEFWBUF = Bit!(1, Mutability.rw);
 
         /********************************************************************************
-         
          Disables interrupt of multi-cycle instructions. When set to 1, disables interruption of load
          multiple and store multiple instructions. This increases the interrupt latency of the processor
          because any LDM or STM must complete before the processor can stack the current state and
@@ -60,6 +60,7 @@ final abstract class SCB : Peripheral!(0x00000000)
         alias DISMCYCINT = Bit!(0, Mutability.rw);
 
     }
+    
     /************************************************************************************
      CPUID base register
      The CPUID register contains the processor part number, version, and implementation
@@ -99,6 +100,7 @@ final abstract class SCB : Peripheral!(0x00000000)
         alias Revision = BitField!(3, 0, Mutability.r);
 
     }
+    
     /************************************************************************************
      Interrupt control and state register
      The ICSR:
@@ -210,6 +212,7 @@ final abstract class SCB : Peripheral!(0x00000000)
         alias VECTACTIVE = BitField!(8, 0, Mutability.rw);
 
     }
+    
     /************************************************************************************
      Vector table offset register
     */
@@ -233,6 +236,7 @@ final abstract class SCB : Peripheral!(0x00000000)
         alias determines = Bit!(29, Mutability.rw);
 
     }
+    
     /************************************************************************************
      Application interrupt and reset control register
      The AIRCR provides priority grouping control for the exception model, endian status for data
@@ -272,20 +276,19 @@ final abstract class SCB : Peripheral!(0x00000000)
         alias SYSRESETREQ = Bit!(2, Mutability.w);
 
         /********************************************************************************
-         
          Reserved for Debug use. This bit reads as 0. When writing to the register you must write 0 to
          this bit, otherwise behavior is unpredictable.
         */
         alias VECTCLRACTIVE = Bit!(1, Mutability.w);
 
         /********************************************************************************
-         
          Reserved for Debug use. This bit reads as 0. When writing to the register you must write 0 to
          this bit, otherwise behavior is unpredictable.
         */
         alias VECTRESET = Bit!(0, Mutability.w);
 
     }
+    
     /************************************************************************************
      System control register
      The SCR controls features of entry to and exit from low power state.
@@ -306,7 +309,6 @@ final abstract class SCB : Peripheral!(0x00000000)
         alias SEVEONPEND = Bit!(4, Mutability.rw);
 
         /********************************************************************************
-         
          Controls whether the processor uses sleep or deep sleep as its low power mode:
          0: Sleep
          1: Deep sleep.
@@ -314,7 +316,6 @@ final abstract class SCB : Peripheral!(0x00000000)
         alias SLEEPDEEP = Bit!(2, Mutability.rw);
 
         /********************************************************************************
-         
          Configures sleep-on-exit when returning from Handler mode to Thread mode. Setting this bit to
          1 enables an interrupt-driven application to avoid returning to an empty main application.
          0: Do not sleep when returning to Thread mode.
@@ -323,6 +324,7 @@ final abstract class SCB : Peripheral!(0x00000000)
         alias SLEEPONEXIT = Bit!(1, Mutability.rw);
 
     }
+    
     /************************************************************************************
      Configuration and control register
      The CCR controls entry to Thread mode and enables:
@@ -335,7 +337,6 @@ final abstract class SCB : Peripheral!(0x00000000)
     final abstract class CCR : Register!(0x14, Access.Word)
     {
         /********************************************************************************
-         
          Configures stack alignment on exception entry. On exception entry, the processor uses bit 9 of
          the stacked PSR to indicate the stack alignment. On return from the exception it uses this
          stacked bit to restore the correct stack alignment.
@@ -345,7 +346,6 @@ final abstract class SCB : Peripheral!(0x00000000)
         alias STKALIGN = Bit!(9, Mutability.rw);
 
         /********************************************************************************
-         
          Enables handlers with priority -1 or -2 to ignore data bus faults caused by load and store
          instructions. This applies to the hard fault, NMI, and FAULTMASK escalated handlers. Set this
          bit to 1 only when the handler and its data are in absolutely safe memory. The normal use of
@@ -357,7 +357,6 @@ final abstract class SCB : Peripheral!(0x00000000)
         alias BFHFNMIGN = Bit!(8, Mutability.rw);
 
         /********************************************************************************
-         
          Enables faulting or halting when the processor executes an SDIV or UDIV instruction with a
          divisor of 0:
          0: Do not trap divide by 0
@@ -378,7 +377,6 @@ final abstract class SCB : Peripheral!(0x00000000)
         alias UNALIGN = Bit!(3, Mutability.rw);
 
         /********************************************************************************
-         
          Enables unprivileged software access to the STIR, see Software trigger interrupt register
          (NVIC_STIR) on page 202:
          0: Disable
@@ -387,7 +385,6 @@ final abstract class SCB : Peripheral!(0x00000000)
         alias USERSETMPEND = Bit!(1, Mutability.rw);
 
         /********************************************************************************
-         
          Configures how the processor enters Thread mode.
          0: Processor can enter Thread mode only when no exception is active.
          1: Processor can enter Thread mode from any level under the control of an EXC_RETURN
@@ -396,6 +393,7 @@ final abstract class SCB : Peripheral!(0x00000000)
         alias NONBASETHRDENA = Bit!(0, Mutability.rw);
 
     }
+    
     /************************************************************************************
      System handler control and state register
      The SHCSR enables the system handlers, and indicates:
@@ -502,6 +500,7 @@ final abstract class SCB : Peripheral!(0x00000000)
         alias MEMFAULTACT = Bit!(0, Mutability.rw);
 
     }
+    
     /************************************************************************************
      Hard fault status register
      The HFSR gives information about events that activate the hard fault handler. This register
@@ -538,6 +537,7 @@ final abstract class SCB : Peripheral!(0x00000000)
         alias VECTTBL = Bit!(1, Mutability.rc_w1);
 
     }
+    
     /************************************************************************************
      Memory management fault address register
     */
@@ -557,6 +557,7 @@ final abstract class SCB : Peripheral!(0x00000000)
         alias MMFAR = BitField!(31, 0, Mutability.rw);
 
     }
+    
     /************************************************************************************
      Bus fault address register
     */
@@ -574,6 +575,7 @@ final abstract class SCB : Peripheral!(0x00000000)
         alias BFAR = BitField!(31, 0, Mutability.rw);
 
     }
+    
     /************************************************************************************
      Auxiliary fault status register
     */
@@ -593,6 +595,7 @@ final abstract class SCB : Peripheral!(0x00000000)
         alias IMPDEF = BitField!(31, 0, Mutability.rw);
 
     }
+    
     /************************************************************************************
      Coprocessor access control register
      The CPACR register specifies the access privileges for coprocessors.
