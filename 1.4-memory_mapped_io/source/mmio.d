@@ -480,14 +480,14 @@ mixin template BitFieldImplementation(BitIndex bitIndex0, BitIndex bitIndex1, Mu
 /***********************************************************************
  Template for modeling a peripheral register bank
 */
-abstract class Peripheral(Address peripheralAddress_)
+abstract class Peripheral(Bus, Address peripheralOffset)
 {
     // this alias is used by some of the child mixins
-    private alias peripheralAddress = peripheralAddress_;
+    private immutable Address peripheralAddress = Bus.address + peripheralOffset;
     
     static @property Address address()
     {
-        return peripheralAddress_;
+        return peripheralAddress;
     }
     
     /***********************************************************************

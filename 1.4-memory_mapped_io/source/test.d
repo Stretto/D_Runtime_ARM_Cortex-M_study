@@ -2,7 +2,12 @@ module test;
 
 import mmio;
 
-final abstract class MyPeripheral : Peripheral!(0x2000_1000)
+final abstract class AHB1
+{
+    immutable uint address = 0x4002_0000;
+}
+
+final abstract class MyPeripheral : Peripheral!(AHB1, 0x0000_3800)
 {   
     final abstract class MyRegister : Register!(0x0000, Access.Byte_HalfWord_Word)
     {
