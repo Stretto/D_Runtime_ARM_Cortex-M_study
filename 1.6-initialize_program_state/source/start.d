@@ -30,7 +30,7 @@ void OnHardFault()
     {
         " ldr r2, handler_address
           bx r2
-          handler_address: .word PrintHello";
+          handler_address: .word main";
     };
 }
 
@@ -55,7 +55,7 @@ extern(C) extern __gshared ubyte __data_end__;
 extern(C) extern __gshared ubyte __bss_start__;
 extern(C) extern __gshared ubyte __bss_end__;
 
-extern(C) void PrintHello()
+extern(C) void main()
 {    
     // copy data segment out of ROM and into RAM
     memcpy(&__data_start__, &__text_end__, &__data_end__ - &__data_start__);
